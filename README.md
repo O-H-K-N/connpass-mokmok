@@ -54,3 +54,6 @@ README〜ER図作成：4/13〆切
 MVPリリース：5/19〆切
 
 本番リリース：6/4〆切
+
+## 画面遷移図
+[figmaで作成した画面遷移図](https://www.figma.com/file/MfHpZqlRobeZI5lAt9GMrr/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3)
