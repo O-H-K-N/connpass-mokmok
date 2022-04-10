@@ -57,3 +57,6 @@ MVPリリース：5/19〆切
 
 ## 画面遷移図
 [figmaで作成した画面遷移図](https://www.figma.com/file/MfHpZqlRobeZI5lAt9GMrr/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3)
+
+## ER図
+![スクリーンショット 2022-04-09 16 33 41](https://user-images.githubusercontent.com/81758321/162561950-28a59f9a-21f9-4b29-b882-71cd8ff26981.png)
