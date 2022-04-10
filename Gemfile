@@ -32,6 +32,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Language
 gem 'rails-i18n'
 
+#env
+gem 'dotenv-rails'
+
 group :development, :test do
   #Debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
