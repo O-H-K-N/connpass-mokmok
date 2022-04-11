@@ -80,7 +80,8 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: line_capsule_production
-  username: line_capsule
-  password: <%= ENV['LINE_CAPSULE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # <<: *default
+  # database: line_capsule_production
+  # username: line_capsule
+  # password: <%= ENV['LINE_CAPSULE_DATABASE_PASSWORD'] %>
