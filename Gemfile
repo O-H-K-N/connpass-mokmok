@@ -32,8 +32,12 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Language
 gem 'rails-i18n'
 
-#env
+# env
 gem 'dotenv-rails'
+
+# slim
+gem 'slim-rails'
+gem 'html2slim'
 
 group :development, :test do
   #Debugger
