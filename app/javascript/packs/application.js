@@ -6,7 +6,10 @@
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import $ from 'jquery'
+
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 
 Rails.start()
 ActiveStorage.start()
