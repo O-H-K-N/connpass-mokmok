@@ -1,1 +1,23 @@
-@import 'bootstrap';
+@import"bootstrap";
+
+body {
+  background-color: #ACCCFC;
+};
+
+.title{
+  width: 50%;
+  margin: 0 auto;
+};
+
+.title-text{
+  text-align: center;
+  font-size: 60px;
+  color: white;
+  margin: 100px 0;
+};
+
+
+.line{
+  margin-left: auto;
+  margin-right: auto;
+};
