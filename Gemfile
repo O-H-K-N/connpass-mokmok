@@ -35,6 +35,10 @@ gem 'rails-i18n'
 # env
 gem 'dotenv-rails'
 
+# slim
+gem 'slim-rails'
+gem 'html2slim'
+
 group :development, :test do
   #Debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
