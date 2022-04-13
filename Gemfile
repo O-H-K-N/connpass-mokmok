@@ -35,6 +35,9 @@ gem 'rails-i18n'
 # env
 gem 'dotenv-rails'
 
+# gon
+gem 'gon'
+
 # slim
 gem 'slim-rails'
 gem 'html2slim'

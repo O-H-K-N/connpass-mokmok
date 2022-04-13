@@ -1,21 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
+  debugger
   liff.init({
-    liffId: '1657051984-gWZAlDnM'
+    liffId: gon.liff_id
   })
   // 他のメソッドを実行できるようになるための作業
   .then(() => {
-    debugger
+    // ユーザがログインしているかどうかを確認
     if (!liff.isLoggedIn()) {
       liff.login();
     }
   })
   // idTokenからユーザーIDを取得し、userテーブルに保存するための処理
   .then(() => {
+		// liff.getIDToken()でIDトークンを取得
     const idToken = liff.getIDToken()
     console.log(idToken)
     const body =`idToken=${idToken}`
+		// コントローラーにIDトークンを渡すリクエストを準備
     const request = new Request('/users', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
@@ -24,11 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
       method: 'POST',
       body: body
     });
+		// コントローラーにリクエストを送る
     fetch(request)
   })
   .then(() => {
     // controllerからレスポンスがきたら、user登録画面にページ遷移
-    window.location = '/users/new'
+    window.location = '/'
   })
   .catch((err) => {
     // Error happens during initialization
