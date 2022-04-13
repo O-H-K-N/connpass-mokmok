@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   liff.init({
-    liffId: '1657044144-948kja8D'
+    liffId: '1657051984-gWZAlDnM'
   })
   // 他のメソッドを実行できるようになるための作業
   .then(() => {
