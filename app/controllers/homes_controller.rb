@@ -1,3 +1,5 @@
 class HomesController < ApplicationController
-  def top; end
+  before_action :set_liff_id
+
+  def top;end
 end

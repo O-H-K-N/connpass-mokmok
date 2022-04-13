@@ -1,8 +1,6 @@
-.container-fluid
-  .title
-    h1.title-text
-      | LINEカプセル
-.container-fluid
-  .mx-auto[style="width: 116px;"]
-    a.mx-0[href="https://lin.ee/7nsoaaw"]
-      img[src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0" width="120"]
+= javascript_pack_tag 'homes/top'
+
+.mx-auto.text-center.text-white
+  h1 LINEカプセル
+  = image_tag 'users/default.png', id: 'picture', class: 'w-20 h-20 rounded-full inline-flex items-center justify-center border border-gray-500', style: "width: 150px;"
+  h2#name.font-medium.title-font.mt-2.text-gray-900.text-xl
