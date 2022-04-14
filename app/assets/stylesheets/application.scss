@@ -2,16 +2,15 @@
 
 body {
   background-color: #c2d9fe;
-  font-family: "Tsukushi A Round Gothic","筑紫A丸ゴシック";
+  font-family: "ヒラギノ丸ゴ ProN","Hiragino Maru Gothic ProN";
+  color: #3683ff
 }
 
 .wrapper{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh
+  margin-top: 62px;
 }
 
-nav{
+nav, footer{
   background-color: #3683ff;
 
   .nav-title, .navbar-toggler-icon{
