@@ -1,0 +1,23 @@
+nav.navbar.navbar-dark.fixed-top
+  = link_to root_path, class: 'navbar-brand'
+    strong.nav-title
+      = 'レタレコ'
+  button.navbar-toggler.me-3 type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+    span.navbar-toggler-icon
+  .collapse.navbar-collapse id='navbarSupportedContent'
+    ul.navbar-nav.me-auto.mb-2
+      li.nav-item.my-1
+        = link_to root_path, class: 'nav-link d-flex justify-content-end'
+          = '使い方'
+      li.nav-item.my-1
+        = link_to root_path, class: 'nav-link d-flex justify-content-end'
+          = 'お問い合わせ'
+      li.nav-item.my-1
+        = link_to root_path, class: 'nav-link d-flex justify-content-end'
+          = '利用規約'
+      li.nav-item.my-1
+        = link_to root_path, class: 'nav-link d-flex justify-content-end'
+          = 'プライバシーポリシー'
+    div.d-flex.justify-content-end
+      button class="btn btn-outline-light my-2 mb-2 my-sm-0 nav-link" type="submit"
+        = '友達追加'

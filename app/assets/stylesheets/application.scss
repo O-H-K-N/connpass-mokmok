@@ -1,23 +1,26 @@
 @import"bootstrap";
 
 body {
-  background-color: #ACCCFC;
-};
+  background-color: #c2d9fe;
+  font-family: "Tsukushi A Round Gothic","筑紫A丸ゴシック";
+}
 
-.title{
-  width: 50%;
-  margin: 0 auto;
-};
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
+}
 
-.title-text{
-  text-align: center;
-  font-size: 60px;
+nav{
+  background-color: #3683ff;
+
+  .nav-title, .navbar-toggler-icon{
+    color: white;
+    font-size: 1.5rem;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link{
+  font-size: large;
   color: white;
-  margin: 100px 0;
-};
-
-
-.line{
-  margin-left: auto;
-  margin-right: auto;
-};
+}
