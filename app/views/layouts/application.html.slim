@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | LineCapsule
+      = t('defaults.app_name')
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     script[charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"]
     = csrf_meta_tags
@@ -10,6 +10,12 @@ html
     = Gon::Base.render_data
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body.bgc.font
-    .container.mt-5
+    script crossorigin="anonymous" src="https://kit.fontawesome.com/e1d6c1fcca.js"
+    script crossorigin="anonymous" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" type="text/javascript"
+  body
+    .mb-auto
+      = render 'shared/header'
+    .wrapper
       = yield
+    = render 'shared/footer'

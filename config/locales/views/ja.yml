@@ -1,0 +1,16 @@
+ja:
+  defaults:
+    app_name: レタレコ
+    footer_app_name: © 2022. レタレコ
+    how_to_use: 使い方
+    contact: お問い合わせ
+    term: 利用規約
+    policy: プライバシーポリシー
+    line_add: 友達追加
+  homes:
+    top:
+      app_detail: 未来の自分に手紙と記録を送るサービス
+      section:
+        first: LINEの友達に追加
+        second: 「レタレコ」で何ができる？
+        third: 使い方

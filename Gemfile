@@ -42,6 +42,10 @@ gem 'gon'
 gem 'slim-rails'
 gem 'html2slim'
 
+# line
+gem 'line-bot-api'
+
+
 group :development, :test do
   #Debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
