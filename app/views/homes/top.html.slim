@@ -1,6 +1,25 @@
-= javascript_pack_tag 'homes/top'
-
-.mx-auto.text-center.text-white
-  h1 LINEカプセル
-  = image_tag 'users/default.png', id: 'picture', class: 'w-20 h-20 rounded-full inline-flex items-center justify-center border border-gray-500', style: "width: 150px;"
-  h2#name.font-medium.title-font.mt-2.text-gray-900.text-xl
+section.container.mx-auto.py-5
+  .text-center.py-1
+    p.mb-1
+      = t('homes.top.app_detail')
+    h1.title-font
+      = t('defaults.app_name')
+section.bg-light.py-5
+  .text-center.py-1.text-secondary
+    h3.title-font
+      = t('homes.top.section.first')
+    h4.title-font ↓↓
+    .my-3
+      a href='https://lin.ee/7nsoaaw'
+        img src='https://scdn.line-apps.com/n/line_add_friends/btn/ja.png' alt=t('defaults.line_add') height='54' border='0'
+    .my-1
+      a href='https://lin.ee/7nsoaaw'
+        img src="https://qr-official.line.me/sid/M/317ocgvp.png?shortenUrl=true" height='120'
+section.mx-auto.py-5
+  .text-center.py-1
+    h3.title-font
+      = t('homes.top.section.second')
+section.mx-auto.py-5
+  .text-center.py-1
+    h3.title-font
+      = t('homes.top.section.third')
