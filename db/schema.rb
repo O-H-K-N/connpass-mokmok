@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 2022_04_15_071226) do
   create_table "letters", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "message", null: false
-    t.integer "dig", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "dig_notice"
+    t.date "#<ActiveRecord::ConnectionAdapters::PostgreSQL::TableDefinition"
     t.index ["user_id"], name: "index_letters_on_user_id"
   end
 
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_071226) do
     t.string "line_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "letter_status", default: 0, null: false
+    t.integer "letter_status", default: 0
   end
 
   add_foreign_key "comments", "records"
