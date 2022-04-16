@@ -45,6 +45,8 @@ gem 'html2slim'
 # line
 gem 'line-bot-api'
 
+# Background Job
+gem 'whenever', require: false
 
 group :development, :test do
   #Debugger
