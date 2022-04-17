@@ -42,6 +42,12 @@ gem 'gon'
 gem 'slim-rails'
 gem 'html2slim'
 
+# line
+gem 'line-bot-api'
+
+# Background Job
+gem 'whenever', require: false
+
 group :development, :test do
   #Debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
