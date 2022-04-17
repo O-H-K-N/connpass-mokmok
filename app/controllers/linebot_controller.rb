@@ -36,33 +36,33 @@ class LinebotController < ApplicationController
             if replied_message == '手紙'
               message = {
                 type: 'text',
-                text: '未来の自分に向けてのメッセージを送ってください'
+                text: '未来の自分に向けてのメッセージを送ろう！'
               }
               client.reply_message(event['replyToken'], message)
               @user.message_registration!
             else
               message = {
                 type: 'text',
-                text: 'メニューバーから「手紙」「記録」を選択して、未来の自分にメッセージを送ろう'
+                text: 'メニューバーから「手紙」「記録」を選択して、未来の自分にメッセージを送ろう！'
               }
               client.reply_message(event['replyToken'], message)
             end
           # 表示されたアクションを選択せずに、メッセージが送られたときの処理
           when 'message_registration'
             now = Date.today
-            min = now + 1
+            min = now >> 1
             max = now >> 12
             @letter = Letter.create(user_id: @user.id, message: replied_message, dig_notice: max)
             message = {
               type: 'text',
-              text: "明日から一年後までの間で、手紙を届ける日時を選択してください。",
+              text: "１ヶ月後から１年後までの間で、手紙を届ける日時を選択しよう！",
               quickReply: {
                 items: [
                   {
                     type: 'action',
                     action: {
                       type: "datetimepicker",
-                      label: "日時を選択してください。",
+                      label: "こちらから日時を選択してください",
                       data:  @letter.id,
                       mode: "date",
                       initial: min.strftime("%Y-%m-%d"),
@@ -88,7 +88,7 @@ class LinebotController < ApplicationController
           @letter.update(dig_notice: event['postback']['params']['date'].to_date)
           message = {
             type: 'text',
-            text: "登録しました！\n\n登録した手紙は"+ @letter.dig_notice.strftime("%Y年%-m月%-d日") +"に届きます。\n\nお楽しみに！"
+            text: "登録したよ！\n\n登録した手紙は\n"+ @letter.dig_notice.strftime("%Y年%-m月%-d日") +"に届くよ！\n\nお楽しみに！"
           }
           client.reply_message(event['replyToken'], message)
           @user.send_message!
