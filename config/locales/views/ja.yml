@@ -14,3 +14,12 @@ ja:
         first: LINEの友達に追加
         second: 「レタレコ」で何ができる？
         third: 使い方
+  records:
+    new:
+      title: 記録の作成
+      episode: エピソード
+      success_story: 成功談
+      failure_story: 失敗談
+    show:
+      date: '作成日'
+      content: '内容'

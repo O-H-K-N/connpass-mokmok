@@ -3,28 +3,27 @@ document.addEventListener('DOMContentLoaded', () => {
   liff.init({
     liffId: gon.liff_id
   })
-  // .then(() => {
-  //   if (!liff.isLoggedIn()) {
-  //     liff.login();
-  //   }
-  // })
   .then(() => {
-    const idToken = liff.getIDToken()
+    if (!liff.isLoggedIn()) {
+      liff.login();
+    }
+  })
+  .then(() => {
     debugger
-    console.log(idToken)
-    const body =`idToken=${idToken}`
+    const idToken = liff.getIDToken();
+    const body = `idToken=${idToken}`
     const request = new Request('/records/logedin', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         'X-CSRF-Token': token
       },
-      method: 'POST',
-      body: body
+    method: 'POST',
+    body: body
     });
     fetch(request)
-  })
-  .then(() => {
-    window.location = '/records/new'
+    .then(() => {
+      window.location = '/records/new'
+    })
   })
   .catch((err) => {
     console.log(err.code, err.message);
