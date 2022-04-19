@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザ
+      record: 記録
+    attributes:
+      record:
+        category: 記録のカテゴリー
+        title: 記録のタイトル
+        content: 記録の内容
+      letter:
+        message: 'メッセージ'
+        dig_notice: 'お届け日'
