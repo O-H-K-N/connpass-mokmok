@@ -1,5 +1,4 @@
 class HomesController < ApplicationController
-  before_action :set_liff_id
-
+  skip_before_action :login_required
   def top;end
 end

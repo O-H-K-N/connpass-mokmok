@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 		// コントローラーにリクエストを送る
     fetch(request)
-  })
-  .then(() => {
-    // controllerからレスポンスがきたら、user登録画面にページ遷移
-    window.location = '/'
+    .then(() => {
+      // controllerからレスポンスがきたら、user登録画面にページ遷移
+      window.location = '/'
+    })
   })
   .catch((err) => {
     // Error happens during initialization
