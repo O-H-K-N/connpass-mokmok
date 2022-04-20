@@ -1,10 +1,14 @@
 
 = javascript_pack_tag 'homes/top'
 
-.mx-auto.text-center.text-white
-  h1 LINEカプセル
-  = image_tag 'users/default.png', id: 'picture', class: 'w-20 h-20 rounded-full inline-flex items-center justify-center border border-gray-500', style: "width: 150px;"
-  h2#name.font-medium.title-font.mt-2.text-gray-900.text-xl
-  p= current_user
-  p= @letters.length
-  p= @records.length
+.container.mx-auto.py-5
+  .bg-white.text-center.p-2.rounded-3
+    = image_tag 'users/default.png', id: 'picture', class: 'rounded-circle mt-4', style: "width: 80px;"
+    p#name.mt-2.text-dark
+    .d-flex.justify-content-around
+      div
+        p.mb-1= t('homes.top.letter_count')
+        h4.text-dark= @letters.count
+      div
+        p.mb-1= t('homes.top.record_count')
+        h4.text-dark= @records.count

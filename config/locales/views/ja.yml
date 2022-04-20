@@ -8,12 +8,15 @@ ja:
     policy: プライバシーポリシー
     line_add: 友達追加
   homes:
-    top:
+    start:
       app_detail: 未来の自分に手紙と記録を送るサービス
       section:
         first: LINEの友達に追加
         second: 「レタレコ」で何ができる？
         third: 使い方
+    top:
+      letter_count: 手紙の総数
+      record_count: 記録の総数
   records:
     new:
       title: 記録の作成
