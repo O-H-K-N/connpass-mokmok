@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  root 'homes#top'
+  root 'homes#start'
   get 'login', to: 'users#login'
+  get 'start', to: 'homes#start'
+  get 'top', to: 'homes#top'
   get 'records/login', to: 'records#login'
   post 'records/logedin', to: 'records#logedin'
   get 'letters/login', to: 'letters#login'
