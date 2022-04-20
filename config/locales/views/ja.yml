@@ -23,3 +23,6 @@ ja:
     show:
       date: '作成日'
       content: '内容'
+  letters:
+    new:
+      title: 手紙の作成
