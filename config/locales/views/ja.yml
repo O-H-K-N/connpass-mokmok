@@ -1,7 +1,6 @@
 ja:
   defaults:
     app_name: レタレコ
-    footer_app_name: © 2022. レタレコ
     how_to_use: 使い方
     contact: お問い合わせ
     term: 利用規約
@@ -14,9 +13,12 @@ ja:
         first: LINEの友達に追加
         second: 「レタレコ」で何ができる？
         third: 使い方
-    top:
+  users:
+    show:
       letter_count: 手紙の総数
       record_count: 記録の総数
+      letter_unit: '%{count}通'
+      record_unit: '%{count}件'
   records:
     new:
       title: 記録の作成
@@ -29,3 +31,9 @@ ja:
   letters:
     new:
       title: 手紙の作成
+  shared:
+    footer:
+      footer_app_name: © 2022. レタレコ
+      profile: プロフィール
+      letter: 手紙を作成
+      record: 記録を作成

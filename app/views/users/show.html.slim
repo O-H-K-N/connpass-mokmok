@@ -7,8 +7,8 @@
     p#name.mt-2.text-dark
     .d-flex.justify-content-around
       div
-        p.mb-1= t('homes.top.letter_count')
-        h4.text-dark= @letters.count
+        p.mb-1= t('users.show.letter_count')
+        h4.text-dark= t('users.show.letter_unit', count: @letters.count)
       div
-        p.mb-1= t('homes.top.record_count')
-        h4.text-dark= @records.count
+        p.mb-1= t('users.show.record_count')
+        h4.text-dark= t('users.show.record_unit', count: @records.count)
