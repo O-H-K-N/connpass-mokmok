@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   require 'net/http'
   require 'uri'
 
-  def login;end
+  def login
+    user = User.find_by(id: session[:user_id])
+    if user.nil?
+      session.delete(:user_id)
+    end
+  end
 
   def show
     @letters = current_user.letters.all
