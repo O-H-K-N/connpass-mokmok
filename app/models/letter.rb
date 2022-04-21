@@ -3,19 +3,21 @@ class Letter < ApplicationRecord
 
   validates :message, presence: true
   validates :message, length: { in: 2..800 }, allow_blank: true
-  validates :dig_notice, presence: true
+  validates :send_at, presence: true
   validate :date_before_start
   validate :date_before_finish
 
   def date_before_start
-    errors.add(:dig_notice, "は明日以降のものを選択してください") if dig_notice <= Date.today
+    errors.add(:send_at, "は明日以降のものを選択してください") if send_at <= Date.today
   end
 
   def date_before_finish
-    errors.add(:dig_notice, "は本日よりも１年以内のものを選択してください") if Date.today + 1.years < dig_notice
+    errors.add(:send_at, "は本日よりも１年以内のものを選択してください") if Date.today + 1.years < send_at
   end
 
-  # 届け日となった手紙を収集
-  scope :dig_noticed, -> { where(dig_notice: Date.today) }
+  # 送付日がまだな手紙を収集
+  scope :not_sent, -> { where('send_at > ?', Date.today) }
+  # 送付日が過ぎた手紙を収集
+  scope :sent, -> { where('send_at <= ?', Date.today) }
 
 end

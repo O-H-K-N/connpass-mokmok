@@ -10,4 +10,4 @@ ja:
         content: 記録の内容
       letter:
         message: 'メッセージ'
-        dig_notice: 'お届け日'
+        send_at: '送付日'

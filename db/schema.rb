@@ -28,10 +28,9 @@ ActiveRecord::Schema.define(version: 2022_04_10_072446) do
   create_table "letters", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "message", null: false
+    t.date "send_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "dig_notice"
-    t.date "#<ActiveRecord::ConnectionAdapters::PostgreSQL::TableDefinition"
     t.index ["user_id"], name: "index_letters_on_user_id"
   end
 

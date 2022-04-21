@@ -7,7 +7,7 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, "#{Rails.root}/log/cron.log"
 
-# 毎朝9時届け日に該当する手紙を送る
-every 1.day, at: ['9:00 am'] do
+# 毎朝9時に届け日に該当する手紙を送る
+every 1.day, at: '9:00 am' do
   rake 'letter_summary:send_letter'
 end
