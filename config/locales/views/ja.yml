@@ -15,8 +15,14 @@ ja:
         third: 使い方
   users:
     show:
-      letter_count: 手紙の総数
-      record_count: 記録の総数
+      letter: 手紙
+      record: 記録
+      count: 総数
+      not_already_letter: 未送付
+      already_letter: 送付済
+      episode: エピソード
+      success_story: 成功談
+      failure_story: 失敗談
       letter_unit: '%{count}通'
       record_unit: '%{count}件'
   records:
