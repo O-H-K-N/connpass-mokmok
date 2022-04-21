@@ -1,11 +1,22 @@
 class UsersController < ApplicationController
+  # skip_before_action :login_required, only: %i[login create]
   skip_before_action :login_required
-  before_action :set_liff_top_id, only: %i[login]
+  before_action :set_liff_top_id, only: %i[login show]
 
   require 'net/http'
   require 'uri'
 
-  def login;end
+  def login
+    user = User.find_by(id: session[:user_id])
+    if user.nil?
+      session.delete(:user_id)
+    end
+  end
+
+  def show
+    @letters = current_user.letters.all
+    @records = current_user.records.all
+  end
 
   def create
 		# IDトークンを取得
@@ -23,10 +34,8 @@ class UsersController < ApplicationController
     if user.nil?
       user = User.create(line_id: line_user_id)
       session[:user_id] = user.id
-      render :json => user
-    elsif user
+    else user
       session[:user_id] = user.id
-      render :json => user
     end
   end
 end

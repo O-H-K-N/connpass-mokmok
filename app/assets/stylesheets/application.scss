@@ -1,4 +1,5 @@
-@import"bootstrap";
+@import "bootstrap";
+@import "footer";
 
 body {
   background-color: #c2d9fe;
@@ -10,16 +11,19 @@ body {
   margin-top: 62px;
 }
 
-nav, footer{
-  background-color: #3683ff;
-
-  .nav-title, .navbar-toggler-icon{
-    color: white;
-    font-size: 1.5rem;
-  }
-}
-
 .navbar-dark .navbar-nav .nav-link{
   font-size: large;
   color: white;
+}
+
+#letter-text{
+  color: black;
+}
+
+#record-text{
+  color: gray;
+}
+
+.record-field{
+  display: none;
 }

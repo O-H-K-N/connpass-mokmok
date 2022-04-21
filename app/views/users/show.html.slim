@@ -1,0 +1,39 @@
+
+= javascript_pack_tag 'users/show'
+
+.container.mx-auto.py-5
+  .bg-white.text-center.p-2.rounded-3
+    = image_tag 'users/default.png', id: 'picture', class: 'rounded-circle mt-4', style: "width: 80px;"
+    p#name.mt-2.text-dark
+    .d-flex.flex-nowrap.px-3.mb-3
+      .w-100.text-center
+        h4#letter-text.mb-1= t('users.show.letter')
+        p#letter-border.border-bottom.border-5.w-50.mx-auto.rounded.border-dark
+      .w-100.text-center
+        h4#record-text.mb-1= t('users.show.record')
+        p#record-border.border-bottom.border-5.w-50.mx-auto.rounded
+    .letter-field
+      .text-center.small
+        p.mb-0= t('users.show.count')
+        p.text-dark= t('users.show.letter_unit', count: @letters.count)
+      .d-flex.justify-content-evenly.px-3.mb-3.text-center.small
+        .w-80
+          p.mb-0= t('users.show.not_already_letter')
+          p.text-dark= t('users.show.letter_unit', count: 1)
+        .w-80
+          p.mb-0= t('users.show.already_letter')
+          p.text-dark= t('users.show.letter_unit', count: 3)
+    .record-field
+      .text-center.small
+        p.mb-0= t('users.show.count')
+        p.text-dark= t('users.show.record_unit', count: @records.count)
+      .d-flex.justify-content-evenly.px-3.mb-3.text-center.small
+        .w-100
+          p.mb-0= t('users.show.episode')
+          p.text-dark= t('users.show.record_unit', count: 1)
+        .w-100
+          p.mb-0= t('users.show.success_story')
+          p.text-dark= t('users.show.record_unit', count: 3)
+        .w-100
+          p.mb-0= t('users.show.failure_story')
+          p.text-dark= t('users.show.record_unit', count: 3)

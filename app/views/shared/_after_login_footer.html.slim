@@ -1,0 +1,8 @@
+footer.fixed-bottom
+  .d-flex.flex-nowrap.bg-white.mb-0.text
+    = link_to user_path, class: "w-100 text-center py-4 #{footer_menu('users')}"
+      p.d-inline-block.small.mb-0= t('shared.footer.profile')
+    = link_to new_letter_path, class: "w-100 text-center py-4 #{footer_menu('letters')}"
+      p.d-inline-block.small.mb-0= t('shared.footer.letter')
+    = link_to new_record_path, class: "w-100 text-center py-4 #{footer_menu('records')}"
+      p.d-inline-block.small.mb-0= t('shared.footer.record')

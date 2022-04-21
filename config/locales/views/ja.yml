@@ -1,19 +1,30 @@
 ja:
   defaults:
     app_name: レタレコ
-    footer_app_name: © 2022. レタレコ
     how_to_use: 使い方
     contact: お問い合わせ
     term: 利用規約
     policy: プライバシーポリシー
     line_add: 友達追加
   homes:
-    top:
+    start:
       app_detail: 未来の自分に手紙と記録を送るサービス
       section:
         first: LINEの友達に追加
         second: 「レタレコ」で何ができる？
         third: 使い方
+  users:
+    show:
+      letter: 手紙
+      record: 記録
+      count: 総数
+      not_already_letter: 未送付
+      already_letter: 送付済
+      episode: エピソード
+      success_story: 成功談
+      failure_story: 失敗談
+      letter_unit: '%{count}通'
+      record_unit: '%{count}件'
   records:
     new:
       title: 記録の作成
@@ -26,3 +37,9 @@ ja:
   letters:
     new:
       title: 手紙の作成
+  shared:
+    footer:
+      footer_app_name: © 2022. レタレコ
+      profile: プロフィール
+      letter: 手紙を作成
+      record: 記録を作成
