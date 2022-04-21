@@ -1,14 +1,29 @@
-
-= javascript_pack_tag 'homes/top'
-
-.container.mx-auto.py-5
-  .bg-white.text-center.p-2.rounded-3
-    = image_tag 'users/default.png', id: 'picture', class: 'rounded-circle mt-4', style: "width: 80px;"
-    p#name.mt-2.text-dark
-    .d-flex.justify-content-around
-      div
-        p.mb-1= t('homes.top.letter_count')
-        h4.text-dark= @letters.count
-      div
-        p.mb-1= t('homes.top.record_count')
-        h4.text-dark= @records.count
+.mb-auto
+  = render 'shared/header'
+.wrapper
+  section.container.mx-auto.py-5
+    .text-center.py-1
+      p.mb-1
+        = t('homes.start.app_detail')
+      h1.title-font
+        = t('defaults.app_name')
+  section.bg-light.py-5
+    .text-center.py-1.text-secondary
+      h3.title-font
+        = t('homes.start.section.first')
+      h4.title-font ↓↓
+      .my-3
+        a href='https://lin.ee/7nsoaaw'
+          img src='https://scdn.line-apps.com/n/line_add_friends/btn/ja.png' alt=t('defaults.line_add') height='54' border='0'
+      .my-1
+        a href='https://lin.ee/7nsoaaw'
+          img src="https://qr-official.line.me/sid/M/317ocgvp.png?shortenUrl=true" height='120'
+  section.mx-auto.py-5
+    .text-center.py-1
+      h3.title-font
+        = t('homes.start.section.second')
+  section.mx-auto.py-5
+    .text-center.py-1
+      h3.title-font
+        = t('homes.start.section.third')
+= render 'shared/footer'
