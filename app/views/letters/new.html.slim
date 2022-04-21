@@ -1,14 +1,14 @@
-.container.mx-auto.py-5
+.container.mx-auto.py-4
   .text-center.py-1
       h3.mb-3
         = t('letters.new.title')
   = form_with model: @letter, local: true do |f|
-    .form-group
-      = f.label :message, Letter.human_attribute_name(:message)
+    .form-group.mb-3
+      = f.label :message, Letter.human_attribute_name(:message), class: 'mb-2'
       = f.text_area :message, autofocus: true, class: "form-control", rows: 15
-    .form-group
-      = f.label :dig_notice, Letter.human_attribute_name(:dig_notice)
+    .form-group.mb-3
+      = f.label :dig_notice, Letter.human_attribute_name(:dig_notice), class: 'mb-2'
       br
       = raw sprintf(f.date_select(:dig_notice, prompt: "--", use_month_numbers: true, start_year: Date.today.year, end_year: (Date.today >> 12).year, date_separator: '%s'),'年','月')+'日'
-    .action
+    .action.mb-5
       = f.submit '作成', class: 'btn btn-outline-light'

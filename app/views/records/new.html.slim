@@ -1,17 +1,17 @@
-.container.mx-auto.py-5
+.container.mx-auto.py-4
   .text-center.py-1
       h3.mb-3
         = t('records.new.title')
   = form_with model: @record, local: true do |f|
-    .form-group
+    .form-group.mb-3
       = f.label :category, Record.human_attribute_name(:category), class: 'mb-2'
       br
       = f.select :category, [[t('records.new.episode'), "episode"], [t('records.new.success_story'), "success_story"], [t('records.new.failure_story'), "failure_story"]], include_blank: "カテゴリーを選択"
-    .form-group
-      = f.label :title, Record.human_attribute_name(:title)
+    .form-group.mb-3
+      = f.label :title, Record.human_attribute_name(:title), class: 'mb-2'
       = f.text_field :title, autofocus: true, class: "form-control"
-    .form-group
-      = f.label :content, Record.human_attribute_name(:content)
+    .form-group.mb-3
+      = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
       = f.text_area :content, autofocus: true, class: "form-control", rows: 10
     .action
       = f.submit '作成', class: 'btn btn-outline-light'
