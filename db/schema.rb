@@ -36,8 +36,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_072446) do
 
   create_table "records", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "category", default: 0, null: false
-    t.string "title", null: false
+    t.string "theme", null: false
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

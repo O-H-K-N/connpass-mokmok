@@ -1,7 +1,7 @@
 .container.mx-auto.py-5
   .text-center.py-1
     h4.mb-3
-      = @record.title
+      = @record.theme
   .text-left.mx-3
     p.text-light.my-2= t('records.show.date')
     p.px-4= @record.created_at.strftime("%Y年 %-m月 %-d日")

@@ -5,9 +5,8 @@ ja:
       record: 記録
     attributes:
       record:
-        category: 記録のカテゴリー
-        title: 記録のタイトル
-        content: 記録の内容
+        theme: テーマ
+        content: 内容
       letter:
         message: 'メッセージ'
         send_at: '送付日'

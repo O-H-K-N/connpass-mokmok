@@ -4,12 +4,8 @@
         = t('records.new.title')
   = form_with model: @record, local: true do |f|
     .form-group.mb-3
-      = f.label :category, Record.human_attribute_name(:category), class: 'mb-2'
-      br
-      = f.select :category, [[t('records.new.episode'), "episode"], [t('records.new.success_story'), "success_story"], [t('records.new.failure_story'), "failure_story"]], include_blank: "カテゴリーを選択"
-    .form-group.mb-3
-      = f.label :title, Record.human_attribute_name(:title), class: 'mb-2'
-      = f.text_field :title, autofocus: true, class: "form-control"
+      = f.label :theme, Record.human_attribute_name(:theme), class: 'mb-2'
+      = f.text_field :theme, autofocus: true, class: "form-control"
     .form-group.mb-3
       = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
       = f.text_area :content, autofocus: true, class: "form-control", rows: 10
