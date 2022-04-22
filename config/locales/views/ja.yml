@@ -35,14 +35,18 @@ ja:
       success_story: 成功談
       failure_story: 失敗談
     show:
-      date: '作成日'
-      content: '内容'
+      date: 作成日
+      content: 内容
+      back: 一覧へ戻る
   letters:
     new:
       title: 手紙の作成
   shared:
+    record:
+      index: 記録の一覧
+      new: 記録の作成
     footer:
       footer_app_name: © 2022. レタレコ
       profile: プロフィール
-      letter: 手紙を作成
-      record: 記録を作成
+      letter: 手紙
+      record: 記録

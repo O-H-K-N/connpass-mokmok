@@ -1,7 +1,7 @@
 @import "bootstrap";
 // @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "footer";
+@import "header_footer";
 
 body {
   background-color: #c2d9fe;
@@ -10,7 +10,7 @@ body {
 }
 
 .wrapper{
-  margin-top: 62px;
+  margin: 62px 0px;
 }
 
 .navbar-dark .navbar-nav .nav-link{
@@ -28,4 +28,13 @@ body {
 
 .record-field{
   display: none;
+}
+
+.link{
+  opacity: 0.7;
+}
+
+.link:hover{
+  opacity: 1;
+  text-decoration: underline;
 }

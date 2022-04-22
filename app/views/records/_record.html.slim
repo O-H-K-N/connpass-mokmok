@@ -1,8 +1,10 @@
 .bg-white.mb-3.p-3.rounded-3
   p.mb-1.small.text-muted= record.created_at.strftime("%Y年 %-m月 %-d日")
   p#record-border.border-bottom.border-2.rounded.mb-2
-  h5.mb-3.fw-bold= safe_join(record.theme.split("\n"),tag(:br))
+  = link_to record_path(record)
+    h5.mb-3.fw-bold.d-inline-block.link{ style= "color: #3683ff" }= safe_join(record.theme.split("\n"),tag(:br))
   .d-flex.justify-content-start.lh-1.text-muted.mb-2
     i.fa.fa-tags.me-1
-    - record.tags.each do |tag|
-      span.me-2= tag.name
+    .d-flex.flex-wrap.
+      - record.tags.each do |tag|
+        span.me-2= tag.name

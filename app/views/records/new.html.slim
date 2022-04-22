@@ -1,21 +1,20 @@
-.container.mx-auto.py-4
-  .text-center.py-1
-    h3.mb-3
-      = t('records.new.title')
-  = form_with model: @record, local: true do |f|
-    .form-group.mb-3
-      = f.label :tags, Record.human_attribute_name(:tags)
-      br
-      .ms-3= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
-          = tag.label class: "form-check-label" do
-            .form-check.me-3
-              = tag.check_box class: "form-check-input"
-              = tag.text
-    .form-group.mb-3
-      = f.label :theme, Record.human_attribute_name(:theme), class: 'mb-2'
-      = f.text_area :theme, autofocus: true, class: "form-control", rows: 2
-    .form-group.mb-3
-      = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
-      = f.text_area :content, autofocus: true, class: "form-control", rows: 10
-    .action
-      = f.submit '作成', class: 'btn btn-outline-light'
+= render 'shared/record_menu'
+.wrapper
+  .container.mx-auto.py-4
+    = form_with model: @record, local: true do |f|
+      .form-group.mb-3
+        = f.label :tags, Record.human_attribute_name(:tags)
+        br
+        .ms-3= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
+            = tag.label class: "form-check-label" do
+              .form-check.me-3
+                = tag.check_box class: "form-check-input"
+                = tag.text
+      .form-group.mb-3
+        = f.label :theme, Record.human_attribute_name(:theme), class: 'mb-2'
+        = f.text_area :theme, autofocus: true, class: "form-control", rows: 2
+      .form-group.mb-3
+        = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
+        = f.text_area :content, autofocus: true, class: "form-control", rows: 10
+      .action
+        = f.submit '作成', class: 'btn btn-outline-light'
