@@ -7,6 +7,8 @@ ja:
       record:
         theme: テーマ
         content: 内容
+        tags: タグ
+        tag_ids: タグ
       letter:
         message: 'メッセージ'
         send_at: '送付日'

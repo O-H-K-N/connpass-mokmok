@@ -4,6 +4,14 @@
         = t('records.new.title')
   = form_with model: @record, local: true do |f|
     .form-group.mb-3
+      = f.label :tags, Record.human_attribute_name(:tags)
+      br
+      .ms-3= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
+          = tag.label class: "form-check-label" do
+            .form-check.me-3
+              = tag.check_box class: "form-check-input"
+              = tag.text
+    .form-group.mb-3
       = f.label :theme, Record.human_attribute_name(:theme), class: 'mb-2'
       = f.text_field :theme, autofocus: true, class: "form-control"
     .form-group.mb-3

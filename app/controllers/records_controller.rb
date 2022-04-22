@@ -39,8 +39,9 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record).permit(
-      :title,
-      :content
+      :theme,
+      :content,
+      tag_ids: []
     )
   end
 end
