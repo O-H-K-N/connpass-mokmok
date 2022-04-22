@@ -6,7 +6,7 @@ class Record < ApplicationRecord
 
   validates :tag_ids, presence: true
   validates :theme, presence: true
-  validates :theme, length: { in: 2..20 }, allow_blank: true
+  validates :theme, length: { in: 2..40 }, allow_blank: true
   validates :content, presence: true
   validates :content, length: { in: 2..600 }, allow_blank: true
 end

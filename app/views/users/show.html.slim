@@ -22,7 +22,8 @@
         .w-80
           p.mb-0= t('users.show.not_sent_letter')
           p.text-dark= t('users.show.letter_unit', count: @letters.not_sent.count)
-    .record-field
+    .record-field.mb-3
       .text-center.small
         p.mb-0= t('users.show.count')
         p.text-dark= t('users.show.record_unit', count: @records.count)
+      = link_to t('users.show.records_path'), records_path, class: 'btn btn-outline-dark'

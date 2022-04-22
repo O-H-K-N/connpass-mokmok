@@ -25,7 +25,10 @@ ja:
       failure_story: 失敗談
       letter_unit: '%{count}通'
       record_unit: '%{count}件'
+      records_path: 記録一覧へ
   records:
+    index:
+      title: 記録一覧
     new:
       title: 記録の作成
       episode: エピソード

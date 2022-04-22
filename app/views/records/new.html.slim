@@ -1,7 +1,7 @@
 .container.mx-auto.py-4
   .text-center.py-1
-      h3.mb-3
-        = t('records.new.title')
+    h3.mb-3
+      = t('records.new.title')
   = form_with model: @record, local: true do |f|
     .form-group.mb-3
       = f.label :tags, Record.human_attribute_name(:tags)
@@ -13,7 +13,7 @@
               = tag.text
     .form-group.mb-3
       = f.label :theme, Record.human_attribute_name(:theme), class: 'mb-2'
-      = f.text_field :theme, autofocus: true, class: "form-control"
+      = f.text_area :theme, autofocus: true, class: "form-control", rows: 2
     .form-group.mb-3
       = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
       = f.text_area :content, autofocus: true, class: "form-control", rows: 10

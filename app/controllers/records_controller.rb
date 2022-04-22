@@ -18,6 +18,10 @@ class RecordsController < ApplicationController
     session[:user_id] = user.id
   end
 
+  def index
+    @records = current_user.records.all.order(created_at: :desc)
+  end
+
   def show
     @record = Record.find(params[:id])
   end
