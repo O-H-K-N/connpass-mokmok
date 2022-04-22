@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_10_072446) do
+ActiveRecord::Schema.define(version: 2022_04_22_044841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2022_04_10_072446) do
     t.index ["user_id"], name: "index_letters_on_user_id"
   end
 
+  create_table "record_tags", force: :cascade do |t|
+    t.bigint "record_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_id", "tag_id"], name: "index_record_tags_on_record_id_and_tag_id", unique: true
+    t.index ["record_id"], name: "index_record_tags_on_record_id"
+    t.index ["tag_id"], name: "index_record_tags_on_tag_id"
+  end
+
   create_table "records", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "theme", null: false
@@ -41,6 +51,12 @@ ActiveRecord::Schema.define(version: 2022_04_10_072446) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,5 +68,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_072446) do
   add_foreign_key "comments", "records"
   add_foreign_key "comments", "users"
   add_foreign_key "letters", "users"
+  add_foreign_key "record_tags", "records"
+  add_foreign_key "record_tags", "tags"
   add_foreign_key "records", "users"
 end
