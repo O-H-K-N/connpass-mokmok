@@ -19,7 +19,7 @@ class RecordsController < ApplicationController
   end
 
   def index
-    @records = current_user.records.all.order(created_at: :desc)
+    @records = params[:tag_id].present? ? Tag.find(params[:tag_id]).records : current_user.records.all.order(created_at: :desc)
   end
 
   def show

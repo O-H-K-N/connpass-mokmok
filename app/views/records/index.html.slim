@@ -1,4 +1,8 @@
 = render 'shared/record_menu'
 .wrapper
   .container.mx-auto.py-4
+    .my-2.d-flex.justify-content-end
+      = form_tag records_path, method: :get do
+        = select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+          { prompt: t('records.index.select_tag'), onchange: 'submit(this.form);' }
     = render @records

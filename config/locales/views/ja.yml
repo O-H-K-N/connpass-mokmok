@@ -29,6 +29,9 @@ ja:
   records:
     index:
       title: 記録一覧
+      select_tag: 全て
+      delete: 削除
+      delete_confirm: 削除してもよろしいですか？
     new:
       title: 記録の作成
       episode: エピソード
