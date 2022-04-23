@@ -1,6 +1,6 @@
 = javascript_pack_tag 'records/show'
 
-.container.mx-auto{ style= "margin-bottom: 62px; position: relative;" }
+.container.mx-auto{ style= "margin-bottom: 92px; position: relative;" }
   .dropdown-content.mt-4.me-4.py-2.px-4.border.border-1.border-dark.rounded-2
     = link_to '削除', record_path(@record), class: "text-dark", data: {method: :delete, confirm: '削除しても良いですか？'}
   .d-flex.justify-content-between.mx-2.my-3.text-light
@@ -18,6 +18,10 @@
       p.px-4= @record.created_at.strftime("%Y年 %-m月 %-d日")
       p.text-light.my-2= t('records.show.content')
       p.px-4= safe_join(@record.content.split("\n"),tag(:br))
-
+      p.text-light.my-2= t('records.show.comment_index')
+      .mb-3
+        = render @comments
+      .d-flex.justify-content-end.me-2
+        button.btn.btn-outline-dark{ type= "button" }= t('records.show.comment_new')
   / コメントフォーム
-  = render 'comments/form', record: @record, comment: @comment
+  / = render 'comments/form', record: @record, comment: @comment

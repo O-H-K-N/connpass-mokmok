@@ -9,5 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!$(event.target).closest('.dropdown').length) {
       $('.dropdown-content').fadeOut();
     }
-  });
+  })
 })

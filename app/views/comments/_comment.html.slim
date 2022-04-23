@@ -1,0 +1,11 @@
+= javascript_pack_tag 'comments/index'
+
+.bg-white.ms-3.me-4.mb-3.p-2.rounded-3.text-muted{ style= "position: relative" }
+  .comment-dropdown-content.mt-4.me-3.py-2.px-4.border.border-1.border-dark.rounded-2{ id= "#{comment.id}" }
+    = link_to t('defaults.delete'), comment_path(comment), class: "text-dark", data: {method: :delete, confirm: t('defaults.delete_confirm')}
+  .d-flex.justify-content-between.px-1
+    p.mb-0.small= comment.created_at.strftime("%Y年 %-m月 %-d日")
+    .comment-dropdown{ id= "#{comment.id}" }
+      i.fa.fa-ellipsis-h.lh-1
+  p#record-border.border-bottom.border-2.rounded.mb-2
+  p.mb-0= safe_join(comment.content.split("\n"),tag(:br))
