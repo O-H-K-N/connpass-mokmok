@@ -38,3 +38,28 @@ body {
   opacity: 1;
   text-decoration: underline;
 }
+
+.dropdown{
+  min-width: 0;
+  cursor: pointer;
+
+  &-content{
+    display: none;
+    position: absolute;
+    background-color: #f8f9fa;
+    z-index: 1;
+    text-align: left;
+    text-align: center;
+    right: 0;
+
+    a{
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    a:hover{
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+}

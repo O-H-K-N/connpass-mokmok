@@ -23,7 +23,7 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @record = Record.find(params[:id])
+    @record = current_user.records.find(params[:id])
   end
 
   def new
@@ -37,6 +37,12 @@ class RecordsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    record = current_user.records.find(params[:id])
+    record.destroy!
+    redirect_to records_path
   end
 
   private
