@@ -10,5 +10,7 @@ ja:
         tags: タグ
         tag_ids: タグ
       letter:
-        message: 'メッセージ'
-        send_at: '送付日'
+        message: メッセージ
+        send_at: 送付日
+      comment:
+        content: コメント

@@ -1,0 +1,6 @@
+= form_with model: comment, url:[record, comment], id: 'new_comment', return: true do |f|
+  .form-group.mb-3
+    = f.label :content, Comment.human_attribute_name(:content), class: 'mb-2'
+    = f.text_area :content, autofocus: true, class: "form-control", id: "js-new-comment-body"
+  .action
+    = f.submit '作成', class: 'btn btn-outline-light'

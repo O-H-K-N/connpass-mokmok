@@ -8,5 +8,5 @@ class Record < ApplicationRecord
   validates :theme, presence: true
   validates :theme, length: { in: 2..40 }, allow_blank: true
   validates :content, presence: true
-  validates :content, length: { in: 2..600 }, allow_blank: true
+  validates :content, length: { in: 2..400 }, allow_blank: true
 end

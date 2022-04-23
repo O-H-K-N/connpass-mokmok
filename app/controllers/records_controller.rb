@@ -24,6 +24,7 @@ class RecordsController < ApplicationController
 
   def show
     @record = current_user.records.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
