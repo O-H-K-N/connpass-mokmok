@@ -37,7 +37,7 @@ class LettersController < ApplicationController
   def letter_params
     params.require(:letter).permit(
       :message,
-      :dig_notice
+      :send_at
     )
   end
 end

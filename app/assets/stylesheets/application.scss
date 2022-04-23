@@ -1,5 +1,7 @@
 @import "bootstrap";
-@import "footer";
+// @import "font-awesome-sprockets";
+@import "font-awesome";
+@import "header_footer";
 
 body {
   background-color: #c2d9fe;
@@ -8,7 +10,7 @@ body {
 }
 
 .wrapper{
-  margin-top: 62px;
+  margin: 62px 0px;
 }
 
 .navbar-dark .navbar-nav .nav-link{
@@ -26,4 +28,38 @@ body {
 
 .record-field{
   display: none;
+}
+
+.link{
+  opacity: 0.7;
+}
+
+.link:hover{
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.dropdown{
+  min-width: 0;
+  cursor: pointer;
+
+  &-content{
+    display: none;
+    position: absolute;
+    background-color: #f8f9fa;
+    z-index: 1;
+    text-align: left;
+    text-align: center;
+    right: 0;
+
+    a{
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    a:hover{
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
 }

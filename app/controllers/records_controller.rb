@@ -18,8 +18,12 @@ class RecordsController < ApplicationController
     session[:user_id] = user.id
   end
 
+  def index
+    @records = params[:tag_id].present? ? Tag.find(params[:tag_id]).records : current_user.records.all.order(created_at: :desc)
+  end
+
   def show
-    @record = Record.find(params[:id])
+    @record = current_user.records.find(params[:id])
   end
 
   def new
@@ -35,13 +39,19 @@ class RecordsController < ApplicationController
     end
   end
 
+  def destroy
+    record = current_user.records.find(params[:id])
+    record.destroy!
+    redirect_to records_path
+  end
+
   private
 
   def record_params
     params.require(:record).permit(
-      :category,
-      :title,
-      :content
+      :theme,
+      :content,
+      tag_ids: []
     )
   end
 end

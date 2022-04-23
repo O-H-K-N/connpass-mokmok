@@ -18,28 +18,38 @@ ja:
       letter: 手紙
       record: 記録
       count: 総数
-      not_already_letter: 未送付
-      already_letter: 送付済
+      not_sent_letter: 未送付
+      sent_letter: 送付済
       episode: エピソード
       success_story: 成功談
       failure_story: 失敗談
       letter_unit: '%{count}通'
       record_unit: '%{count}件'
+      records_path: 記録一覧へ
   records:
+    index:
+      title: 記録一覧
+      select_tag: 全て
+      delete: 削除
+      delete_confirm: 削除してもよろしいですか？
     new:
       title: 記録の作成
       episode: エピソード
       success_story: 成功談
       failure_story: 失敗談
     show:
-      date: '作成日'
-      content: '内容'
+      date: 作成日
+      content: 内容
+      back: 一覧へ戻る
   letters:
     new:
       title: 手紙の作成
   shared:
+    record:
+      index: 記録の一覧
+      new: 記録の作成
     footer:
       footer_app_name: © 2022. レタレコ
       profile: プロフィール
-      letter: 手紙を作成
-      record: 記録を作成
+      letter: 手紙
+      record: 記録

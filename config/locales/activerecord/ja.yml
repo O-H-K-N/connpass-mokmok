@@ -5,9 +5,10 @@ ja:
       record: 記録
     attributes:
       record:
-        category: 記録のカテゴリー
-        title: 記録のタイトル
-        content: 記録の内容
+        theme: テーマ
+        content: 内容
+        tags: タグ
+        tag_ids: タグ
       letter:
         message: 'メッセージ'
-        dig_notice: 'お届け日'
+        send_at: '送付日'

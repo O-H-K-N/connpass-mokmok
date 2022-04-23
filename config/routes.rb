@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'letters/login', to: 'letters#login'
   post 'letters/logedin', to: 'letters#logedin'
   post '/callback' => 'linebot#callback'
-  resource :user, only: %i[new show create]
-  resources :records, only: %i[show new create]
+  resource :user, only: %i[show create]
+  resources :records, only: %i[index show new create destroy]
   resources :letters, only: %i[new create]
 end

@@ -1,7 +1,7 @@
 namespace :letter_summary do
   desc '本日の日付が手紙の届け日時になった時、その日のam9:00に該当する手紙を送信する'
 	task send_letter: :environment do
-		@letters = Letter.dig_noticed
+		@letters = Letter.sent
 		@letters.each do |letter|
 			user = User.find_by(id: letter.user_id)
 			message = {
