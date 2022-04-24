@@ -1,15 +1,13 @@
 = javascript_pack_tag 'records/show'
 
-.container.mx-auto{ style= "margin-bottom: 92px; position: relative;" }
-  .dropdown-content.mt-4.me-4.py-2.px-4.border.border-1.border-dark.rounded-2
-    = link_to '削除', record_path(@record), class: "text-dark", data: {method: :delete, confirm: '削除しても良いですか？'}
+.container.mx-auto{ style= "margin-bottom: 92px;" }
   .d-flex.justify-content-between.mx-2.my-3.text-light
-    div
+    .pt-1
       i.fa.fa-backward.me-2
       = link_to records_path
         span.d-inline-block.link{ style= "color: white" }= t('records.show.back')
-    .dropdown.me-2
-      i.fa.fa-ellipsis-h
+    = link_to record_path(@record), class: "text-muted pe-2", method: :delete, data: { confirm: t('defaults.delete_confirm') }
+      i.fa.fa-trash
   .py-2
     .py-1.px-3
       h4.mb-3= safe_join(@record.theme.split("\n"),tag(:br))
