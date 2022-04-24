@@ -19,7 +19,7 @@
       p.text-light.my-2= t('records.show.comment_index')
       #js-comment-area.mb-3
         = render @comments
-      .d-flex.justify-content-end.me-2
-        button.btn.btn-outline-dark{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }= t('records.show.comment_new')
+      button.btn-original{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }
+        i.fa.fa-plus-circle.fa-3x
   / コメントフォーム
   = render 'comments/form', record: @record, comment: @comment
