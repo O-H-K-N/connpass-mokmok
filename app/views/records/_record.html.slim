@@ -1,12 +1,8 @@
-= javascript_pack_tag 'records/index'
-
-.bg-white.mb-3.p-3.rounded-3{ style= "position: relative" }
-  .dropdown-content.mt-4.me-3.py-2.px-4.border.border-1.border-dark.rounded-2{ id= "#{record.id}" }
-    = link_to t('defaults.delete'), record_path(record), class: "text-dark", data: {method: :delete, confirm: t('defaults.delete_confirm')}
+.bg-white.mb-3.p-3.rounded-3
   .d-flex.justify-content-between.px-1.text-muted
     p.mb-1.small= record.created_at.strftime("%Y年 %-m月 %-d日")
-    .dropdown{ id= "#{record.id}" }
-      i.fa.fa-ellipsis-h.lh-1
+    = link_to record_path(record), class: "text-muted", data: {method: :delete, confirm: t('defaults.delete_confirm')} do
+      i.fa.fa-trash
   p#record-border.border-bottom.border-2.rounded.mb-2
   = link_to record_path(record)
     h5.mb-3.fw-bold.d-inline-block.link{ style= "color: #3683ff" }= safe_join(record.theme.split("\n"),tag(:br))

@@ -19,7 +19,7 @@
       p.text-light.my-2= t('records.show.content')
       p.px-4= safe_join(@record.content.split("\n"),tag(:br))
       p.text-light.my-2= t('records.show.comment_index')
-      .mb-3
+      #js-comment-area.mb-3
         = render @comments
       .d-flex.justify-content-end.me-2
         button.btn.btn-outline-dark{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }= t('records.show.comment_new')

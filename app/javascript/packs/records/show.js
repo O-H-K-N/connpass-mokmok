@@ -10,4 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
       $('.dropdown-content').fadeOut();
     }
   })
+
+  
 })
