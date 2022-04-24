@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post 'letters/logedin', to: 'letters#logedin'
   post '/callback' => 'linebot#callback'
   resource :user, only: %i[show create]
-  resources :records, only: %i[index show new create destroy]
+  resources :records, only: %i[index show new create destroy] do
+    resources :comments, only: %i[index show new create destroy], shallow: true
+  end
   resources :letters, only: %i[new create]
 end

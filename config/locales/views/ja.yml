@@ -6,6 +6,11 @@ ja:
     term: 利用規約
     policy: プライバシーポリシー
     line_add: 友達追加
+    create: 作成
+    add: 追加
+    close: '閉じる'
+    delete: 削除
+    delete_confirm: 削除してもよろしいですか？
   homes:
     start:
       app_detail: 未来の自分に手紙と記録を送るサービス
@@ -30,8 +35,6 @@ ja:
     index:
       title: 記録一覧
       select_tag: 全て
-      delete: 削除
-      delete_confirm: 削除してもよろしいですか？
     new:
       title: 記録の作成
       episode: エピソード
@@ -41,6 +44,8 @@ ja:
       date: 作成日
       content: 内容
       back: 一覧へ戻る
+      comment_index: 過去のフィードバック一覧
+      comment_new: フィードバックを追加
   letters:
     new:
       title: 手紙の作成
