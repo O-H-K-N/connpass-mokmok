@@ -6,3 +6,6 @@
         = select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
           { prompt: t('records.index.select_tag'), onchange: 'submit(this.form);' }
     = render @records
+  = link_to  new_record_path
+    button.btn-original{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }
+      i.fa.fa-plus-circle.fa-3x

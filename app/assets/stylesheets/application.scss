@@ -63,3 +63,18 @@ body {
     }
   }
 }
+
+.btn-original{
+  color: yellow;
+  opacity: 0.8;
+  padding: 2px;
+  background: none;
+  border: none;
+  position: fixed;
+  bottom: 90px;
+  right: 12px;
+
+  i{
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+  }
+}
