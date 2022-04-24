@@ -22,6 +22,6 @@
       .mb-3
         = render @comments
       .d-flex.justify-content-end.me-2
-        button.btn.btn-outline-dark{ type= "button" }= t('records.show.comment_new')
+        button.btn.btn-outline-dark{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }= t('records.show.comment_new')
   / コメントフォーム
-  / = render 'comments/form', record: @record, comment: @comment
+  = render 'comments/form', record: @record, comment: @comment

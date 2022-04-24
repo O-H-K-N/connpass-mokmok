@@ -16,5 +16,5 @@
       .form-group.mb-3
         = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
         = f.text_area :content, autofocus: true, class: "form-control", rows: 10
-      .action
-        = f.submit '作成', class: 'btn btn-outline-light'
+      .action.mb-3.d-flex.justify-content-end
+        = f.submit t('defaults.create'), class: 'btn btn-outline-light'
