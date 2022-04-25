@@ -10,7 +10,10 @@ ja:
         tags: タグ
         tag_ids: タグ
       letter:
-        message: メッセージ
-        send_at: 送付日
+        title: タイトル
+        future_message: 未来の自分にメッセージ
+        current_message: 今の自分について
+        outlook: 目標・展望
+        send_at: お届け日
       comment:
         content: フィードバック

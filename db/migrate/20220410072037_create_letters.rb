@@ -2,7 +2,10 @@ class CreateLetters < ActiveRecord::Migration[6.1]
   def change
     create_table :letters do |t|
       t.references :user, null: false, foreign_key: true
-      t.text :message, null: false
+      t.string :title, null: false
+      t.text :current_message
+      t.text :outlook
+      t.text :future_message, null: false
       t.date :send_at, null: false
 
       t.timestamps

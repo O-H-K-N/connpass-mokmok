@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :records, only: %i[index show new create destroy] do
     resources :comments, only: %i[index show new create destroy], shallow: true
   end
-  resources :letters, only: %i[new create]
+  resources :letters, only: %i[index new create]
 end

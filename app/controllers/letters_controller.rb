@@ -18,6 +18,11 @@ class LettersController < ApplicationController
     session[:user_id] = user.id
   end
 
+  def index
+    # 「送付済み」のみ一覧表示
+    @letters = current_user.letters.sent.order(created_at: :desc)
+  end
+
   def new
     @letter = current_user.letters.new
   end
@@ -25,19 +30,21 @@ class LettersController < ApplicationController
   def create
     @letter = current_user.letters.new(letter_params)
     if @letter.save
-      # redirect_to root_path
+      redirect_to letters_path
     else
       render :new
     end
-
   end
 
   private
 
   def letter_params
     params.require(:letter).permit(
-      :message,
-      :send_at
+      :send_at,
+      :title,
+      :current_message,
+      :outlook,
+      :future_message
     )
   end
 end

@@ -7,6 +7,7 @@ ja:
     policy: プライバシーポリシー
     line_add: 友達追加
     create: 作成
+    create_confirm: 未来の自分に手紙を送りますか？
     add: 追加
     close: '閉じる'
     delete: 削除
@@ -48,7 +49,10 @@ ja:
       comment_new: フィードバックを追加
   letters:
     new:
-      title: 手紙の作成
+      title: 例）〇歳の自分へ
+      current_message: 今の自分について、堅苦しくない文章で簡潔にまとめましょう。
+      outlook: 例）・〇〇大学に合格・海外に住んでいる
+      future_message: 未来の自分へメッセージを書きましょう
   shared:
     record:
       index: 記録の一覧
