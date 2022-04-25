@@ -16,8 +16,10 @@ class Letter < ApplicationRecord
   end
 
   # 送付日がまだな手紙を収集
-  scope :not_sent, -> { where('send_at > ?', Date.today) }
+  scope :not_send, -> { where('send_at > ?', Date.today) }
+  # 送付日の手紙を収集
+  scope :now_send, -> { where('send_at = ?', Date.today) }
   # 送付日が過ぎた手紙を収集
-  scope :sent, -> { where('send_at <= ?', Date.today) }
+  scope :sent, -> { where('send_at < ?', Date.today) }
 
 end
