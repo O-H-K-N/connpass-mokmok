@@ -23,7 +23,7 @@ ja:
       letter: 手紙
       record: 記録
       count: 総数
-      not_sent_letter: 未送付
+      not_send_letter: 未送付
       sent_letter: 送付済
       episode: エピソード
       success_story: 成功談
@@ -53,6 +53,9 @@ ja:
     record:
       index: 記録の一覧
       new: 記録の作成
+    letter:
+      index: 手紙の一覧
+      new: 手紙の作成
     footer:
       footer_app_name: © 2022. レタレコ
       profile: プロフィール

@@ -1,14 +1,13 @@
-.container.mx-auto.py-4
-  .text-center.py-1
-      h3.mb-3
-        = t('letters.new.title')
-  = form_with model: @letter, local: true do |f|
-    .form-group.mb-3
-      = f.label :message, Letter.human_attribute_name(:message), class: 'mb-2'
-      = f.text_area :message, autofocus: true, class: "form-control", rows: 15
-    .form-group.mb-3
-      = f.label :send_at, Letter.human_attribute_name(:send_at), class: 'mb-2'
-      br
-      = raw sprintf(f.date_select(:send_at, prompt: "--", use_month_numbers: true, start_year: Date.today.year, end_year: (Date.today >> 12).year, date_separator: '%s'),'年','月')+'日'
-    .action.mb-5.d-flex.justify-content-end
-      = f.submit t('defaults.create'), class: 'btn btn-outline-light'
+= render 'shared/letter_menu'
+.wrapper
+  .container.mx-auto.py-4
+    = form_with model: @letter, local: true do |f|
+      .form-group.mb-3
+        = f.label :message, Letter.human_attribute_name(:message), class: 'mb-2'
+        = f.text_area :message, autofocus: true, class: "form-control", rows: 15
+      .form-group.mb-3
+        = f.label :send_at, Letter.human_attribute_name(:send_at), class: 'mb-2'
+        br
+        = raw sprintf(f.date_select(:send_at, prompt: "--", use_month_numbers: true, start_year: Date.today.year, end_year: (Date.today >> 12).year, date_separator: '%s'),'年','月')+'日'
+      .action.mb-5.d-flex.justify-content-end
+        = f.submit t('defaults.create'), class: 'btn btn-outline-light'

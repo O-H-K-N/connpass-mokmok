@@ -1,4 +1,11 @@
 module ApplicationHelper
+  # 手紙を扱うページのヘッダーメニュー
+  def letter_menu(target_action)
+    return unless params[:action] == target_action
+
+    'text-dark bg-light border border-3 rounded-2'
+  end
+
   # 記録を扱うページのヘッダーメニュー
   def record_menu(target_action)
     return unless params[:action] == target_action
