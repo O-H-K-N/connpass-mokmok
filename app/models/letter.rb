@@ -8,8 +8,8 @@ class Letter < ApplicationRecord
   validates :current_message, length: { maximum: 200 }, allow_blank: true
   validates :outlook, length: { maximum: 200 }, allow_blank: true
   validates :send_at, presence: true
-  validate :date_before_start
-  validate :date_before_finish
+  # validate :date_before_start
+  # validate :date_before_finish
 
   # お届け日が今日を含め過去の日時の場合に発火
   def date_before_start
@@ -28,5 +28,5 @@ class Letter < ApplicationRecord
   # 送付日の手紙を収集
   scope :now_send, -> { where('send_at = ?', Date.today) }
   # 送付日が過ぎた手紙を収集
-  scope :sent, -> { where('send_at < ?', Date.today) }
+  scope :sent, -> { where('send_at <= ?', Date.today) }
 end

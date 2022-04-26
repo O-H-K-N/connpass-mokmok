@@ -1,0 +1,8 @@
+= render 'shared/letter_menu'
+.wrapper
+  .container.mx-auto.py-4
+    .my-2.d-flex.justify-content-end
+    = render @letters
+  = link_to  new_letter_path
+    button.btn-original{ type= "button" data-bs-toggle="modal" data-bs-target="#newLetterModal" }
+      i.fa.fa-plus-circle.fa-3x

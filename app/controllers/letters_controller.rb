@@ -23,6 +23,10 @@ class LettersController < ApplicationController
     @letters = current_user.letters.sent.order(created_at: :desc)
   end
 
+  def show
+    @letter = current_user.letters.find(params[:id])
+  end
+
   def new
     @letter = current_user.letters.new
   end
@@ -36,6 +40,12 @@ class LettersController < ApplicationController
     end
   end
 
+  def destroy
+    letter = current_user.letters.find(params[:id])
+    letter.destroy!
+    redirect_to letters_path
+  end
+
   private
 
   def letter_params
@@ -46,5 +56,9 @@ class LettersController < ApplicationController
       :outlook,
       :future_message
     )
+  end
+
+  def sort_params
+    params.permit(:sort)
   end
 end
