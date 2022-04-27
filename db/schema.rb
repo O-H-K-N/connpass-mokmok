@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(version: 2022_04_22_044841) do
 
   create_table "letters", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.text "message", null: false
+    t.string "title", null: false
+    t.text "current_message"
+    t.text "outlook"
+    t.text "future_message", null: false
     t.date "send_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -7,10 +7,12 @@ ja:
     policy: プライバシーポリシー
     line_add: 友達追加
     create: 作成
+    create_confirm: 未来の自分に手紙を送りますか？
     add: 追加
     close: '閉じる'
     delete: 削除
     delete_confirm: 削除してもよろしいですか？
+    index_back: 一覧へ戻る
   homes:
     start:
       app_detail: 未来の自分に手紙と記録を送るサービス
@@ -23,7 +25,7 @@ ja:
       letter: 手紙
       record: 記録
       count: 総数
-      not_sent_letter: 未送付
+      not_send_letter: 未送付
       sent_letter: 送付済
       episode: エピソード
       success_story: 成功談
@@ -43,16 +45,31 @@ ja:
     show:
       date: 作成日
       content: 内容
-      back: 一覧へ戻る
       comment_index: 過去のフィードバック一覧
       comment_new: フィードバックを追加
   letters:
+    index:
+      select_tag: 全て
+      created_at: 作成日
+      send_at: お届け日
     new:
-      title: 手紙の作成
+      title: 例）〇歳の自分へ
+      current_message: 今の自分について、堅苦しくない文章で簡潔にまとめましょう。
+      outlook: 例）・〇〇大学に合格・海外に住んでいる
+      future_message: 未来の自分へメッセージを書きましょう
+    show:
+      future_message: 過去のからメッセージ
+      current_message: 当時の自分について
+      outlook: 当時の目標・展望
+      created_date: 作成日
+      send_date: お届け日
   shared:
     record:
       index: 記録の一覧
       new: 記録の作成
+    letter:
+      index: お届け済みの手紙一覧
+      new: 手紙の作成
     footer:
       footer_app_name: © 2022. レタレコ
       profile: プロフィール
