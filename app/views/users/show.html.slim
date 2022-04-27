@@ -12,18 +12,18 @@
         h4#record-text.mb-1= t('users.show.record')
         p#record-border.border-bottom.border-5.w-50.mx-auto.rounded
     .letter-field
-      .text-center.small
-        p.mb-0= t('users.show.count')
+      .text-center
+        p.mb-0.small= t('users.show.count')
         p.text-dark= t('users.show.letter_unit', count: @letters.count)
-      .d-flex.justify-content-evenly.px-3.mb-3.text-center.small
+      .d-flex.justify-content-evenly.px-3.mb-3.text-center
         .w-80
-          p.mb-0= t('users.show.sent_letter')
+          p.mb-0.small= t('users.show.sent_letter')
           p.text-dark= t('users.show.letter_unit', count: @letters.sent.count)
         .w-80
-          p.mb-0= t('users.show.not_send_letter')
-          p.text-dark= t('users.show.letter_unit', count: @letters.not_send.count)
+          p.mb-0.small= t('users.show.not_send_letter')
+          p#js-modal-open.text-dark= t('users.show.letter_unit', count: @letters.not_send.count)
     .record-field.mb-3
-      .text-center.small
-        p.mb-0= t('users.show.count')
+      .text-center
+        p.mb-0.small= t('users.show.count')
         p.text-dark= t('users.show.record_unit', count: @records.count)
       = link_to t('users.show.records_path'), records_path, class: 'btn btn-outline-dark'
