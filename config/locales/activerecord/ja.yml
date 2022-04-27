@@ -5,12 +5,10 @@ ja:
       record: 記録
     attributes:
       record:
-        theme: テーマ
-        content: 内容
-        categories: カテゴリー
-        categorids: カテゴリー
-        tags: タグ
-        tag_ids: タグ
+        theme: テーマ【必須】
+        content: 内容【必須】
+        categories: カテゴリー【必須】
+        tag: ハッシュタグ【任意】
       letter:
         title: タイトル
         future_message: 未来の自分にメッセージ

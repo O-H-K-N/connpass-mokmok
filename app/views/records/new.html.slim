@@ -3,19 +3,23 @@
   .container.mx-auto.py-4
     = form_with model: @record, local: true do |f|
       .form-group.mb-3
-        = f.label :categories, Record.human_attribute_name(:categories)
+        = f.label :categories, Record.human_attribute_name(:categories), class: 'text-danger'
         br
         .ms-3= f.collection_check_boxes :category_ids, Category.all, :id, :name, include_hidden: false do |category|
-          = category.label class: "form-check-label" do
+          = category.label class: "form-check-label text-dark" do
             .form-check.me-3
               = category.check_box class: "form-check-input"
               = category.text
       .form-group.mb-3
-        = f.label :theme, Record.human_attribute_name(:theme), class: 'mb-2'
-        = f.text_area :theme, autofocus: true, class: "form-control", rows: 2
+        = f.label :theme, Record.human_attribute_name(:theme), class: 'text-danger mb-2'
+        = f.text_area :theme, autofocus: true, class: "form-control", rows: 2, placeholder: t('records.new.theme')
       .form-group.mb-3
-        = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
-        = f.text_area :content, autofocus: true, class: "form-control", rows: 10
+        = f.label :content, Record.human_attribute_name(:content), class: 'text-danger mb-2'
+        = f.text_area :content, autofocus: true, class: "form-control", rows: 10, placeholder: t('records.new.content')
+      .form-group.mb-3
+        = f.label :tag, Record.human_attribute_name(:tag), class: 'mb-2 text-dark'
+        = f.text_area :name, autofocus: true, class: "form-control", rows: 2, placeholder: t('records.new.tag')
+        p.small.text-muted.ps-1.mb-2= t('records.new.tag_info')
       .action.mb-3.d-flex.justify-content-end
         = button_tag type: 'submit', class: 'btn btn-outline-dark' do
           i.fa.fa-paper-plane-o.fa-lg.m-0.px-3

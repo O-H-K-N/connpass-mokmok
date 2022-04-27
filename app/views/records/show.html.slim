@@ -11,9 +11,13 @@
       h4.mb-3= safe_join(@record.theme.split("\n"),tag(:br))
     .text-left.mx-2
       p.text-light.my-2= t('records.show.date')
-      p.px-4= @record.created_at.strftime("%Y年 %-m月 %-d日")
+      p.px-4.mb-0= @record.created_at.strftime("%Y年 %-m月 %-d日")
       p.text-light.my-2= t('records.show.content')
-      p.px-4= safe_join(@record.content.split("\n"),tag(:br))
+      p.px-4.mb-0= safe_join(@record.content.split("\n"),tag(:br))
+      p.text-light.my-2= t('records.show.tag')
+      .d-flex.flex-wrap.px-4.text-muted
+        - @record.tags.each do |tag|
+          p.pe-2.mb-0= "##{tag.name}"
       p.text-light.my-2= t('records.show.comment_index')
       #js-comment-area.mb-3
         = render @comments

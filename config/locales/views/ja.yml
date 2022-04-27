@@ -38,13 +38,14 @@ ja:
       title: 記録一覧
       select_category: 全て
     new:
-      title: 記録の作成
-      episode: エピソード
-      success_story: 成功談
-      failure_story: 失敗談
+      theme: 例）今日１番うれしかったこと, 最近気になっているニュースなど
+      content: 5分間のタイマーを設定して、テーマについて思いついたことをどんどん書きましょう（誤字、脱字も気にしない）
+      tag: タグを複数残す場合は、半角スペースで区切って書いてください
+      tag_info: ※残しておくと絞り込み検索で見つけやすくなります
     show:
       date: 作成日
       content: 内容
+      tag: ハッシュタグ
       comment_index: 過去のフィードバック一覧
       comment_new: フィードバックを追加
   letters:

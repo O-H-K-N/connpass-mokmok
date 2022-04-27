@@ -5,9 +5,12 @@
       i.fa.fa-trash
   p#record-border.border-bottom.border-2.rounded.mb-2
   = link_to record_path(record)
-    h5.mb-3.fw-bold.d-inline-block.link{ style= "color: #3683ff" }= safe_join(record.theme.split("\n"),tag(:br))
+    h4.mb-2.fw-bold.d-inline-block.link{ style= "color: #3683ff" }= safe_join(record.theme.split("\n"),tag(:br))
   .d-flex.justify-content-start.lh-1.text-muted.mb-2
     i.fa.fa-tags.me-1
-    .d-flex.flex-wrap.
+    .d-flex.flex-wrap
       - record.categories.each do |category|
         span.me-2= category.name
+  .d-flex.flex-wrap.lh-1.mb-2.text-muted
+    - record.tags.each do |tag|
+      p.mb-0.me-2.small= "##{tag.name}"
