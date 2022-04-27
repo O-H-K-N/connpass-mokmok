@@ -36,7 +36,7 @@ ja:
   records:
     index:
       title: 記録一覧
-      select_tag: 全て
+      select_category: 全て
     new:
       title: 記録の作成
       episode: エピソード
@@ -49,7 +49,6 @@ ja:
       comment_new: フィードバックを追加
   letters:
     index:
-      select_tag: 全て
       created_at: 作成日
       send_at: お届け日
     new:

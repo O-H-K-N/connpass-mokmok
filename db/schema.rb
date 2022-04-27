@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_044841) do
+ActiveRecord::Schema.define(version: 2022_04_27_061144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -37,6 +43,16 @@ ActiveRecord::Schema.define(version: 2022_04_22_044841) do
     t.index ["user_id"], name: "index_letters_on_user_id"
   end
 
+  create_table "record_categories", force: :cascade do |t|
+    t.bigint "record_id"
+    t.bigint "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_record_categories_on_category_id"
+    t.index ["record_id", "category_id"], name: "index_record_categories_on_record_id_and_category_id", unique: true
+    t.index ["record_id"], name: "index_record_categories_on_record_id"
+  end
+
   create_table "record_tags", force: :cascade do |t|
     t.bigint "record_id"
     t.bigint "tag_id"
@@ -57,9 +73,11 @@ ActiveRecord::Schema.define(version: 2022_04_22_044841) do
   end
 
   create_table "tags", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,7 +89,10 @@ ActiveRecord::Schema.define(version: 2022_04_22_044841) do
   add_foreign_key "comments", "records"
   add_foreign_key "comments", "users"
   add_foreign_key "letters", "users"
+  add_foreign_key "record_categories", "categories"
+  add_foreign_key "record_categories", "records"
   add_foreign_key "record_tags", "records"
   add_foreign_key "record_tags", "tags"
   add_foreign_key "records", "users"
+  add_foreign_key "tags", "users"
 end

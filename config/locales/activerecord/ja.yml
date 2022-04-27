@@ -7,6 +7,8 @@ ja:
       record:
         theme: テーマ
         content: 内容
+        categories: カテゴリー
+        categorids: カテゴリー
         tags: タグ
         tag_ids: タグ
       letter:

@@ -3,13 +3,13 @@
   .container.mx-auto.py-4
     = form_with model: @record, local: true do |f|
       .form-group.mb-3
-        = f.label :tags, Record.human_attribute_name(:tags)
+        = f.label :categories, Record.human_attribute_name(:categories)
         br
-        .ms-3= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
-          = tag.label class: "form-check-label" do
+        .ms-3= f.collection_check_boxes :category_ids, Category.all, :id, :name, include_hidden: false do |category|
+          = category.label class: "form-check-label" do
             .form-check.me-3
-              = tag.check_box class: "form-check-input"
-              = tag.text
+              = category.check_box class: "form-check-input"
+              = category.text
       .form-group.mb-3
         = f.label :theme, Record.human_attribute_name(:theme), class: 'mb-2'
         = f.text_area :theme, autofocus: true, class: "form-control", rows: 2

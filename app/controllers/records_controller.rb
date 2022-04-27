@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   def index
-    @records = params[:tag_id].present? ? Tag.find(params[:tag_id]).records : current_user.records.all.order(created_at: :desc)
+    @records = params[:category_id].present? ? Category.find(params[:category_id]).records : current_user.records.all.order(created_at: :desc)
   end
 
   def show
@@ -34,7 +34,7 @@ class RecordsController < ApplicationController
     params.require(:record).permit(
       :theme,
       :content,
-      tag_ids: []
+      category_ids: []
     )
   end
 end
