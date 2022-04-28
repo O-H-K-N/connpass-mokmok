@@ -1,19 +1,23 @@
-.container.mx-auto{ style= "margin-bottom: 92px;" }
-  .d-flex.justify-content-between.mx-2.my-3.text-light
-    .pt-1
-      i.fa.fa-backward.me-2
+.wrapper
+  .bg-light{style= "box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);"}
+    .d-flex.justify-content-start.p-3
       = link_to records_path
-        span.d-inline-block.link{ style= "color: white" }= t('defaults.index_back')
-    = link_to record_path(@record), class: "text-muted pe-2", method: :delete, data: { confirm: t('defaults.delete_confirm') }
-      i.fa.fa-trash
-  .py-2
-    .py-1.px-3
-      h4.mb-3= safe_join(@record.theme.split("\n"),tag(:br))
-    .text-left.mx-2
+        i.fa.fa-arrow-left.fa-lg.text-dark.me-3
+      p.text-dark.mb-0= t('defaults.index_back')
+  .container.mx-auto.py-4
+    .d-flex.justify-content-between
+      h3.ms-2.mb-4.text-dark= @record.theme
+      = link_to record_path(@record), class: "text-muted me-2", method: :delete, data: { confirm: t('defaults.delete_confirm') }
+        i.fa.fa-trash
+    .text-left.mx-2.text-dark
       p.text-light.my-2= t('records.show.date')
-      p.px-4= @record.created_at.strftime("%Y年 %-m月 %-d日")
+      p.px-4.mb-0= @record.created_at.strftime("%Y年 %-m月 %-d日")
       p.text-light.my-2= t('records.show.content')
-      p.px-4= safe_join(@record.content.split("\n"),tag(:br))
+      p.px-4.mb-0= safe_join(@record.content.split("\n"),tag(:br))
+      p.text-light.my-2= t('records.show.tag')
+      .d-flex.flex-wrap.px-4.text-muted
+        - @record.tags.each do |tag|
+          p.pe-2.mb-0= "##{tag.name}"
       p.text-light.my-2= t('records.show.comment_index')
       #js-comment-area.mb-3
         = render @comments

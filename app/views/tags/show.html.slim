@@ -1,8 +1,13 @@
 .wrapper
+  .bg-light{style= "box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);"}
+    .d-flex.justify-content-start.p-3
+      = link_to records_path
+        i.fa.fa-arrow-left.fa-lg.text-dark.me-3
+      p.text-dark.mb-0= t('defaults.index_back')
   .container.mx-auto.py-4
-    h1.ms-2.mb-0.text-dark= t('records.index.title')
+    h3.ms-2.mb-3.text-dark= t('records.show.title', name: @tag.name)
     .my-2.d-flex.justify-content-end
-      = form_tag records_path, method: :get do
+      = form_tag tag_path(@tag), method: :get do
         = select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
           { prompt: t('records.index.select_category'), onchange: 'submit(this.form);' }
     = render @records
