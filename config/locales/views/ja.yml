@@ -12,7 +12,7 @@ ja:
     close: '閉じる'
     delete: 削除
     delete_confirm: 削除してもよろしいですか？
-    index_back: 一覧へ戻る
+    index_back: 一覧へ
   homes:
     start:
       app_detail: 未来の自分に手紙と記録を送るサービス
@@ -38,11 +38,13 @@ ja:
       title: 記録一覧
       select_category: 全て
     new:
+      title: 記録作成
       theme: 例）今日１番うれしかったこと, 最近気になっているニュースなど
       content: 5分間のタイマーを設定して、テーマについて思いついたことをどんどん書きましょう（誤字、脱字も気にしない）
       tag: タグを複数残す場合は、半角スペースで区切って書いてください
-      tag_info: ※残しておくと絞り込み検索で見つけやすくなります
+      tag_info: ※ハッシュタグで一覧表示することが可能です
     show:
+      title: '#%{name}の記録一覧'
       date: 作成日
       content: 内容
       tag: ハッシュタグ
@@ -63,6 +65,9 @@ ja:
       outlook: 当時の目標・展望
       created_date: 作成日
       send_date: お届け日
+  comments:
+    form:
+      max: 100文字以内で書いてみよう
   shared:
     record:
       index: 記録の一覧

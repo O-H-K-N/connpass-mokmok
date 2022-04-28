@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     resources :comments, only: %i[index show new create destroy], shallow: true
   end
   resources :letters, only: %i[index show new create destroy]
+  resources :tags, only: %i[show]
 end

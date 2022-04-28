@@ -13,4 +13,5 @@
         span.me-2= category.name
   .d-flex.flex-wrap.lh-1.mb-2.text-muted
     - record.tags.each do |tag|
-      p.mb-0.me-2.small= "##{tag.name}"
+      = link_to tag_path(tag)
+        p.mb-0.me-2.small= "##{tag.name}"
