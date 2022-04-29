@@ -1,40 +1,33 @@
 class Record < ApplicationRecord
-  has_many :record_categories, dependent: :destroy
-  has_many :categories, through: :record_categories
-  has_many :record_tags, dependent: :destroy
-  has_many :tags, through: :record_tags
-  has_many :comments, dependent: :destroy
   belongs_to :user, foreign_key: "user_id"
 
-  validates :category_ids, presence: true
-  validates :theme, presence: true
-  validates :theme, length: { in: 2..100 }, allow_blank: true
-  validates :content, presence: true
-  validates :content, length: { in: 2..400 }, allow_blank: true
+  validates :send_at, presence: true
+  validates :title, presence: true
+  validates :title, length: { in: 1..50 }, allow_blank: true
+  validates :content, length: { maximum: 100 }
+  validates :state, presence: true
+  # validate :datetime_before_start
+  # validate :datetime_before_finish
 
-  # タグを保存するメソッド
-  def save_tag(user_id, tag_list)
-    # 送られてきたタグリストの重複チェック
-    sent_tags = tag_list.uniq
-    # タグを作成するユーザを抽出
-    user = User.find(user_id)
+  # リマインドを「未通知」「確認待ち（通知済み）」「確認済み」に区別
+  enum state: { draft: 0, sent: 1, checked: 2 }
 
-    # 全てのタグの名前を配列として取得する
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    # 既に存在しているタグから、送信されてきたタグを除いたものをold_tagsとする
-    old_tags = current_tags - sent_tags
-    # 送信されてきたタグから、既に存在しているタグを除いたものをnew_tagsとする
-    new_tags = sent_tags - current_tags
-
-    # 古いタグを削除する
-    old_tags.each do |old|
-      self.tags.delete user.tags.find_by(name: old)
-    end
-
-    # 新たなタグをデータベースに保存する
-    new_tags.each do |new|
-      new_tag = user.tags.find_or_create_by(name: new)
-      self.tags << new_tag
-    end
+  # お知らせが今日を含め過去の日時の場合に発火
+  def datetime_before_start
+    return if send_at.blank?
+    errors.add(:send_at, "は未来の日時を選択してください") if send_at <= Date.today
   end
+
+  # お知らせ日が本日の一年後より後の日時の場合に発火
+  def datetime_before_finish
+    return if send_at.blank?
+    errors.add(:send_at, "は本日よりも１年以内のものを選択してください") if Date.today + 1.years < send_at
+  end
+
+  # お知らせ日がまだなリマインドを収集
+  scope :not_send, -> { where('send_at > ?', DateTime.now) }
+  # お知らせ日が過ぎたリマインドを収集
+  scope :sent, -> { where('send_at <= ?', DateTime.now) }
+  # 確認済みとなったリマインドを収集
+  scope :checked, -> { where(state: 'checked') }
 end

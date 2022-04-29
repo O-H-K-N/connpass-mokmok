@@ -2,18 +2,15 @@ ja:
   activerecord:
     models:
       user: ユーザ
-      record: 記録
+      record: リマインド
     attributes:
       record:
-        theme: テーマ【必須】
-        content: 内容【必須】
-        categories: カテゴリー【必須】
-        tag: ハッシュタグ【任意】
+        send_at: お知らせ日【必須】
+        title: タイトル【必須】
+        content: 備考【任意】
       letter:
         title: タイトル
         future_message: 未来の自分にメッセージ
         current_message: 今の自分について
         outlook: 目標・展望
         send_at: お届け日
-      comment:
-        content: フィードバック

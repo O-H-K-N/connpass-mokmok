@@ -2,5 +2,5 @@
   .d-flex.flex-nowrap.bg-white.mb-0.text
     = link_to records_path, class: "w-100 text-center py-4 #{record_menu('index')}"
       p.d-inline-block.small.mb-0= t('shared.record.index')
-    = link_to new_record_path, class: "w-100 text-center py-4 #{record_menu('new')}"
-      p.d-inline-block.small.mb-0= t('shared.record.new')
+    = link_to sent_path, class: "w-100 text-center py-4 #{record_menu('sent')}"
+      p.d-inline-block.small.mb-0= t('shared.record.sent')
