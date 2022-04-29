@@ -5,9 +5,8 @@
         .modal-body
           h5#newRecordModalLabel.mb-3.text-muted= t('records.show.comment_new')
           .mb-3
-            = f.text_area :content, autofocus: true, class: "form-control", rows: 6
+            = f.text_area :content, autofocus: true, class: "form-control", rows: 6, placeholder: t('comments.form.max')
         .modal-footer
-          / = f.submit t('defaults.add'), class: 'btn btn-outline-primary'
           = button_tag type: 'submit', class: 'btn btn-outline-primary' do
             i.fa.fa-paper-plane.fa-lg.m-0.p-1
           button.btn.btn-outline-secondary{ type= "button" data-bs-dismiss="modal"}
