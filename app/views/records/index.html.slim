@@ -2,6 +2,5 @@
 .wrapper
   .container.mx-auto.py-4
     = render @records
-  = link_to new_record_path
-    button.btn-original{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }
-      i.fa.fa-plus-circle.fa-3x
+  = render 'new_btn'
+

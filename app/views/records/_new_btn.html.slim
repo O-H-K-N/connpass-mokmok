@@ -1,11 +1,14 @@
-.wrapper-bottom
-  .bg-light{style= "box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);"}
-    .d-flex.justify-content-start.p-3
-      = link_to records_path
-        i.fa.fa-arrow-left.fa-lg.text-dark.me-3
-      p.text-dark.mb-0= t('defaults.index_back')
-  .container.mx-auto.py-4.text-dark
-    = form_with model: @record, local: true do |f|
+= javascript_pack_tag 'records/new'
+
+button.btn-original.open-new{ type= "button" }
+  i.fa.fa-plus-circle.fa-3x
+
+.mask-new
+.modal-new
+  h5.mb-1.text-dark= '未来のあなたへクイズを出題'
+  p#record-border.border-bottom.border-2.rounded.mb-2
+  .container.mx-auto.mb-4.text-dark
+    = form_with url: records_path, remote: true do |f|
       .form-group.mb-3
         = f.label :send_at, Record.human_attribute_name(:send_at), class: 'mb-2'
         = f.datetime_field :send_at, class: 'form-control', value: (Date.today + 1).strftime('%Y-%m-%dT%T')

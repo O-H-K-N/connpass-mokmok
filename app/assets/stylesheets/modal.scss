@@ -1,7 +1,7 @@
-.mask{
+.mask, .mask-new{
   display: none;
   /*aは、透明度*/
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.7);
   /*全画面に適用*/
   position: fixed;
   top:0;
@@ -11,19 +11,27 @@
   z-index: 1;
 }
 
-.modal{
+.modal, .modal-new{
   display: none;
   position: fixed;
   background: #fff;
   width: 84%;
-  max-height: calc(100vh - 550px);
   padding: 20px;
   border-radius: 5px;
-  top: 30%;
   left: 0;
   right: 0;
   margin: 0 auto;
   z-index: 2;
   overflow-y: auto;
   overflow-y: scroll;
+}
+
+.modal{
+  max-height: calc(100vh - 560px);
+  top: 30%;
+}
+
+.modal-new{
+  max-height: calc(100vh - 400px);
+  top: 20%;
 }
