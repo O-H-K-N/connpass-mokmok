@@ -2,12 +2,11 @@ ja:
   activerecord:
     models:
       user: ユーザ
-      record: リマインド
+      record: クイズ
     attributes:
       record:
-        send_at: お知らせ日【必須】
-        title: タイトル【必須】
-        content: 備考【任意】
+        send_at: 出題日
+        content: 問題
       letter:
         title: タイトル
         future_message: 未来の自分にメッセージ

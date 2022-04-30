@@ -1,7 +1,9 @@
+= javascript_pack_tag 'records/sent'
+
 = render 'shared/record_menu'
 .wrapper
   .container.mx-auto.py-4
     = render @records
   = link_to new_record_path
-    button.btn-original{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }
+    button.btn-original{ type= "button" }
       i.fa.fa-plus-circle.fa-3x

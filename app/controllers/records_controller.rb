@@ -1,12 +1,12 @@
 class RecordsController < ApplicationController
   def index
-    # 「確認済み」のみ一覧表示
+    # 「解答済」のみ一覧表示
     @records = current_user.records.checked.order(created_at: :desc)
   end
 
   def sent
-    # 「リマインド済み」のみ一覧表示
-    @records = current_user.records.sent.order(created_at: :desc)
+    # 「未解答」のみ一覧表示
+    @records = current_user.records.sent.where(state: 'sent').order(created_at: :desc)
   end
 
   def show
@@ -19,12 +19,26 @@ class RecordsController < ApplicationController
 
   def create
     @record = current_user.records.new(record_params)
-    @record.state = :draft
     if @record.save
       redirect_to records_path
     else
       render :new
     end
+  end
+
+  def update
+    @record = current_user.records.find(params[:id])
+    if params[:type] == 'correct'
+      @record.update!(state: 'checked', result: 'correct')
+    else params[:type] == 'wrong'
+      @record.update!(state: 'checked', result: 'wrong')
+    end
+    redirect_to sent_path
+  end
+
+  def ckecked
+    @record = current_user.records.find(params[:id])
+    @record.update(stat)
   end
 
   def destroy
@@ -37,7 +51,6 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record).permit(
-      :title,
       :content,
       :send_at
     )

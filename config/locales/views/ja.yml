@@ -15,7 +15,7 @@ ja:
     index_back: 一覧へ
   homes:
     start:
-      app_detail: 未来の自分に手紙とリマインドを送るサービス
+      app_detail: 未来の自分に手紙とクイズを送るサービス
       section:
         first: LINEの友達に追加
         second: 「レタレコ」で何ができる？
@@ -23,31 +23,27 @@ ja:
   users:
     show:
       letter: 手紙
-      record: リマインド
+      record: クイズ
       count: 総数
       not_send_letter: 未送付
       sent_letter: 送付済
-      not_send_record: 未通知
-      sent_record: 確認待ち
-      checked_record: 確認済み
+      not_send_record: 未出題
+      sent_record: 未解答
+      checked_record: 解答済
       episode: エピソード
       success_story: 成功談
       failure_story: 失敗談
       letter_unit: '%{count}通'
       record_unit: '%{count}件'
-      records_path: リマインド一覧へ
+      records_path: クイズ一覧へ
   records:
     index:
     new:
-      title: リマインドのタイトルを記入してください
-      content: リマインドについて補足があれば記入してください
+      content: クイズの内容について記入してください
     show:
-      title: '#%{name}のリマインド一覧'
-      date: 作成日
+      created_at: 作成日
+      send_at: 通知日
       content: 内容
-      tag: ハッシュタグ
-      comment_index: 過去のフィードバック一覧
-      comment_new: フィードバックを追加
   letters:
     index:
       created_at: 作成日
@@ -68,8 +64,8 @@ ja:
       max: 100文字以内で書いてみよう
   shared:
     record:
-      index: 確認済み
-      sent: 確認待ち
+      index: 解答済
+      sent: 未解答
     letter:
       index: お届け済みの手紙一覧
       new: 手紙の作成
@@ -77,4 +73,4 @@ ja:
       footer_app_name: © 2022. レタレコ
       profile: プロフィール
       letter: 手紙
-      record: リマインド
+      record: クイズ

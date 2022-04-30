@@ -1,8 +1,39 @@
 .bg-white.mb-3.p-3.rounded-3
   .d-flex.justify-content-between.px-1.text-muted
-    p.mb-1.small= record.created_at.strftime("%Y年 %-m月 %-d日")
+    p.mb-1.small= "#{time_ago(record.created_at)}に通知"
     = link_to record_path(record), class: "text-muted", method: :delete, data: { confirm: t('defaults.delete_confirm') } do
       i.fa.fa-trash
   p#record-border.border-bottom.border-2.rounded.mb-2
-  = link_to record_path(record)
-    h4.mb-2.fw-bold.d-inline-block.link{ style= "color: #3683ff" }= safe_join(record.title.split("\n"),tag(:br))
+  h4.open.mb-2.fw-bold{ id= "#{record.id}", style= "color: #3683ff" }= record.content
+
+.mask{ id= "#{record.id}" }
+.modal{ id= "#{record.id}" }
+  .modal_content.text-dark
+    p.mb-1= "#{time_ago(record.created_at)}のあなたから出題"
+    p#record-border.border-bottom.border-2.rounded.mb-2
+    h5.my-3.text-center.text-dark= record.content
+    p#record-border.border-bottom.border-2.rounded.mb-2
+    .d-flex.justify-content-evenly
+      = link_to record_path(record, type: 'correct'), method: :put do
+          = button_tag type: 'submit', class: 'btn btn-outline-success' do
+            i.fa.fa-circle-thin.fa-lg.m-0.px-3
+      = link_to record_path(record, type: 'wrong') , method: :put do
+        = button_tag type: 'submit', class: 'btn btn-outline-danger' do
+          i.fa.fa-times.fa-lg.m-0.px-4
+
+/ .mask{ id= "#{record.id}" }
+/ .modal{ id= "#{record.id}" }
+/   .modal_content
+/     .d-flex.justify-content-between.my-1.px-1.text-dark
+/       p.mb-1.small= "#{time_ago(record.created_at)}に通知"
+/       = link_to record_path(record), class: "text-muted", method: :delete, data: { confirm: t('defaults.delete_confirm') } do
+/         i.fa.fa-trash
+/     p#record-border.border-bottom.border-2.rounded.mb-2
+/     .text-left.m-2.text-muted
+/       h5.mb-0= record.content
+/     .d-flex.justify-content-end
+/       p.mb-2.me-3.text-right.text-dark= "#{record.created_at.strftime("%Y年 %-m月 %-d日")} 記"
+/     p#record-border.border-bottom.border-2.rounded.mb-2
+/     .d-flex.justify-content-end
+/       = link_to '確認', record_path(record), method: :put, class: "btn btn-outline-success m-2"
+/       p.btn.btn-secondary.my-2.close{ id= "#{record.id}" }= '閉じる'

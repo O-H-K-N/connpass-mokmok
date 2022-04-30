@@ -1,0 +1,29 @@
+.mask{
+  display: none;
+  /*aは、透明度*/
+  background: rgba(0,0,0,0.4);
+  /*全画面に適用*/
+  position: fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  z-index: 1;
+}
+
+.modal{
+  display: none;
+  position: fixed;
+  background: #fff;
+  width: 84%;
+  max-height: calc(100vh - 550px);
+  padding: 20px;
+  border-radius: 5px;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 2;
+  overflow-y: auto;
+  overflow-y: scroll;
+}
