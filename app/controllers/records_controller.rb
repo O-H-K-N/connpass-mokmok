@@ -1,14 +1,11 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: %i[show update]
+  before_action :set_record, only: %i[update]
 
   def index
-    # 「解答済」のみ一覧表示
-    @records = current_user.records.checked.order(created_at: :desc)
-  end
-
-  def sent
-    # 「未解答」のみ一覧表示
-    @records = current_user.records.sent.where(state: 'sent').order(created_at: :desc)
+    # 「回答済」のみ一覧表示
+    @checked_records = current_user.records.checked.order(created_at: :desc)
+    # 「未回答」のみ一覧表示
+    @sent_records = current_user.records.sent.where(state: 'sent').order(created_at: :desc)
   end
 
   def new
@@ -30,7 +27,7 @@ class RecordsController < ApplicationController
     else params[:type] == 'wrong'
       @record.update!(state: 'checked', result: 'wrong')
     end
-    redirect_to sent_path
+    redirect_to records_path
   end
 
   def destroy

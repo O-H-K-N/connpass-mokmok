@@ -28,8 +28,8 @@ ja:
       not_send_letter: 未送付
       sent_letter: 送付済
       not_send_record: 未出題
-      sent_record: 未解答
-      checked_record: 解答済
+      sent_record: 未回答
+      checked_record: 回答済
       episode: エピソード
       success_story: 成功談
       failure_story: 失敗談
@@ -38,8 +38,17 @@ ja:
       records_path: クイズ一覧へ
   records:
     index:
+      not_checked: 回答済のクイズはありません
+      not_sent: 未回答のクイズはありません
+      set_time: '%{time}のあなたから出題'
+      send_time: '%{time}に出題'
+      checked_time: '%{time}に回答'
+      yes: 'YES'
+      no: 'NO'
+      answer: 'で回答しました'
     new:
-      content: クイズの内容について記入してください
+      title: 未来のあなたへクイズを出題
+      content: Yes or Noで答えられるようなクイズを記入してください
     show:
       created_at: 作成日
       send_at: 通知日
@@ -64,8 +73,8 @@ ja:
       max: 100文字以内で書いてみよう
   shared:
     record:
-      index: 解答済
-      sent: 未解答
+      index: 回答済
+      sent: 未回答
     letter:
       index: お届け済みの手紙一覧
       new: 手紙の作成

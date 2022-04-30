@@ -6,7 +6,7 @@ ja:
     attributes:
       record:
         send_at: 出題日
-        content: 問題
+        content: クイズ内容
       letter:
         title: タイトル
         future_message: 未来の自分にメッセージ

@@ -11,7 +11,7 @@
   z-index: 1;
 }
 
-.modal, .modal-new{
+.modal, .modal-new, .modal-detail{
   display: none;
   position: fixed;
   background: #fff;
@@ -32,6 +32,11 @@
 }
 
 .modal-new{
+  max-height: calc(100vh - 400px);
+  top: 20%;
+}
+
+.modal-detail{
   max-height: calc(100vh - 400px);
   top: 20%;
 }

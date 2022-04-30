@@ -7,7 +7,7 @@ class Record < ApplicationRecord
   # validate :datetime_before_start
   # validate :datetime_before_finish
 
-  # クイズを「未出題」「未解答（通知済み）」「解答済」に区別
+  # クイズを「未出題」「未回答（通知済み）」「回答済」に区別
   enum state: { draft: 0, sent: 1, checked: 2 }
   # クイズ状態を「未回答」「正解」「不正解」に区別
   enum result: { unanswered: 0, correct: 1,  wrong: 2 }
@@ -28,7 +28,7 @@ class Record < ApplicationRecord
   scope :not_send, -> { where('send_at > ?', DateTime.now) }
   # 出題日が過ぎたクイズを収集
   scope :sent, -> { where('send_at <= ?', DateTime.now) }
-  # 解答済となったクイズを収集
+  # 回答済となったクイズを収集
   scope :checked, -> { where(state: 'checked') }
   # 正解となったクイズを収集
   scope :correct, -> { where(result: 'correct') }
