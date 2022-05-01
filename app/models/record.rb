@@ -9,8 +9,8 @@ class Record < ApplicationRecord
 
   # クイズを「未出題」「未回答（通知済み）」「回答済」に区別
   enum state: { draft: 0, sent: 1, checked: 2 }
-  # クイズ状態を「未回答」「正解」「不正解」に区別
-  enum result: { unanswered: 0, correct: 1,  wrong: 2 }
+  # クイズ状態を「無回答」「正解」「不正解」に区別
+  enum result: { "無回答": 0, YES: 1,  NO: 2 }
 
   # お知らせが今日を含め過去の日時の場合に発火
   def datetime_before_start
@@ -24,14 +24,6 @@ class Record < ApplicationRecord
     errors.add(:send_at, "は本日よりも１年以内のものを選択してください") if Date.today + 1.years < send_at
   end
 
-  # 出題日がまだなクイズを収集
-  scope :not_send, -> { where('send_at > ?', DateTime.now) }
-  # 出題日が過ぎたクイズを収集
-  scope :sent, -> { where('send_at <= ?', DateTime.now) }
-  # 回答済となったクイズを収集
-  scope :checked, -> { where(state: 'checked') }
-  # 正解となったクイズを収集
-  scope :correct, -> { where(result: 'correct') }
-  # 不正解となったクイズを収集
-  scope :wrong, -> { where(result: 'wrong') }
+  # 出題されて丸一日経ったクイズを収集
+  scope :limit_over, -> { sent.where('send_at <= ?', DateTime.now - 1.day) }
 end

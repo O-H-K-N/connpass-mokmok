@@ -16,5 +16,5 @@
     h5.my-3.text-center.text-dark= record.content
     p#record-border.border-bottom.border-2.rounded.mb-2
     .d-flex.justify-content-evenly.mb-2
-      = link_to t('records.index.yes'), record_path(record, type: 'correct'), method: :put, class: 'btn btn-outline-danger'
-      = link_to t('records.index.no'), record_path(record, type: 'wrong') , method: :put, class: 'btn btn-outline-primary px-3'
+      = link_to t('records.index.yes'), record_path(record, type: 'yes'), method: :put, class: 'btn btn-outline-danger'
+      = link_to t('records.index.no'), record_path(record, type: 'no') , method: :put, class: 'btn btn-outline-primary px-3'

@@ -27,14 +27,16 @@ ja:
       count: 総数
       not_send_letter: 未送付
       sent_letter: 送付済
-      not_send_record: 未出題
+      draft_record: 未出題
       sent_record: 未回答
       checked_record: 回答済
+      correct_record: 'YES'
+      wrong_record: 'NO'
       episode: エピソード
       success_story: 成功談
       failure_story: 失敗談
       letter_unit: '%{count}通'
-      record_unit: '%{count}件'
+      record_unit: '%{count}問'
       records_path: クイズ一覧へ
   records:
     index:

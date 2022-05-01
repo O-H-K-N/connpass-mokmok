@@ -17,7 +17,7 @@
     p#record-border.border-bottom.border-2.rounded.mb-2
     p.mb-1.px-1= t('records.index.checked_time', time: time_ago(record.updated_at))
     .d-flex.justify-content-center
-      - if record.result == "correct"
+      - if record.result == "YES"
         h2.text-danger= t('records.index.yes')
       - else
         h2.text-primary= t('records.index.no')

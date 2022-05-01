@@ -22,10 +22,10 @@ class RecordsController < ApplicationController
   end
 
   def update
-    if params[:type] == 'correct'
-      @record.update!(state: 'checked', result: 'correct')
-    else params[:type] == 'wrong'
-      @record.update!(state: 'checked', result: 'wrong')
+    if params[:type] == 'yes'
+      @record.update!(state: 'checked', result: 1)
+    else params[:type] == 'no'
+      @record.update!(state: 'checked', result: 2)
     end
     redirect_to records_path
   end
