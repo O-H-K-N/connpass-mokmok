@@ -1,12 +1,11 @@
 class RecordsController < ApplicationController
-  def index
-    @records = params[:category_id].present? ? Category.find(params[:category_id]).records : current_user.records.all.order(created_at: :desc)
-  end
+  before_action :set_record, only: %i[update]
 
-  def show
-    @record = current_user.records.find(params[:id])
-    @comment = Comment.new
-    @comments = @record.comments.order(created_at: :desc)
+  def index
+    # 「回答済」のみ一覧表示
+    @checked_records = current_user.records.checked.order(created_at: :desc)
+    # 「未回答」のみ一覧表示
+    @sent_records = current_user.records.sent.where(state: 'sent').order(created_at: :desc)
   end
 
   def new
@@ -15,17 +14,21 @@ class RecordsController < ApplicationController
 
   def create
     @record = current_user.records.new(record_params)
-    tag_list = params[:record][:name].split(nil)
-    if count_tag(tag_list) == false
-      render :new
+    if @record.save
+      redirect_to records_path
     else
-      if @record.save
-        @record.save_tag(current_user.id, tag_list)
-        redirect_to record_path(@record)
-      else
-        render :new
-      end
+      # 一旦
+      redirect_to user_path(current_user)
     end
+  end
+
+  def update
+    if params[:type] == 'yes'
+      @record.update!(state: 'checked', result: 0)
+    else params[:type] == 'no'
+      @record.update!(state: 'checked', result: 1)
+    end
+    redirect_to records_path
   end
 
   def destroy
@@ -36,20 +39,14 @@ class RecordsController < ApplicationController
 
   private
 
-  def record_params
-    params.require(:record).permit(
-      :theme,
-      :content,
-      category_ids: []
-    )
+  def set_record
+    @record = current_user.records.find(params[:id])
   end
 
-  # 10文字以上のタグがないかをチェック
-  def count_tag(tag_list)
-    tag_list.each do |tag|
-      if tag.length > 10
-        return false
-      end
-    end
+  def record_params
+    params.permit(
+      :content,
+      :send_at
+    )
   end
 end

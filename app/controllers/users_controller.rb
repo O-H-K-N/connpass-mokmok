@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def show
     @letters = current_user.letters.all
     @records = current_user.records.all
+    @result = @records.checked
   end
 
   def create

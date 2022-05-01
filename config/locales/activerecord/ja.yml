@@ -2,18 +2,24 @@ ja:
   activerecord:
     models:
       user: ユーザ
-      record: 記録
+      record: クイズ
     attributes:
       record:
-        theme: テーマ【必須】
-        content: 内容【必須】
-        categories: カテゴリー【必須】
-        tag: ハッシュタグ【任意】
+        send_at: 出題日
+        content: クイズ内容
       letter:
         title: タイトル
         future_message: 未来の自分にメッセージ
         current_message: 今の自分について
         outlook: 目標・展望
         send_at: お届け日
-      comment:
-        content: フィードバック
+  enums:
+    record:
+      state:
+        draft: 未出題
+        sent: 未回答
+        checked: 回答済
+      result:
+        unanswered: 無回答
+        correct: 正解
+        wrong: 不正解

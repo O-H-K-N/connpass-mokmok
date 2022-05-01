@@ -1,4 +1,4 @@
-nav, footer, .record_header{
+nav, footer{
   background-color: #3683ff;
 
   .nav-title, .navbar-toggler-icon{
@@ -12,6 +12,20 @@ nav, footer, .record_header{
   }
 
   a:hover{
+    color: black;
+    background-color: #f8f9fa
+  }
+}
+
+.record_header{
+  top: 0;
+
+  p{
+    color: gray;
+    font-weight: bold;
+  }
+
+  .checked{
     color: black;
     background-color: #f8f9fa
   }

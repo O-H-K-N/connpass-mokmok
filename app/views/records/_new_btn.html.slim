@@ -1,0 +1,20 @@
+= javascript_pack_tag 'records/new'
+
+button.btn-original.open-new{ type= "button" }
+  i.fa.fa-plus-circle.fa-3x
+
+.mask-new
+.modal-new
+  h5.mb-1.text-dark= t('records.new.title')
+  p#record-border.border-bottom.border-2.rounded.mb-2
+  .container.mx-auto.mb-4.text-dark
+    = form_with url: records_path, remote: true do |f|
+      .form-group.mb-3
+        = f.label :send_at, Record.human_attribute_name(:send_at), class: 'mb-2'
+        = f.datetime_field :send_at, class: 'form-control', value: (Date.today + 1).strftime('%Y-%m-%dT%T')
+      .form-group.mb-3
+        = f.label :content, Record.human_attribute_name(:content), class: 'mb-2'
+        = f.text_area :content, autofocus: true, class: "form-control", rows: 3, placeholder: t('records.new.content')
+      .action.mb-3.d-flex.justify-content-end
+        = button_tag type: 'submit', class: 'btn btn-outline-dark' do
+          i.fa.fa-paper-plane-o.fa-lg.m-0.px-3

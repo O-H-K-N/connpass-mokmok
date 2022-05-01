@@ -1,11 +1,16 @@
+= render 'shared/record_menu'
+
 .wrapper
-  .container.mx-auto.py-4
-    h1.ms-2.mb-0.text-dark= t('records.index.title')
-    .my-2.d-flex.justify-content-end
-      = form_tag records_path, method: :get do
-        = select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
-          { prompt: t('records.index.select_category'), onchange: 'submit(this.form);' }
-    = render @records
-  = link_to new_record_path
-    button.btn-original{ type= "button" data-bs-toggle="modal" data-bs-target="#newRecordModal" }
-      i.fa.fa-plus-circle.fa-3x
+  .container.mx-auto.py-4#checked
+    - if !@checked_records.present?
+      h3.text-dark= t('records.index.not_checked')
+    -else
+      - @checked_records.each do |record|
+        = render 'checked_record', record: record
+  .container.mx-auto.py-4#sent
+    - if !@sent_records.present?
+      h3.text-dark= t('records.index.not_sent')
+    - else
+      - @sent_records.each do |record|
+        = render 'sent_record', record: record
+  = render 'new_btn'
