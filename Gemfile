@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # Language
 gem 'rails-i18n'
+gem 'enum_help'
 
 # env
 gem 'dotenv-rails'
@@ -48,6 +49,9 @@ gem 'line-bot-api'
 
 # Background Job
 gem 'whenever', require: false
+
+# Chartkick
+gem "chartkick"
 
 group :development, :test do
   #Debugger
