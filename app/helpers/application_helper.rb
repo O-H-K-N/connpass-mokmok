@@ -21,7 +21,8 @@ module ApplicationHelper
       if minute > 59
         hour = (minute / 60).floor
         if hour > 24
-          return time.strftime("%Y年 %-m月 %-d日")
+          day = (hour / 24).floor
+          return "#{day}日前"
         else
           return "#{hour}時間前"
         end

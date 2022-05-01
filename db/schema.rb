@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_072306) do
     t.text "content", null: false
     t.datetime "send_at", null: false
     t.integer "state", default: 0, null: false
-    t.integer "result", default: 0, null: false
+    t.integer "result", default: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_records_on_user_id"

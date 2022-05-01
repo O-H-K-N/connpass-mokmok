@@ -45,9 +45,12 @@ ja:
       set_time: '%{time}のあなたから出題'
       send_time: '%{time}に出題'
       checked_time: '%{time}に回答'
+      not_checked: 期限内に回答しなかったため
       yes: 'YES'
       no: 'NO'
-      answer: 'で回答しました'
+      unanswered: 無回答
+      answer: で回答しました
+      not_answer: となりました
     new:
       title: 未来のあなたへクイズを出題
       content: Yes or Noで答えられるようなクイズを記入してください

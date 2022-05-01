@@ -17,15 +17,16 @@ class RecordsController < ApplicationController
     if @record.save
       redirect_to records_path
     else
-      render :new
+      # 一旦
+      redirect_to user_path(current_user)
     end
   end
 
   def update
     if params[:type] == 'yes'
-      @record.update!(state: 'checked', result: 1)
+      @record.update!(state: 'checked', result: 0)
     else params[:type] == 'no'
-      @record.update!(state: 'checked', result: 2)
+      @record.update!(state: 'checked', result: 1)
     end
     redirect_to records_path
   end

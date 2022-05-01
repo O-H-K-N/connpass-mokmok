@@ -1,18 +1,17 @@
 Chartkick.options = {
   donut: true, # ドーナツグラフ
-  width: '400px',
+  width: '300px',
   colors: [ "#88CCEE",
             "#CC6677",
             "gray",
           ],
-  message: {empty: "データがありません"},
   thousands: ",",
   suffix: "問",
   legend: false, # 凡例非表示
   library: { # ここからHighchartsのオプション
     title: {
       style: {
-        color: '#3683ff',
+        color: 'black',
         fontFamily: "'ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN'",
       },
       align: 'center',

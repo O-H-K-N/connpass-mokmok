@@ -1,6 +1,6 @@
 .bg-white.mb-3.p-3.rounded-3
   .d-flex.justify-content-between.px-1.text-muted
-    p.mb-1.small= t('records.index.checked_time', time: time_ago(record.updated_at))
+    p.mb-1= t('records.index.set_time', time: time_ago(record.created_at))
     = link_to record_path(record), class: "text-muted", method: :delete, data: { confirm: t('defaults.delete_confirm') } do
       i.fa.fa-trash
   p#record-border.border-bottom.border-2.rounded.mb-2
@@ -15,11 +15,18 @@
     p#record-border.border-bottom.border-2.rounded.mb-2
     h5.my-3.text-center.text-dark= record.content
     p#record-border.border-bottom.border-2.rounded.mb-2
-    p.mb-1.px-1= t('records.index.checked_time', time: time_ago(record.updated_at))
-    .d-flex.justify-content-center
-      - if record.result == "YES"
-        h2.text-danger= t('records.index.yes')
-      - else
-        h2.text-primary= t('records.index.no')
-    .d-flex.justify-content-end
-      p.mb-0= t('records.index.answer')
+    - if record.result == t('records.index.unanswered')
+      p.mb-1.px-1= t('records.index.not_checked')
+      .d-flex.justify-content-center
+        h2.text-muted= t('records.index.unanswered')
+      .d-flex.justify-content-end
+        p.mb-0= t('records.index.not_answer')
+    - else
+      p.mb-1.px-1= t('records.index.checked_time', time: time_ago(record.updated_at))
+      .d-flex.justify-content-center
+        - if record.result == "YES"
+          h2.text-danger= t('records.index.yes')
+        - else
+          h2.text-primary= t('records.index.no')
+      .d-flex.justify-content-end
+        p.mb-0= t('records.index.answer')

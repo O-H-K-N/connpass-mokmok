@@ -1,10 +1,10 @@
 = javascript_pack_tag 'users/show'
 
-.container.mx-auto.py-5
+.container.mx-auto.py-2{ style= "margin-bottom: 78px" }
   .bg-white.text-center.p-2.rounded-3
     = image_tag 'users/default.png', id: 'picture', class: 'rounded-circle mt-4', style: "width: 80px;"
     p#name.mt-2.text-dark
-    .d-flex.flex-nowrap.px-3.mb-3
+    .d-flex.flex-nowrap.px-3.mb-0
       .w-100.text-center
         h4#letter-text.mb-1= t('users.show.letter')
         p#letter-border.border-bottom.border-5.w-50.mx-auto.rounded.border-dark
@@ -36,6 +36,6 @@
         .w-80
           p.mb-0.small= t('users.show.draft_record')
           p.text-dark= t('users.show.record_unit', count: @records.draft.count)
-      .d-flex.justify-content-evenly.px-5.mb-3.text-center
-        = pie_chart @result.group(:result).count, library: { title: { text: "回答数<br> #{@result.count}問" } }
-      = link_to t('users.show.records_path'), records_path, class: 'btn btn-outline-dark'
+      - if @result.present?
+        .d-flex.justify-content-center.px-5
+          = pie_chart @result.group(:result).count, library: { title: { text: "回答数<br> #{@result.count}問" } }
