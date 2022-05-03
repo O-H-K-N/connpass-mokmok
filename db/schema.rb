@@ -10,33 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_10_072306) do
+ActiveRecord::Schema.define(version: 2022_04_10_062707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "letters", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "title", null: false
-    t.text "current_message"
-    t.text "outlook"
-    t.text "future_message", null: false
-    t.date "send_at", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_letters_on_user_id"
-  end
-
-  create_table "records", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.text "content", null: false
-    t.datetime "send_at", null: false
-    t.integer "state", default: 0, null: false
-    t.integer "result", default: 2, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_records_on_user_id"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string "line_id", null: false
@@ -44,6 +21,4 @@ ActiveRecord::Schema.define(version: 2022_04_10_072306) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "letters", "users"
-  add_foreign_key "records", "users"
 end
