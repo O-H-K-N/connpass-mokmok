@@ -1,4 +1,5 @@
 class LinebotController < ApplicationController
+  skip_before_action :login_required
   protect_from_forgery :except => [:callback]
 
   def callback
@@ -43,7 +44,7 @@ class LinebotController < ApplicationController
             else
               message = {
                 type: 'text',
-                text: 'メニューバーから「手紙」「記録」を選択して、未来の自分にメッセージを送ろう！'
+                text: 'メニューバーから「手紙」「クイズ」を選択して、未来の自分にメッセージを送ろう！'
               }
               client.reply_message(event['replyToken'], message)
             end
