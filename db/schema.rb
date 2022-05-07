@@ -10,15 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_10_062707) do
+ActiveRecord::Schema.define(version: 2022_05_07_044700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
-    t.string "line_id", null: false
+  create_table "connpasses", force: :cascade do |t|
+    t.string "account"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "line_id", null: false
+    t.bigint "connpass_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["connpass_id"], name: "index_users_on_connpass_id"
+  end
+
+  add_foreign_key "users", "connpasses"
 end

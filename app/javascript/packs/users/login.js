@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
   liff.init({
     liffId: gon.liff_id
   })
-    // .then(() => {
-    //   if (!liff.isLoggedIn()) {
-    //     liff.login();
-    //   }
-    // })
+    .then(() => {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+    })
     .then(() => {
       const idToken = liff.getIDToken()
       console.log(idToken)
       const body =`idToken=${idToken}`
-      const request = new Request('/user', {
+      const request = new Request('/users', {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
           'X-CSRF-Token': token
@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       fetch(request)
       .then(() => {
-        window.location = '/user'
+        // connpassのアカウント登録ページに遷移
+        window.location = '/connpass/new'
       })
     })
     .catch((err) => {

@@ -28,10 +28,15 @@ class UsersController < ApplicationController
     user = User.find_by(line_id: line_user_id)
     # 新規アカウントか既存アカウントかを検証
     if user.nil?
-      user = User.create(line_id: line_user_id)
+      # 新規アカウントであればConnpassのからデータを作成
+      connpass = Connpass.create!
+      user = User.create!(line_id: line_user_id, connpass: connpass)
       session[:user_id] = user.id
     else user
       session[:user_id] = user.id
     end
   end
+
+  private
+
 end
