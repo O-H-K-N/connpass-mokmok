@@ -2,100 +2,60 @@ class LinebotController < ApplicationController
   skip_before_action :login_required
   protect_from_forgery :except => [:callback]
 
+  require 'uri'
+  require 'net/http'
+  require 'json'
+  require 'net/http'
+
+
   def callback
-    # リクエストのヘッダー署名情報を取得
     body = request.body.read
-    # 署名検証
+
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
-      error 400 do 'Bad Request' end
+      head :bad_request
     end
-    # リクエストボディのみ取得
+
     events = client.parse_events_from(body)
-    events.each do |event|
+
+    events.each { |event|
+      if event.message['text'] != nil
+        # LINEで送られてきた文書を取得
+        word = event.message['text']
+      end
+
+      # 送られてきたキーワードをURLに組み込む(日付は本日、順序は開催が遠い順)
+      url = URI.encode"https://connpass.com/api/v1/event/?ymd=#{DateTime.now.strftime("%Y%m%d")}&keyword=#{word}&count=100&order=2"
+      # インスタンスを生成
+      uri = URI.parse(url)
+      # リクエストを送りjson形式で受け取る
+      json =  Net::HTTP.get(uri)
+      # ハッシュ形式に返還
+      data = JSON.parse(json)
+      # data["events"].map! do |event|
+      #   if event["place"] == 'オンライン' && event["started_at"] == DateTime.now
+      #     event
+      #   end
+      # end
+
+      res = data["events"][0]
+
+
       case event
-      # MessageでWebhookが送られた場合
+      # メッセージが送信された場合
       when Line::Bot::Event::Message
         case event.type
+        # メッセージが送られて来た場合
         when Line::Bot::Event::MessageType::Text
-          # ユーザを特定
-          @user = User.find_by(line_id: event['source']['userId'])
-          if @user.nil?
-            message = {
-              type: 'text',
-              text: 'メニューバーからユーザ登録を行ってください'
-            }
-            client.reply_message(event['replyToken'], message)
-          end
-          # 送られてきたメッセージを格納
-          replied_message = event.message['text']
-
-          # 手紙を登録するやりとりをステータスごとに分けて処理
-          case @user.letter_status
-          # 手紙の内容（メッセージ）を送ってくるようにアナウンスする処理
-          when 'send_message'
-            if replied_message == '手紙'
-              message = {
-                type: 'text',
-                text: '未来の自分に向けてのメッセージを送ろう！'
-              }
-              client.reply_message(event['replyToken'], message)
-              @user.message_registration!
-            else
-              message = {
-                type: 'text',
-                text: 'メニューバーから「手紙」「クイズ」を選択して、未来の自分にメッセージを送ろう！'
-              }
-              client.reply_message(event['replyToken'], message)
-            end
-          # 表示されたアクションを選択せずに、メッセージが送られたときの処理
-          when 'message_registration'
-            now = Date.today
-            min = now >> 1
-            max = now >> 12
-            @letter = Letter.create(user_id: @user.id, message: replied_message, dig_notice: max)
-            message = {
-              type: 'text',
-              text: "１ヶ月後から１年後までの間で、手紙を届ける日時を選択しよう！",
-              quickReply: {
-                items: [
-                  {
-                    type: 'action',
-                    action: {
-                      type: "datetimepicker",
-                      label: "こちらから日時を選択してください",
-                      data:  @letter.id,
-                      mode: "date",
-                      initial: min.strftime("%Y-%m-%d"),
-                      max: max.strftime("%Y-%m-%d"),
-                      min: min.strftime("%Y-%m-%d")
-                    }
-                  }
-                ]
-              }
-            }
-            client.reply_message(event['replyToken'], message)
-            @user.dig_registration!
-          end
-        end
-      # PostbackでWebhookが送られた場合
-      when Line::Bot::Event::Postback
-        @user = User.find_by(line_id: event['source']['userId'])
-
-        case  @user.letter_status
-        # 登録されたデータの内容を表示する処理
-        when 'dig_registration'
-          @letter = Letter.find_by(id: event['postback']['data'])
-          @letter.update(dig_notice: event['postback']['params']['date'].to_date)
           message = {
             type: 'text',
-            text: "登録したよ！\n\n登録した手紙は\n"+ @letter.dig_notice.strftime("%Y年%-m月%-d日") +"に届くよ！\n\nお楽しみに！"
+            text: res["title"] + "\n\n" + "【概要】" + "\n" + ApplicationController.helpers.strip_tags(res["description"]) + "\n" + "開催日時" + "\n" + res["started_at"].to_date.strftime("%-m月%-d日%-H時%m分") + "\n" + "終了日時" + "\n" + res["ended_at"].to_date.strftime("%-m月%-d日%-H時%m分") + "\n" + "\n" + res["event_url"]
           }
           client.reply_message(event['replyToken'], message)
-          @user.send_message!
         end
       end
-    end
+    }
+
     head :ok
   end
 

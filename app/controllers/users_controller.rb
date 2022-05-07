@@ -12,11 +12,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @letters = current_user.letters.all
-    @records = current_user.records.all
-    @result = @records.checked
-  end
+  def show; end
 
   def create
 		# IDトークンを取得
