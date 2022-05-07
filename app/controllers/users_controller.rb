@@ -5,14 +5,20 @@ class UsersController < ApplicationController
   require 'net/http'
   require 'uri'
 
-  def login
-    user = User.find_by(id: session[:user_id])
-    if user.nil?
-      session.delete(:user_id)
-    end
-  end
+  def login; end
 
-  def show; end
+  def show
+    # 初期設定で登録したconnpassのアカウント名から予約済みのイベントを取得
+    account = current_user.connpass.account
+    url = URI.encode"https://connpass.com/api/v1/event/?nickname=#{account}"
+    # インスタンスを生成
+    uri = URI.parse(url)
+    # リクエストを送りjson形式で受け取る
+    json =  Net::HTTP.get(uri)
+    # ハッシュ形式に返還
+    data = JSON.parse(json)
+    @events = data["events"]
+  end
 
   def create
 		# IDトークンを取得
@@ -32,8 +38,12 @@ class UsersController < ApplicationController
       connpass = Connpass.create!
       user = User.create!(line_id: line_user_id, connpass: connpass)
       session[:user_id] = user.id
+      res = { status: 'ok' }
+      render json: res
     else user
       session[:user_id] = user.id
+      res = { id: user.id }
+      render json: res
     end
   end
 

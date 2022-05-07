@@ -22,9 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
         body: body
       });
       fetch(request)
-      .then(() => {
-        // connpassのアカウント登録ページに遷移
-        window.location = '/connpass/new'
+      .then(response => {
+        return response.json().then(response_user => {
+          // JSONパースされたオブジェクトが渡される
+          const user = response_user;
+          if(user.status == 'ok') {
+            // connpassのアカウント登録ページに遷移
+            window.location = '/connpass/new'
+          } else {
+            window.location = `/users/${user.id}`
+          }
+        })
       })
     })
     .catch((err) => {
