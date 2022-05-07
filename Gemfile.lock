@@ -130,6 +130,7 @@ GEM
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
+    httpclient (2.8.3)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
@@ -332,6 +333,7 @@ DEPENDENCIES
   gimei
   gon
   html2slim
+  httpclient
   jbuilder (~> 2.7)
   jquery-rails
   line-bot-api
