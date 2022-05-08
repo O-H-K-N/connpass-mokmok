@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
   def show
     # 初期設定で登録したconnpassのアカウント名から予約済みのイベントを取得
-    account = current_user.connpass.account
-    url = URI.encode"https://connpass.com/api/v1/event/?nickname=#{account}"
+    @account = current_user.connpass.account
+    url = URI.encode"https://connpass.com/api/v1/event/?nickname=#{@account}"
     # インスタンスを生成
     uri = URI.parse(url)
     # リクエストを送りjson形式で受け取る
@@ -46,7 +46,4 @@ class UsersController < ApplicationController
       render json: res
     end
   end
-
-  private
-
 end
