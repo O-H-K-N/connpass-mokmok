@@ -1,32 +1,19 @@
-/ = javascript_pack_tag 'users/show'
-/ .container.mx-auto.py-5
-/   .bg-white.text-center.p-2.rounded-3
-/     = image_tag 'users/default.png', id: 'picture', class: 'rounded-circle mt-4', style: "width: 80px;"
-/     p#name.mt-2.text-dark
+= javascript_pack_tag 'users/show'
 
-.container.mx-auto.mt-3
+.container.mx-auto.mt-3{ style='margin-bottom: 85px;' }
   .text-center
     p.small.mb-0.text-muted= 'ユーザー名'
     h2.mb-1.fw-bold= @account
   .d-flex.flex-nowrap.px-3.py-2.mb-0
     .w-100.text-center
-      h4#letter-text.mb-1= '開催前'
-      p#letter-border.border-bottom.border-5.w-50.mx-auto.rounded.border-dark
+      h4#before-text.mb-1= '開催前'
+      p#before-border.border-bottom.border-5.w-50.mx-auto.rounded.border-dark
     .w-100.text-center
-      h4#record-text.mb-1= '開催後'
-      p#record-border.border-bottom.border-5.w-50.mx-auto.rounded
-  - @events.each do |event|
-    .p-2.rounded-3.my-2.p-2.bg
-      = link_to event["event_url"], style: "text-decoration: none;"
-        p.m-0.small.d-inline-block.link-small
-          = event["started_at"].to_datetime.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[event["started_at"].to_datetime.wday]}) %-H:%M〜")
-        p#record-border.border-bottom.border-2.rounded.mb-2
-        p.mb-2.fw-bold.d-inline-block.link
-          = event["title"]
-        p#record-border.border-bottom.border-2.rounded.mb-1
-        .d-flex.justify-content-start.px-1{ style="align-items: center" }
-          i.fa.fa-map-marker.me-1.link-small
-          - if event["address"].nil?
-            p.small.m-0.d-inline-block.link-small= '会場未定'
-          - else
-            p.small.m-0.d-inline-block.link-small= event["address"]
+      h4#after-text.mb-1= '開催後'
+      p#after-border.border-bottom.border-5.w-50.mx-auto.rounded
+  .before-events-field
+    - if !@before_events.nil?
+      = render partial: "event", collection: @before_events, as: :event
+  .after-events-field
+    - if !@after_events.nil?
+      = render partial: "event", collection: @after_events, as: :event

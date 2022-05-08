@@ -10,14 +10,33 @@ class UsersController < ApplicationController
   def show
     # 初期設定で登録したconnpassのアカウント名から予約済みのイベントを取得
     @account = current_user.connpass.account
-    url = URI.encode"https://connpass.com/api/v1/event/?nickname=#{@account}"
+    url = URI.encode"https://connpass.com/api/v1/event/?nickname=#{@account}&count=100&order=2"
     # インスタンスを生成
     uri = URI.parse(url)
     # リクエストを送りjson形式で受け取る
     json =  Net::HTTP.get(uri)
     # ハッシュ形式に返還
     data = JSON.parse(json)
-    @events = data["events"]
+    # 開催前のイベントを収集\
+    before_events = data["events"].map do |event|
+      if event["ended_at"] > DateTime.now
+        event
+      else
+        next
+      end
+    end
+    # 開催後のイベントを収集
+    after_events = data["events"].map do |event|
+      if event["ended_at"] < DateTime.now
+        event
+      else
+        next
+      end
+    end
+    # 配列内のnilを削除し逆順に並べ直す
+    @before_events = before_events.reverse.compact
+    # 配列内のnilを削除
+    @after_events = after_events.compact
   end
 
   def create
