@@ -27,9 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
           // JSONパースされたオブジェクトが渡される
           const user = response_user;
           if(user.status == 'ok') {
-            // connpassのアカウント登録ページに遷移
-            window.location = '/connpass/new'
+            // ユーザ設定ページに遷移
+            window.location = `/users/${user.id}/edit`
           } else {
+            // イベント一覧ページに遷移
             window.location = `/users/${user.id}`
           }
         })

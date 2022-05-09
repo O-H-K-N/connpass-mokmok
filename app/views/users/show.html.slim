@@ -17,3 +17,5 @@
   .after-events-field
     - if !@after_events.nil?
       = render partial: "event", collection: @after_events, as: :event
+
+= render 'shared/after_login_footer'

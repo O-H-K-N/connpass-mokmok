@@ -9,7 +9,10 @@ class UsersController < ApplicationController
 
   def show
     # 初期設定で登録したconnpassのアカウント名から予約済みのイベントを取得
-    @account = current_user.connpass.account
+    @account = current_user.account
+    # 初期設定で登録した予約イベントの表示数を取得
+    @count = current_user.count
+    # ユーザに紐づくイベントを取得
     data = set_connpass(@account)
     # 開催前のイベントを収集
     before_events = data["events"].map do |event|
@@ -33,9 +36,45 @@ class UsersController < ApplicationController
     @after_events = after_events.compact
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def create
-		# IDトークンを取得
-    id_token = params[:idToken]
+    # IDトークンからアカウント情報を取得
+    line_user_id = set_line_user(params[:idToken])
+    @user = User.find_by(line_id: line_user_id)
+    if @user.nil?
+      @user = User.create(line_id: line_user_id)
+      session[:user_id] = @user.id
+      res = { status: 'ok', id: @user.id }
+      render json: res
+    else @user
+      session[:user_id] = @user.id
+      res = { id: @user.id }
+      render json: res
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      # リッチメニュー切り替え処理（初回更新時のみ）
+      if @user.flag == false
+        # リッチメニューの切り替え
+        set_richmenu(@user)
+        @user.update(flag: true)
+      end
+      redirect_to edit_user_path(@user), success: t('.success')
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  # アクセスしたLINEアカウント情報の取得
+  def set_line_user(id_token)
     # 環境変数に登録しておいたLIFF_CHANNEL_IDを取得
     channel_id = ENV['LIFF_CHANNEL_ID']
     # IDトークンを検証し、アカウント情報を取得
@@ -43,33 +82,35 @@ class UsersController < ApplicationController
 			URI.parse('https://api.line.me/oauth2/v2.1/verify'),
 			{'id_token'=>id_token, 'client_id'=>channel_id}
 		)
-    line_user_id = JSON.parse(res.body)["sub"]
-    user = User.find_by(line_id: line_user_id)
-    # 新規アカウントか既存アカウントかを検証
-    if user.nil?
-      # 新規アカウントであればConnpassのからデータを作成
-      connpass = Connpass.create!
-      user = User.create!(line_id: line_user_id, connpass: connpass)
-      session[:user_id] = user.id
-      res = { status: 'ok' }
-      render json: res
-    else user
-      session[:user_id] = user.id
-      res = { id: user.id }
-      render json: res
-    end
+    return JSON.parse(res.body)["sub"]
   end
-
-  private
 
   # connpassAPIを叩く
   def set_connpass(account)
-    url = URI.encode"https://connpass.com/api/v1/event/?nickname=#{@account}&count20&order=2"
+    url = URI.encode"https://connpass.com/api/v1/event/?nickname=#{@account}&count=#{@count}&order=2"
     # インスタンスを生成
     uri = URI.parse(url)
     # リクエストを送りjson形式で受け取る
     json =  Net::HTTP.get(uri)
     return JSON.parse(json)
+  end
+
+  # リッチメニュー切り替え処理
+  def set_richmenu(user)
+    # 新規ログイン完了後は、通常盤のリッチメニューを切り替える
+    uri = URI.parse("https://api.line.me/v2/bot/user/#{@user.line_id}/richmenu/#{ENV['RICH_MENU_ID_LOGGED_IN']}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    # リッチメニューがなければエラー発生
+    http.use_ssl = true
+    req = Net::HTTP::Post.new(uri.request_uri)
+    # チャネルアクセストークン設定
+    req['Authorization'] = "Bearer {#{ENV['LINE_CHANNEL_TOKEN']}}"
+    res = http.request(req)
+    res.value
+  end
+
+  def user_params
+    params.require(:user).permit(:line_id, :account, :count)
   end
 
 end

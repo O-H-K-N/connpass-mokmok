@@ -1,0 +1,22 @@
+
+.container.mx-auto.mt-3{ style='margin-bottom: 85px;' }
+  .text-center
+    h2.mt-4.mb-3.text-muted= t('users.new.setting')
+  = form_with model: @user, local: true do |f|
+    .mb-4= render 'shared/error_form', object: f.object
+    .mb-4= render 'shared/flash_message'
+    .form-group.m-2
+      = f.label :account, t('users.new.account_label') ,class: "form-label mb-1 text-muted small"
+      = f.text_field :account, class: "form-control mb-3", autofocus: true
+    .form-group.m-2
+      = f.label :count, t('users.new.count_label'),class: "form-label mb-1 text-muted small"
+      = f.number_field :count, class: "form-control", autofocus: true, min: 10, max: 100
+    .d-flex.justify-content-end
+      .action.my-2.me-3
+        = f.submit t('users.new.submit'), class: "btn btn-dark"
+
+  .m-2.small.text-muted
+    p= t('users.new.account_attention')
+    p= t('users.new.count_attention')
+
+= render 'shared/after_login_footer'
