@@ -1,0 +1,5 @@
+- if object.errors.any?
+  #error_form.text-center.small.text-danger
+    ul.mb-0.px-0{ style="list-style:none" }
+      - object.errors.full_messages.each do |message|
+        li= message
