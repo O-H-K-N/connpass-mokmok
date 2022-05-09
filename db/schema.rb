@@ -15,19 +15,13 @@ ActiveRecord::Schema.define(version: 2022_05_07_044700) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "connpasses", force: :cascade do |t|
-    t.string "account"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "line_id", null: false
-    t.bigint "connpass_id", null: false
+    t.string "account"
+    t.integer "count", default: 10
+    t.boolean "flag", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["connpass_id"], name: "index_users_on_connpass_id"
   end
 
-  add_foreign_key "users", "connpasses"
 end
