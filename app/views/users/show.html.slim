@@ -2,14 +2,14 @@
 
 .container.mx-auto.mt-3{ style='margin-bottom: 85px;' }
   .text-center
-    p.small.mb-0.text-muted= 'ユーザー名'
+    p.small.mb-0.text-muted= t('users.show.user_name')
     h2.mb-1.fw-bold= @account
   .d-flex.flex-nowrap.px-3.py-2.mb-0
     .w-100.text-center
-      h4#before-text.mb-1= '開催前'
+      h4#before-text.mb-1= t('users.show.before_events')
       p#before-border.border-bottom.border-5.w-50.mx-auto.rounded.border-dark
     .w-100.text-center
-      h4#after-text.mb-1= '開催後'
+      h4#after-text.mb-1= t('users.show.after_events')
       p#after-border.border-bottom.border-5.w-50.mx-auto.rounded
   .before-events-field
     - if !@before_events.nil?
