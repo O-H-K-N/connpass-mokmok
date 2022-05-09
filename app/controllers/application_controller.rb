@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  add_flash_types :success, :info, :warning, :danger
   helper_method :current_user
   before_action :login_required
 
@@ -12,10 +13,6 @@ class ApplicationController < ActionController::Base
   # ログイン中のユーザをcurrent_userとして扱える
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def set_liff_setup_id
-    gon.liff_id = ENV['LIFF_SETUP_ID']
   end
 
   def set_liff_top_id

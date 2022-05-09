@@ -1,25 +1,8 @@
 ja:
   activerecord:
     models:
-      user: ユーザ
-      record: クイズ
+      user: ユーザー
     attributes:
-      record:
-        send_at: 出題日
-        content: クイズ内容
-      letter:
-        title: タイトル
-        future_message: 未来の自分にメッセージ
-        current_message: 今の自分について
-        outlook: 目標・展望
-        send_at: お届け日
-  enums:
-    record:
-      state:
-        draft: 未出題
-        sent: 未回答
-        checked: 回答済
-      result:
-        unanswered: 無回答
-        correct: 正解
-        wrong: 不正解
+      user:
+        account: connpassのユーザー名
+        count: 予約イベントの表示数

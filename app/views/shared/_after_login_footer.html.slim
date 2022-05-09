@@ -1,6 +1,6 @@
 footer.fixed-bottom
   .d-flex.flex-nowrap.bg-white.mb-0.text
-    = link_to user_path(current_user), class: "w-100 text-center py-4 #{footer_menu('users')}"
+    = link_to user_path(current_user), class: "w-100 text-center py-4 #{footer_menu('show')}"
       p.d-inline-block.small.mb-0= t('shared.footer.events')
-    = link_to new_connpass_path, class: "w-100 text-center py-4 #{footer_menu('connpass')}"
+    = link_to edit_user_path(current_user), class: "w-100 text-center py-4 #{footer_menu('edit')}"
       p.d-inline-block.small.mb-0= t('shared.footer.setting')
