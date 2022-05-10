@@ -9,6 +9,6 @@
     .d-flex.justify-content-start.px-1{ style="align-items: center" }
       i.fa.fa-map-marker.me-1.link-small
       - if event["address"].nil?
-        p.small.m-0.d-inline-block.link-small= '会場未定'
+        p.small.m-0.d-inline-block.link-small= t('users.show.venue_undecided')
       - else
         p.small.m-0.d-inline-block.link-small= event["place"]

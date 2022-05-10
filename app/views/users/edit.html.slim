@@ -9,6 +9,9 @@
       = f.label :account, t('users.new.account_label') ,class: "form-label mb-1 text-muted small"
       = f.text_field :account, class: "form-control mb-3", autofocus: true
     .form-group.m-2
+      = f.label :prefecture, t('users.new.prefecture_label'), class: "form-label mb-1 text-muted small"
+      = f.select :prefecture, User.prefectures.keys, {}, class: "form-control", autofocus: true
+    .form-group.m-2
       = f.label :count, t('users.new.count_label'),class: "form-label mb-1 text-muted small"
       = f.number_field :count, class: "form-control", autofocus: true, min: 10, max: 100
     .d-flex.justify-content-end

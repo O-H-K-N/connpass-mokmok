@@ -5,4 +5,5 @@ ja:
     attributes:
       user:
         account: connpassのユーザー名
+        prefecture: 住んでいる都道府県
         count: 予約イベントの表示数

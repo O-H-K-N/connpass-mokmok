@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :line_id, null: false
       t.string :account
       t.integer :count, default: 10
+      t.integer :prefecture, null: false, default: 13
       t.boolean :flag, default: false
 
       t.timestamps
