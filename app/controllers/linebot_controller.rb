@@ -22,24 +22,28 @@ class LinebotController < ApplicationController
       if event.message['text'] != nil
         # LINEで送られてきた文書を取得
         word = event.message['text']
+        # メッセージを送ってきたLINEユーザのuserIdを取得
+        line_user_id = event['source']['userId']
       end
 
       # 送られてきたキーワードをURLに組み込む(日付は本日、順序は開催が遠い順)
-      url = URI.encode"https://connpass.com/api/v1/event/?ymd=#{DateTime.now.strftime("%Y%m%d")}&keyword=#{word}&count=100&order=2"
+      url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{word}&count=10&order=1"
       # インスタンスを生成
       uri = URI.parse(url)
       # リクエストを送りjson形式で受け取る
       json =  Net::HTTP.get(uri)
       # ハッシュ形式に返還
       data = JSON.parse(json)
-      # data["events"].map! do |event|
-      #   if event["place"] == 'オンライン' && event["started_at"] == DateTime.now
-      #     event
-      #   end
-      # end
-
-      res = data["events"][0]
-
+      # 開催前のイベントを抽出
+      events = data["events"].map do |event|
+        if event["ended_at"] > DateTime.now
+          event
+        else
+          next
+        end
+      end
+      # 配列内のnilを削除しシャッフルして並べ直す
+      events = events.shuffle.compact
 
       case event
       # メッセージが送信された場合
@@ -47,11 +51,53 @@ class LinebotController < ApplicationController
         case event.type
         # メッセージが送られて来た場合
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: res["title"] + "\n\n" + "【概要】" + "\n" + ApplicationController.helpers.strip_tags(res["description"]) + "\n" + "開催日時" + "\n" + res["started_at"].to_date.strftime("%-m月%-d日%-H時%m分") + "\n" + "終了日時" + "\n" + res["ended_at"].to_date.strftime("%-m月%-d日%-H時%m分") + "\n" + "\n" + res["event_url"]
-          }
-          client.reply_message(event['replyToken'], message)
+          case events.length
+          # 取得したイベントの数が0のとき
+          when 0
+            client.reply_message(event['replyToken'], type: 'text', text: '該当するイベントが見つかりませんでした。')
+          # 取得したイベントの数が1のとき
+          when 1
+            client.reply_message(event['replyToken'],
+              [
+                {
+                  type: 'text',
+                  text: events[0]["title"] + "\n\n" + events[0]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[0]["event_url"]
+                }
+              ]
+            )
+          # 取得したイベントの数が2のとき
+          when 2
+            client.reply_message(event['replyToken'],
+              [
+                {
+                  type: 'text',
+                  text: events[0]["title"] + "\n\n" + events[0]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[0]["event_url"]
+                },
+                {
+                  type: 'text',
+                  text: events[1]["title"] + "\n\n" + events[1]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[1]["event_url"]
+                }
+              ]
+            )
+          # 取得したイベントの数が3以上のとき
+          when 3..
+            client.reply_message(event['replyToken'],
+              [
+                {
+                  type: 'text',
+                  text: events[0]["title"] + "\n\n" + events[0]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[0]["event_url"]
+                },
+                {
+                  type: 'text',
+                  text: events[1]["title"] + "\n\n" + events[1]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[1]["event_url"]
+                },
+                {
+                  type: 'text',
+                  text: events[2]["title"] + "\n\n" + events[2]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜")+ "\n\n" + events[2]["event_url"]
+                }
+              ]
+            )
+          end
         end
       end
     }
