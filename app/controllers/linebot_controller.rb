@@ -26,14 +26,27 @@ class LinebotController < ApplicationController
         line_user_id = event['source']['userId']
       end
 
-      # 送られてきたキーワードをURLに組み込む(日付は本日、順序は開催が遠い順)
-      url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{word}&count=10&order=1"
+      prefecture = User.find_by(line_id: line_user_id).prefecture
+
+      case word
+      when 'オンラインもくもく会'
+        # オンラインともくもく会でイベントを取得(日付は本日、順序は開催が遠い順)
+        url = URI.encode"https://connpass.com/api/v1/event/?keyword=オンライン　もくもく会&count=100&order=1"
+      when '居住地周辺でのもくもく会'
+        # 居住地ともくもく会でイベントを取得(日付は本日、順序は開催が遠い順)
+        url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{prefecture}&keyword=もくもく会&count=100&order=1"
+      else
+        # 送られてきたキーワードでイベントを取得(日付は本日、順序は開催が遠い順)
+        url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{word}&count=100&order=1"
+      end
+
       # インスタンスを生成
       uri = URI.parse(url)
       # リクエストを送りjson形式で受け取る
       json =  Net::HTTP.get(uri)
       # ハッシュ形式に返還
       data = JSON.parse(json)
+
       # 開催前のイベントを抽出
       events = data["events"].map do |event|
         if event["ended_at"] > DateTime.now
@@ -107,7 +120,7 @@ class LinebotController < ApplicationController
 
 private
 
-# LINE Developers登録完了後に作成される環境変数の認証
+  # LINE Developers登録完了後に作成される環境変数の認証
   def client
     @client ||= Line::Bot::Client.new { |config|
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
