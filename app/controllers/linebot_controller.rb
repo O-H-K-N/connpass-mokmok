@@ -31,13 +31,13 @@ class LinebotController < ApplicationController
       case word
       when 'オンラインもくもく会'
         # オンラインともくもく会でイベントを取得(日付は本日、順序は開催が遠い順)
-        url = URI.encode"https://connpass.com/api/v1/event/?keyword=オンライン　もくもく会&count=100&order=1"
+        url = URI.encode"https://connpass.com/api/v1/event/?keyword=オンライン　もくもく会&count=100&order=2"
       when '居住地周辺でのもくもく会'
         # 居住地ともくもく会でイベントを取得(日付は本日、順序は開催が遠い順)
-        url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{prefecture}&keyword=もくもく会&count=100&order=1"
+        url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{prefecture}&keyword=もくもく会&count=100&order=2"
       else
         # 送られてきたキーワードでイベントを取得(日付は本日、順序は開催が遠い順)
-        url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{word}&count=100&order=1"
+        url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{word}&count=100&order=2"
       end
 
       # インスタンスを生成
@@ -49,7 +49,7 @@ class LinebotController < ApplicationController
 
       # 開催前のイベントを抽出
       events = data["events"].map do |event|
-        if event["ended_at"] > DateTime.now
+        if event["started_at"] > DateTime.now
           event
         else
           next
@@ -57,61 +57,28 @@ class LinebotController < ApplicationController
       end
       # 配列内のnilを削除しシャッフルして並べ直す
       events = events.shuffle.compact
+      # 配列内のnilを削除し開催が近い順で並べ直す
+      # events = events.reverse.compact
 
-      case event
-      # メッセージが送信された場合
-      when Line::Bot::Event::Message
-        case event.type
-        # メッセージが送られて来た場合
-        when Line::Bot::Event::MessageType::Text
-          case events.length
-          # 取得したイベントの数が0のとき
-          when 0
-            client.reply_message(event['replyToken'], type: 'text', text: '該当するイベントが見つかりませんでした。')
-          # 取得したイベントの数が1のとき
-          when 1
-            client.reply_message(event['replyToken'],
-              [
-                {
-                  type: 'text',
-                  text: events[0]["title"] + "\n\n" + events[0]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[0]["event_url"]
-                }
-              ]
-            )
-          # 取得したイベントの数が2のとき
-          when 2
-            client.reply_message(event['replyToken'],
-              [
-                {
-                  type: 'text',
-                  text: events[0]["title"] + "\n\n" + events[0]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[0]["event_url"]
-                },
-                {
-                  type: 'text',
-                  text: events[1]["title"] + "\n\n" + events[1]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[1]["event_url"]
-                }
-              ]
-            )
-          # 取得したイベントの数が3以上のとき
-          when 3..
-            client.reply_message(event['replyToken'],
-              [
-                {
-                  type: 'text',
-                  text: events[0]["title"] + "\n\n" + events[0]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[0]["event_url"]
-                },
-                {
-                  type: 'text',
-                  text: events[1]["title"] + "\n\n" + events[1]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜") + "\n\n" + events[1]["event_url"]
-                },
-                {
-                  type: 'text',
-                  text: events[2]["title"] + "\n\n" + events[2]["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜")+ "\n\n" + events[2]["event_url"]
-                }
-              ]
-            )
-          end
-        end
+      case events.length
+      # 取得したイベントの数が0のとき
+      when 0
+        client.reply_message(event['replyToken'], type: 'text', text: '該当するイベントが見つかりませんでした。')
+      # 取得したイベントの数が1のとき
+      when 1
+        message = User.set_events(events[0])
+        client.reply_message(event['replyToken'], message)
+      # 取得したイベントの数が2のとき
+      when 2
+        message_1 = User.set_events(events[0])
+        message_2 = User.set_events(events[1])
+        client.reply_message(event['replyToken'],[ message_1, message_2 ])
+      # 取得したイベントの数が3以上のとき
+      else
+        message_1 = User.set_events(events[0])
+        message_2 = User.set_events(events[1])
+        message_3 = User.set_events(events[2])
+        client.reply_message(event['replyToken'],[ message_1, message_2, message_3 ])
       end
     }
 
