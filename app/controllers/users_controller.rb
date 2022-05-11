@@ -51,8 +51,14 @@ class UsersController < ApplicationController
       render json: res
     else @user
       session[:user_id] = @user.id
-      res = { id: @user.id }
-      render json: res
+      # ユーザ情報が未設定の場合、ユーザ設定ページに遷移
+      if current_user.flag == false
+        res = { status: 'ok', id: @user.id }
+        render json: res
+      else
+        res = { id: @user.id }
+        render json: res
+      end
     end
   end
 
