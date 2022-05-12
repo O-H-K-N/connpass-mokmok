@@ -1,36 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const name = document.getElementById('name');
-  const picture = document.getElementById('picture');
-  liff.init({
-    liffId: gon.liff_id
+  $('#before-text').on('click', () => {
+    $('.before-events-field').show();
+    $("#before-text").css("color","black");
+    $("#before-border").addClass("border-dark")
+    $('.after-events-field').hide();
+    $("#after-text").css("color","gray");
+    $("#after-border").removeClass("border-dark")
   })
-    .then(() => {
-      liff.getProfile()
-        .then(user => {
-          if (typeof user.displayName !== 'undefined') {
-            name.innerText = user.displayName;
-          }
-          if (typeof user.pictureUrl !== 'undefined') {
-            picture.src = user.pictureUrl;
-          }
-        })
-    })
-
-  $('#letter-text').on('click', () => {
-    $('.letter-field').show();
-    $("#letter-text").css("color","black");
-    $("#letter-border").addClass("border-dark")
-    $('.record-field').hide();
-    $("#record-text").css("color","gray");
-    $("#record-border").removeClass("border-dark")
+  $('#after-text').on('click', () => {
+    $('.before-events-field').hide();
+    $("#after-text").css("color","black");
+    $("#after-border").addClass("border-dark")
+    $('.after-events-field').show();
+    $("#before-text").css("color","gray");
+    $("#before-border").removeClass("border-dark")
   })
-  $('#record-text').on('click', () => {
-    $('.letter-field').hide();
-    $("#record-text").css("color","black");
-    $("#record-border").addClass("border-dark")
-    $('.record-field').show();
-    $("#letter-text").css("color","gray");
-    $("#letter-border").removeClass("border-dark")
-  })
-
 })

@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   get 'top', to: 'homes#top'
   get 'login', to: 'users#login'
   post '/callback' => 'linebot#callback'
-  resource :user, only: %i[show create]
+  resources :users, only: %i[show edit create update]
+  resources :connpass, only: %i[new update]
 end

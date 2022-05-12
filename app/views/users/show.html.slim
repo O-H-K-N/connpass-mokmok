@@ -1,41 +1,21 @@
 = javascript_pack_tag 'users/show'
 
-.container.mx-auto.py-2{ style= "margin-bottom: 78px" }
-  .bg-white.text-center.p-2.rounded-3
-    = image_tag 'users/default.png', id: 'picture', class: 'rounded-circle mt-4', style: "width: 80px;"
-    p#name.mt-2.text-dark
-    .d-flex.flex-nowrap.px-3.mb-0
-      .w-100.text-center
-        h4#letter-text.mb-1= t('users.show.letter')
-        p#letter-border.border-bottom.border-5.w-50.mx-auto.rounded.border-dark
-      .w-100.text-center
-        h4#record-text.mb-1= t('users.show.record')
-        p#record-border.border-bottom.border-5.w-50.mx-auto.rounded
-    .letter-field
-      .text-center
-        p.mb-0.small= t('users.show.count')
-        p.text-dark= t('users.show.letter_unit', count: @letters.count)
-      .d-flex.justify-content-evenly.px-3.mb-3.text-center
-        .w-80
-          p.mb-0.small= t('users.show.sent_letter')
-          p.text-dark= t('users.show.letter_unit', count: @letters.sent.count)
-        .w-80
-          p.mb-0.small= t('users.show.not_send_letter')
-          p.text-dark= t('users.show.letter_unit', count: @letters.not_send.count)
-    .record-field.mb-3
-      .text-center
-        p.mb-0.small= t('users.show.count')
-        p.text-dark= t('users.show.record_unit', count: @records.count)
-      .d-flex.justify-content-evenly.px-3.text-center
-        .w-80
-          p.mb-0.small= t('users.show.checked_record')
-          p.text-dark= t('users.show.record_unit', count: @records.checked.count)
-        .w-80
-          p.mb-0.small= t('users.show.sent_record')
-          p.text-dark= t('users.show.record_unit', count: @records.sent.where(state: 'sent').count)
-        .w-80
-          p.mb-0.small= t('users.show.draft_record')
-          p.text-dark= t('users.show.record_unit', count: @records.draft.count)
-      - if @result.present?
-        .d-flex.justify-content-center.px-5
-          = pie_chart @result.group(:result).count, library: { title: { text: "回答数<br> #{@result.count}問" } }
+.container.mx-auto.mt-3{ style='margin-bottom: 85px;' }
+  .text-center
+    p.small.mb-0.text-muted= t('users.show.user_name')
+    h2.mb-1.fw-bold= @account
+  .d-flex.flex-nowrap.px-3.py-2.mb-0
+    .w-100.text-center
+      h4#before-text.mb-1= t('users.show.before_events')
+      p#before-border.border-bottom.border-5.w-50.mx-auto.rounded.border-dark
+    .w-100.text-center
+      h4#after-text.mb-1= t('users.show.after_events')
+      p#after-border.border-bottom.border-5.w-50.mx-auto.rounded
+  .before-events-field
+    - if !@before_events.nil?
+      = render partial: "event", collection: @before_events, as: :event
+  .after-events-field
+    - if !@after_events.nil?
+      = render partial: "event", collection: @after_events, as: :event
+
+= render 'shared/after_login_footer'

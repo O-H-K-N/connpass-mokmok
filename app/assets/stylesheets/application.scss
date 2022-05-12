@@ -5,56 +5,41 @@
 @import "modal";
 
 body {
-  background-color: #c2d9fe;
-  font-family: "ヒラギノ丸ゴ ProN","Hiragino Maru Gothic ProN";
-  color: #3683ff
+  background-color: #EBECED;
+  font-family: "Lucida Grande", Verdana, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "MS Pゴシック", "MS P Gothic", "Osaka", sans-serif;
+  color: #000
 }
 
-.wrapper{
+.wrapper {
   margin-bottom: 85px
 }
 
-.navbar-dark .navbar-nav .nav-link{
+.navbar-dark .navbar-nav .nav-link {
   font-size: large;
   color: white;
 }
 
-#letter-text{
-  color: black;
+.bg {
+  background-color: white;
+  .link {
+    color: #000
+  }
+  .link-small {
+    color: #6c757d;
+  }
 }
 
-#record-text{
+.bg:hover {
+  background-color: gray;
+  .link, .link-small {
+    color: #FFF
+  }
+}
+
+#after-text{
   color: gray;
 }
 
-.record-field{
+.after-events-field {
   display: none;
-}
-
-.link{
-  opacity: 0.7;
-}
-
-.link:hover{
-  opacity: 1;
-  text-decoration: underline;
-}
-
-#sent{
-  display: none;
-}
-
-.btn-original{
-  color: yellow;
-  opacity: 0.8;
-  padding: 2px;
-  background: none;
-  border: none;
-  position: fixed;
-  bottom: 90px;
-  right: 12px;
-
-  i{
-    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
-  }
 }

@@ -47,6 +47,9 @@ gem 'html2slim'
 # line
 gem 'line-bot-api'
 
+# API外部接続
+gem 'httpclient'
+
 # Background Job
 gem 'whenever', require: false
 
