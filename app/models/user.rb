@@ -16,6 +16,28 @@ class User < ApplicationRecord
     沖縄県:47
   }
 
+
+  # connpassのイベント取得メソッド
+  def self.get_events(url)
+    # インスタンスを生成
+    uri = URI.parse(url)
+    # リクエストを送りjson形式で受け取る
+    json =  Net::HTTP.get(uri)
+    # ハッシュ形式に返還
+    data = JSON.parse(json)
+
+    # 開催前のイベントを抽出
+    events = data["events"].map do |event|
+      if event["started_at"] > DateTime.now
+        event
+      else
+        next
+      end
+    end
+
+    return events
+  end
+
   # 取得したイベントをFLEX_MESSAGEでセット
   def self.set_events(event)
     {
@@ -111,6 +133,155 @@ class User < ApplicationRecord
             }
           ],
           "flex": 0
+        }
+      }
+    }
+  end
+
+  # 取得したイベントをFLEX_MESSAGEでセット（横並びバージョン）
+  # def self.set_events(event)
+  #   {
+  #     "type": "flex",
+  #     "altText": event['title'],
+  #     "contents": {
+  #       "type": "carousel",
+  #       "contents": [
+  #         {
+  #           "type": "bubble",
+  #           "size": "micro",
+  #           "body": {
+  #             "type": "box",
+  #             "layout": "vertical",
+  #             "contents": [
+  #               {
+  #                 "type": "text",
+  #                 "text": event['title'],
+  #                 "weight": "bold",
+  #                 "size": "sm",
+  #                 "wrap": true
+  #               },
+  #               {
+  #                 "type": "box",
+  #                 "layout": "vertical",
+  #                 "contents": [
+  #                   {
+  #                     "type": "box",
+  #                     "layout": "baseline",
+  #                     "spacing": "sm",
+  #                     "contents": [
+  #                       {
+  #                         "type": "text",
+  #                         "text": "会場　#{event['place']}",
+  #                         "wrap": true,
+  #                         "color": "#8c8c8c",
+  #                         "size": "xs",
+  #                         "flex": 1
+  #                       }
+  #                     ]
+  #                   },
+  #                   {
+  #                     "type": "box",
+  #                     "layout": "baseline",
+  #                     "contents": [
+  #                       {
+  #                         "type": "text",
+  #                         "text": "開始時刻　#{event["started_at"].to_datetime.strftime("%Y/%m/%d %-H:%M〜")}",
+  #                         "size": "xs",
+  #                         "color": "#8c8c8c",
+  #                         "flex": 1
+  #                       }
+  #                     ]
+  #                   }
+  #                 ]
+  #               }
+  #             ],
+  #             "spacing": "sm",
+  #             "paddingAll": "13px"
+  #           },
+  #           "footer": {
+  #             "type": "box",
+  #             "layout": "vertical",
+  #             "contents": [
+  #               {
+  #                 "type": "button",
+  #                 "action": {
+  #                   "type": "uri",
+  #                   "label": "イベント詳細へ",
+  #                   "uri":  event["event_url"]
+  #                 },
+  #                 "margin": "none",
+  #                 "height": "sm"
+  #               }
+  #             ],
+  #             "paddingAll": "none"
+  #           }
+  #         }
+  #       ]
+  #     }
+  #   }
+  # end
+
+  # イベントの取得順設定をFLEX_MESSAGEでセット
+  def self.set_order(word)
+    {
+      "type": "flex",
+      "altText": "イベントの取得順を選択",
+      "contents": {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "text",
+              "wrap": true,
+              "weight": "bold",
+              "size": "xl",
+              "text": "イベントの取得順を選択"
+            },
+            {
+              "type": "text",
+              "text": "イベントは最高で４件取得されます。",
+              "color": "#aaaaaa",
+              "size": "sm",
+              "flex": 12
+            },
+            {
+              "type": "text",
+              "text": "開催が近い順 or ランダムのいずれかを選択してください。",
+              "color": "#aaaaaa",
+              "wrap": true,
+              "size": "sm",
+            },
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "postback",
+                "label": "開催が近い順",
+                "data": "new_#{word}"
+              }
+            },
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "postback",
+                "label": "ランダム",
+                "data": "randam_#{word}"
+              }
+            }
+          ]
         }
       }
     }
