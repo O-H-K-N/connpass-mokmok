@@ -16,6 +16,13 @@ class User < ApplicationRecord
     沖縄県:47
   }
 
+  # ラインクライアントに接続するメソッド
+  def self.line_client
+    Line::Bot::Client.new { |config|
+      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+    }
+  end
 
   # connpassのイベント取得メソッド
   def self.get_events(url)
