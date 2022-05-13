@@ -1,6 +1,6 @@
 ja:
   defaults:
-    app_name: レタレコ
+    app_name: connpassもくもく会Bot
     how_to_use: 使い方
     contact: お問い合わせ
     term: 利用規約
@@ -26,14 +26,16 @@ ja:
       before_events: 開催前
       after_events: 開催後
       venue_undecided: 会場未定
-    new:
+    edit:
       setting: 設定
       account_label: connpassのユーザー名（※1）
       prefecture_label: 住んでいる都道府県
       count_label: 予約イベントの表示数（※2）
+      checked_label: オンラインもくもく会の通知ON/OFF（※3）
       submit: '確定'
       account_attention: ※1：正しいユーザー名を登録しない場合、異なる予約イベントが表示されます。
       count_attention: ※2：最小で10件、最大で100件のイベントを表示できます。
+      checked_attention: ※3：通知ONにすると、毎週月曜日の朝9時に、その週に開催されるオンラインもくもく会が通知されます。
     update:
       success: ユーザー設定を編集しました
   shared:

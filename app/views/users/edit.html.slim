@@ -1,25 +1,32 @@
 
 .container.mx-auto.mt-3{ style='margin-bottom: 85px;' }
   .text-center
-    h2.mt-4.mb-3.text-muted= t('users.new.setting')
+    h2.mt-4.mb-3.text-muted= t('users.edit.setting')
   = form_with model: @user, local: true do |f|
     .mb-4= render 'shared/error_form', object: f.object
     .mb-4= render 'shared/flash_message'
     .form-group.m-2
-      = f.label :account, t('users.new.account_label') ,class: "form-label mb-1 text-muted small"
+      = f.label :account, t('users.edit.account_label') ,class: "form-label mb-1 text-muted small"
       = f.text_field :account, class: "form-control mb-3", autofocus: true
     .form-group.m-2
-      = f.label :prefecture, t('users.new.prefecture_label'), class: "form-label mb-1 text-muted small"
+      = f.label :prefecture, t('users.edit.prefecture_label'), class: "form-label mb-1 text-muted small"
       = f.select :prefecture, User.prefectures.keys, {}, class: "form-control", autofocus: true
     .form-group.m-2
-      = f.label :count, t('users.new.count_label'),class: "form-label mb-1 text-muted small"
+      = f.label :count, t('users.edit.count_label'), class: "form-label mb-1 text-muted small"
       = f.number_field :count, class: "form-control", autofocus: true, min: 10, max: 100
+    .form-group.m-2
+      = f.label :count, t('users.edit.checked_label'), class: "form-label mb-1 text-muted small"
+      br
+      .mt-ios.mt-2{ style="font-size:10px;"}
+        = f.check_box :checked, id: 1
+        label{for="1"}
     .d-flex.justify-content-end
-      .action.my-2.me-3
-        = f.submit t('users.new.submit'), class: "btn btn-dark"
+      .action.mb-2.me-3
+        = f.submit t('users.edit.submit'), class: "btn btn-dark"
 
   .m-2.small.text-muted
-    p= t('users.new.account_attention')
-    p= t('users.new.count_attention')
+    p= t('users.edit.account_attention')
+    p= t('users.edit.count_attention')
+    p= t('users.edit.checked_attention')
 
 = render 'shared/after_login_footer'

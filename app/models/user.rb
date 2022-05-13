@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :account, presence: true, on: :update
   validates :prefecture, presence: true, on: :update
   validates :count, presence: true, on: :update
+  validates :checked, inclusion: [true, false]
 
   enum prefecture:{
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -16,6 +17,13 @@ class User < ApplicationRecord
     沖縄県:47
   }
 
+  # ラインクライアントに接続するメソッド
+  def self.line_client
+    Line::Bot::Client.new { |config|
+      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+    }
+  end
 
   # connpassのイベント取得メソッド
   def self.get_events(url)

@@ -39,6 +39,8 @@ class LinebotController < ApplicationController
         case
         # 新着順を選択した場合
         when data.include?("new_")
+          message = {type: 'text', text: 'イベント探索中・・・'}
+          client.push_message(line_user_id, message)
           case
           when data.include?("オンラインもくもく会")
             # オンラインともくもく会でイベントを取得(日付は本日、順序は開催が近い順)
@@ -55,6 +57,8 @@ class LinebotController < ApplicationController
           events = events.reverse.compact
         # ランダムを選択した場合
         when data.include?("randam_")
+          message = {type: 'text', text: 'イベント探索中・・・'}
+          client.push_message(line_user_id, message)
           case
           when data.include?("オンラインもくもく会")
             # オンラインともくもく会でイベントを取得
@@ -75,35 +79,28 @@ class LinebotController < ApplicationController
         # 取得したイベントの数が0のとき
         when 0
           client.reply_message(event['replyToken'], type: 'text', text: '該当するイベントが見つかりませんでした。')
-        # 取得したイベントの数が1のとき
-        when 1
-          message = User.set_events(events[0])
-          client.reply_message(event['replyToken'], [{ type: 'text', text: 'イベントは１件あります。'}, message])
-        # 取得したイベントの数が2のとき
-        when 2
-          message_1 = User.set_events(events[0])
-          message_2 = User.set_events(events[1])
-          client.reply_message(event['replyToken'], [{ type: 'text', text: 'イベントは２件あります。'}, message_1, message_2])
-        # 取得したイベントの数が3のとき
-        when 3
-          message_1 = User.set_events(events[0])
-          message_2 = User.set_events(events[1])
-          message_3 = User.set_events(events[2])
-          client.reply_message(event['replyToken'], [{ type: 'text', text: 'イベントは３件あります。'}, message_1, message_2, message_3])
-        # 取得したイベントの数が4以上のとき
-        when 4..nil
-          message_1 = User.set_events(events[0])
-          message_2 = User.set_events(events[1])
-          message_3 = User.set_events(events[2])
-          message_4 = User.set_events(events[3])
-          client.reply_message(event['replyToken'], [{ type: 'text', text: 'イベントは４件以上あります。'}, message_1, message_2, message_3, message_4])
+        # 取得したイベントの数が5件以上のとき
+        when 5..nil
+          client.reply_message(event['replyToken'], [{ type: 'text', text: 'イベントが5件以上見つかりました✨'}])
+          events = events.first(5)
+          events.each do |event|
+            message = User.set_events(event)
+            client.push_message(line_user_id, message)
+          end
+        # 取得したイベントの数が5件未満のとき
+        else
+          client.reply_message(event['replyToken'], [{ type: 'text', text: "イベントが#{events.length}件見つかりました✨"}])
+          events.each do |event|
+            message = User.set_events(event)
+            client.push_message(line_user_id, message)
+          end
         end
       end
     }
     head :ok
   end
 
-private
+  private
 
   # LINE Developers登録完了後に作成される環境変数の認証
   def client
