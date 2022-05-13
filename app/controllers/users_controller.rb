@@ -116,7 +116,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:line_id, :account, :prefecture, :count)
+    params.require(:user).permit(:line_id, :account, :prefecture, :count, :checked)
   end
 
 end

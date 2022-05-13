@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :account, presence: true, on: :update
   validates :prefecture, presence: true, on: :update
   validates :count, presence: true, on: :update
+  validates :checked, inclusion: [true, false]
 
   enum prefecture:{
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
