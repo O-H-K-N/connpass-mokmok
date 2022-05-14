@@ -3,4 +3,6 @@ class HomesController < ApplicationController
   def top;end
 
   def privasy;end
+
+  def terms;end
 end
