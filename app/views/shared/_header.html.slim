@@ -1,7 +1,9 @@
 nav.navbar.navbar-dark.fixed-top.ps-3
-  = link_to root_path, class: 'navbar-brand'
-    span.nav-title
-      = t('defaults.app_name')
+  = link_to root_path, class: 'navbar-brand header-title'
+    .d-flex.justify-content-start
+      = image_tag 'app_logo_2.png', size: '41x30'
+      span.nav-title.ps-1
+        = t('defaults.app_title')
   button.navbar-toggler.me-3 type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
     span.navbar-toggler-icon
   .collapse.navbar-collapse.px-3 id='navbarSupportedContent'

@@ -11,7 +11,7 @@ body {
 }
 
 .wrapper {
-  margin-bottom: 85px
+  margin: 70px 0px 85px 0px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -42,4 +42,8 @@ body {
 
 .after-events-field {
   display: none;
+}
+
+.title-font{
+  color: #d02d02;
 }

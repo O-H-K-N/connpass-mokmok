@@ -1,24 +1,17 @@
 ja:
   defaults:
-    app_name: connpassもくもく会Bot
+    app_name: connpassもくもく会
+    app_title: もくもく会
     how_to_use: 使い方
     contact: お問い合わせ
     term: 利用規約
     policy: プライバシーポリシー
     line_add: 友達追加
-    create: 作成
-    create_confirm: 未来の自分に手紙を送りますか？
-    add: 追加
-    close: '閉じる'
-    delete: 削除
-    delete_confirm: 削除してもよろしいですか？
-    index_back: 一覧へ
   homes:
     start:
-      app_detail: 未来の自分に手紙とクイズを送るサービス
+      app_detail: connpassのもくもく会に参加しよう！
       section:
         first: LINEの友達に追加
-        second: 「レタレコ」で何ができる？
         third: 使い方
   users:
     show:
@@ -40,6 +33,6 @@ ja:
       success: ユーザー設定を編集しました
   shared:
     footer:
-      footer_app_name: © 2022. レタレコ
+      footer_app_name: © 2022. connpassもくもく会
       events: イベント一覧
       setting: 設定
