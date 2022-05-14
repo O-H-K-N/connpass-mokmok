@@ -1,0 +1,12 @@
+.mb-auto
+  = render 'shared/header'
+.container.mx-auto.px-4.py-2{ style="margin: 60px 0px 85px 0px;"}
+  h1.text-3xl.text-center.mt-3.mb-4.fw-bold お問い合わせ
+
+  p ご意見、ご要望、情報の訂正、利用停止、ユーザー情報の削除をご希望の場合、以下からお問合せください。
+  ul
+    li Googleフォームは#{link_to 'こちら', 'https://docs.google.com/forms/d/e/1FAIpQLSe1VbyMivs6AzlYHi26kWfKGF7E5eq7x7XQjWn8pVuycYoiCw/viewform',class: 'text-blue-600'}から
+    li Twitterは#{link_to 'こちら', 'https://twitter.com/O_H_K_N',class: 'text-blue-600'}から
+
+
+= render 'shared/footer'

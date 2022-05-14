@@ -5,4 +5,6 @@ class HomesController < ApplicationController
   def privasy;end
 
   def terms;end
+
+  def contact;end
 end

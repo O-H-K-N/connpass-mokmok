@@ -12,11 +12,11 @@ nav.navbar.navbar-dark.fixed-top.ps-3
         = link_to root_path, class: 'nav-link d-flex justify-content-end'
           = t('defaults.how_to_use')
       li.nav-item.my-1
-        = link_to root_path, class: 'nav-link d-flex justify-content-end'
-          = t('defaults.contact')
-      li.nav-item.my-1
         = link_to terms_path, class: 'nav-link d-flex justify-content-end'
           = t('defaults.term')
       li.nav-item.my-1
         = link_to privasy_path, class: 'nav-link d-flex justify-content-end'
           = t('defaults.policy')
+      li.nav-item.my-1
+        = link_to contact_path, class: 'nav-link d-flex justify-content-end'
+          = t('defaults.contact')
