@@ -8,8 +8,8 @@ namespace :connpass_summary do
     four = (Date.tomorrow + 3).strftime("%Y%m%d")
     five = (Date.tomorrow + 4).strftime("%Y%m%d")
     six = (Date.tomorrow + 5).strftime("%Y%m%d")
-    url = URI.encode"https://connpass.com/api/v1/event/?keyword=オンライン　もくもく会&count=100&order=2&ymd=#{today}&ymd=#{one}&ymd=#{two}&ymd=#{three}&ymd=#{four}&ymd=#{five}&ymd=#{six}"
-		events = User.get_events(url)
+    url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=オンライン&count=100&order=2&ymd=#{today}&ymd=#{one}&ymd=#{two}&ymd=#{three}&ymd=#{four}&ymd=#{five}&ymd=#{six}"
+		events = User.get_online_events(url)
     events = events.reverse.compact
     # ラインクライアントに接続
     client = User.line_client
@@ -19,13 +19,21 @@ namespace :connpass_summary do
     manual = { type: 'text', text: '今週開催されるオンラインもくもく会の情報です。' }
     response = client.multicast(user_ids, manual)
     p response
-		events.each do |event|
-      message = User.set_events(event)
-      response = client.multicast(user_ids, message)
-			p response
+    if events.length != 0
+      # イベントが存在する場合のみ発火
+		  events.each do |event|
+        message = User.set_events(event)
+        response = client.multicast(user_ids, message)
+		  	p response
+		  end
+      count = { type: 'text', text: "以上、#{events.length}件です。" }
+      response = client.multicast(user_ids, count)
+      p response
+    else
+      # イベントが存在しない場合に発火
+      not_events = { type: 'text', text: "予定されているオンラインもくもく会はありません。" }
+      response = client.multicast(user_ids, not_events)
+      p response
 		end
-    count = { type: 'text', text: "以上、#{events.length}件です。" }
-    response = client.multicast(user_ids, count)
-    p response
 	end
 end
