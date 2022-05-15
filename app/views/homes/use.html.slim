@@ -1,0 +1,59 @@
+.bg-light
+  .mb-auto
+    = render 'shared/header'
+  .container.mx-auto.px-4.py-2
+    h1.text-3xl.text-center.mt-3.mb-4.fw-bold 使い方
+    .col-12.col-sm-6.align-items-center.mx-auto.text-muted.mb-5
+      h5.mb-3.py-3.px-2.text-white.rounded{style="background-color: #bcbcbc;"} もくもく会を検索する
+      p.mb-5 もくもく会などのイベントの検索は、チャット形式で行います。
+      .row.mb-4
+        .col-6.col-sm-6.align-items-center
+          p.small LINEメニューの「オンラインもくもく会」、「居住地周辺のもくもく会」をクリックします。
+        .col-6.col-sm-6.align-items-center
+          = image_tag 'use/richmenu.png', class: "rounded", width: '100%'
+      .row.mb-4
+        .col-6.col-sm-6.align-items-center
+          p.pt-2.small チャットに選択したテキストが送信され、イベントの取得順を選択するフォームが送られてくるので、「開催が近い順」か「ランダム」をクリックしましょう。イベントが表示されるので、気になるイベントがあれば「イベント詳細へ」から詳細を確認できます。
+        .col-6.col-sm-6.align-items-center
+          = image_tag 'use/events_search.png', class: "rounded", width: '100%'
+      p.mb-1.text-danger もくもく会以外でも、イベントに関するキーワードを直接テキストで送ると、キーワードに関するイベントを検索できます。
+      p.small.mb-0.ms-2.text-decoration-underline ※1：イベントは最大５件ずつ表示されます
+      p.small.ms-2.text-decoration-underline ※2：キーワードは2文字以上から認識されます
+    .col-12.col-sm-6.align-items-center.mx-auto.text-muted.mb-5
+      h5.mb-3.py-3.px-2.text-white.rounded{style="background-color: #bcbcbc;"} 予約イベントを確認
+      .row.mb-4
+        .col-6.col-sm-6.align-items-center
+          p.small LINEメニューの「予約イベントを確認」をクリックします。
+        .col-6.col-sm-6.align-items-center
+          = image_tag 'use/richmenu.png', class: "rounded", width: '100%'
+      .row.mb-1
+        .col-6.col-sm-6.align-items-center
+          p.pt-2.small 設定で登録したconnpassのユーザー名（※1）を基に情報を取得し、過去に参加したイベントを含め予約イベントを確認できます。
+        .col-6.col-sm-6.align-items-center
+          = image_tag 'use/events_index.png', class: "rounded", width: '100%'
+      p.small.text-decoration-underline ※1：ユーザー情報を設定を参照
+    .col-12.col-sm-6.align-items-center.mx-auto.text-muted.mb-5
+      h5.mb-3.py-3.px-2.text-white.rounded{style="background-color: #bcbcbc;"} ユーザー情報を設定
+      p.mb-4 サービスを利用し始めたタイミングでユーザー情報を設定していただきます。
+      .row.mb-0
+        .col-6.col-sm-6.align-items-center
+          p.small サービスページ下部にある「設定」をクリックします。
+        .col-6.col-sm-6.align-items-center.mb-4
+          = image_tag 'use/setting_button', class: "rounded", width: '100%'
+      .row.mb-4
+        .col-6.col-sm-6.align-items-center
+          p.pt-2.small ユーザー設定ページへ遷移します。
+        .col-6.col-sm-6.align-items-center
+          = image_tag 'use/setting.png', class: "rounded", width: '100%'
+      p.small.mb-1 設定内容は、下記の通りです。
+      ul.small
+        li connpassのユーザー名（※1）
+        li 住んでいる都道府県
+        li 予約イベントの表示数（※2）
+        li オンラインもくもく会の通知ON/OFF（※3）
+      p.small.ms-2.text-decoration-underline ※1：正しいユーザー名を登録しない場合、異なる予約イベントが表示されます。
+      p.small.ms-2.text-decoration-underline ※2：最小で10件、最大で100件のイベントを表示できます。
+      p.small.ms-2.text-decoration-underline ※3：通知ONにすると、毎週月曜日の朝9時に、その週に開催されるオンラインもくもく会が通知されます。
+
+
+  = render 'shared/footer'

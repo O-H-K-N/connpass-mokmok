@@ -14,11 +14,11 @@ ja:
         first: LINEの友達に追加
         second: アプリ機能
       function:
-        first_title: 1. もくもく会の検索
-        first_content: チャット形式でもくもく会の情報を検索できます。新着順、ランダムで最大５件取得できます。
-        second_title: 2. 予約イベントの確認
+        first_title: 1. もくもく会を検索
+        first_content: チャット形式でもくもく会の情報を検索でき、開催が近い順、ランダムで最大５件取得します。
+        second_title: 2. 予約イベントを確認
         second_content: 過去に参加したイベントを含め、予約したイベントを確認できます。
-        third_title: 3. もくもく会のお知らせ
+        third_title: 3. もくもく会をお知らせ
         third_content: 毎週月曜日に、その週に開催されるオンラインもくもく会の情報をお知らせします。
   users:
     show:
