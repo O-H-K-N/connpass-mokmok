@@ -10,6 +10,20 @@ footer{
   }
 }
 
+.set-top{
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.set-bottom{
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+}
+
 nav, footer{
   background-color: #bcbcbc;
   font-family: "UD デジタル 教科書体 N-B","UD Digi Kyokasho N-B", sans-serif;
