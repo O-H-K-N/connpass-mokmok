@@ -17,6 +17,9 @@ class User < ApplicationRecord
     沖縄県:47
   }
 
+  # 通知ONのUserを収集
+  scope :checked_user, -> { where(checked: true) }
+
   # ラインクライアントに接続するメソッド
   def self.line_client
     Line::Bot::Client.new { |config|
@@ -250,7 +253,7 @@ class User < ApplicationRecord
             },
             {
               "type": "text",
-              "text": "イベントは最高で４件取得されます。",
+              "text": "イベントは最高で5件取得されます。",
               "color": "#aaaaaa",
               "size": "sm",
               "flex": 12

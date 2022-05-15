@@ -13,9 +13,9 @@ namespace :connpass_summary do
     events = events.reverse.compact
     # ラインクライアントに接続
     client = User.line_client
-    # 全てのユーザのLINE IDを集約
+    # 通知ONのユーザのLINE IDを集約
     user_ids = []
-    User.all.each { |user| user_ids << user.line_id }
+    User.checked_user.each { |user| user_ids << user.line_id }
     manual = { type: 'text', text: '今週開催されるオンラインもくもく会の情報です。' }
     response = client.multicast(user_ids, manual)
     p response
