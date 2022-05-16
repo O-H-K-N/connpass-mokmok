@@ -56,6 +56,9 @@ gem 'whenever', require: false
 # Chartkick
 gem "chartkick"
 
+# meta(OGP)
+gem 'meta-tags'
+
 group :development, :test do
   #Debugger
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

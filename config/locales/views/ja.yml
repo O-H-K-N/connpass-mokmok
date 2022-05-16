@@ -15,6 +15,12 @@ ja:
       section:
         first: LINEの友達に追加
         second: アプリ機能
+      content:
+        title: もくもく会を簡単に検索・確認できる
+        step1: STEP1
+        step1_text: LINEで検索
+        step2: STEP2
+        step2_text: もくもく会に参加
       function:
         first_title: 1. もくもく会を検索
         first_content: チャット形式でもくもく会の情報を検索でき、開催が近い順、ランダムで最大５件取得します。
