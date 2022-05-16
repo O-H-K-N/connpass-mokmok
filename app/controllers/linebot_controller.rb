@@ -44,16 +44,18 @@ class LinebotController < ApplicationController
           case
           when data.include?("オンラインもくもく会")
             # オンラインともくもく会でイベントを取得(日付は本日、順序は開催が近い順)
-            url = URI.encode"https://connpass.com/api/v1/event/?keyword=オンライン　もくもく会&count=100&order=2"
+            url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=オンライン&count=100&order=2"
+            events = User.get_online_events(url)
           when data.include?("居住地周辺でのもくもく会")
             # 居住地ともくもく会でイベントを取得(日付は本日、順序は開催が遠い順)
-            url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{prefecture}&keyword=もくもく会&count=100&order=2"
+            url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=#{prefecture}&count=100&order=2"
+            events = User.get_events(url)
           else
             # フリーワードからイベントを取得
             dataAry = data.split("_")
             url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{dataAry[1]}&count=100&order=2"
+            events = User.get_events(url)
           end
-          events = User.get_events(url)
           events = events.reverse.compact
         # ランダムを選択した場合
         when data.include?("randam_")
@@ -62,16 +64,18 @@ class LinebotController < ApplicationController
           case
           when data.include?("オンラインもくもく会")
             # オンラインともくもく会でイベントを取得
-            url = URI.encode"https://connpass.com/api/v1/event/?keyword=オンライン　もくもく会&count=100"
+            url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=オンライン&count=100"
+            events = User.get_online_events(url)
           when data.include?("居住地周辺でのもくもく会")
             # 居住地ともくもく会でイベントを取得
-            url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{prefecture}&keyword=もくもく会&count=100"
+            url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=#{prefecture}&count=100"
+            events = User.get_events(url)
           else
             # フリーワードからイベントを取得
             dataAry = data.split("_")
             url = URI.encode"https://connpass.com/api/v1/event/?keyword=#{dataAry[1]}&count=100"
+            events = User.get_events(url)
           end
-          events = User.get_events(url)
           events = events.shuffle.compact
         end
 

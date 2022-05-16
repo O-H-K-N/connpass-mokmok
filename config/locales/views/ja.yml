@@ -1,25 +1,27 @@
 ja:
   defaults:
-    app_name: connpassもくもく会Bot
+    app_name: connpassもくもく会
+    app_title: もくもく会
     how_to_use: 使い方
     contact: お問い合わせ
-    term: 利用規約
+    terms: 利用規約
     policy: プライバシーポリシー
+    events: イベント一覧
+    setting: ユーザー設定
     line_add: 友達追加
-    create: 作成
-    create_confirm: 未来の自分に手紙を送りますか？
-    add: 追加
-    close: '閉じる'
-    delete: 削除
-    delete_confirm: 削除してもよろしいですか？
-    index_back: 一覧へ
   homes:
-    start:
-      app_detail: 未来の自分に手紙とクイズを送るサービス
+    top:
+      app_detail: connpassのもくもく会に参加しよう！
       section:
         first: LINEの友達に追加
-        second: 「レタレコ」で何ができる？
-        third: 使い方
+        second: アプリ機能
+      function:
+        first_title: 1. もくもく会を検索
+        first_content: チャット形式でもくもく会の情報を検索でき、開催が近い順、ランダムで最大５件取得します。
+        second_title: 2. 予約イベントを確認
+        second_content: 過去に参加したイベントを含め、予約したイベントを確認できます。
+        third_title: 3. もくもく会をお知らせ
+        third_content: 毎週月曜日に、その週に開催されるオンラインもくもく会の情報をお知らせします。
   users:
     show:
       user_name: ユーザー名
@@ -40,6 +42,6 @@ ja:
       success: ユーザー設定を編集しました
   shared:
     footer:
-      footer_app_name: © 2022. レタレコ
+      footer_app_name: © 2022. connpassもくもく会
       events: イベント一覧
       setting: 設定

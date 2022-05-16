@@ -1,20 +1,22 @@
-nav.navbar.navbar-dark.fixed-top.ps-3
-  = link_to root_path, class: 'navbar-brand'
-    span.nav-title
-      = t('defaults.app_name')
+nav.navbar.navbar-dark.set-top.ps-3
+  = link_to root_path, class: 'navbar-brand header-title'
+    .d-flex.justify-content-start
+      = image_tag 'app_logo_2.png', size: '41x30'
+      span.nav-title.ps-1
+        = t('defaults.app_title')
   button.navbar-toggler.me-3 type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
     span.navbar-toggler-icon
   .collapse.navbar-collapse.px-3 id='navbarSupportedContent'
     ul.navbar-nav.me-auto.mb-2
       li.nav-item.my-1
-        = link_to root_path, class: 'nav-link d-flex justify-content-end'
+        = link_to use_path, class: 'nav-link d-flex justify-content-end'
           = t('defaults.how_to_use')
       li.nav-item.my-1
-        = link_to root_path, class: 'nav-link d-flex justify-content-end'
-          = t('defaults.contact')
+        = link_to terms_path, class: 'nav-link d-flex justify-content-end'
+          = t('defaults.terms')
       li.nav-item.my-1
-        = link_to root_path, class: 'nav-link d-flex justify-content-end'
-          = t('defaults.term')
-      li.nav-item.my-1
-        = link_to root_path, class: 'nav-link d-flex justify-content-end'
+        = link_to privasy_path, class: 'nav-link d-flex justify-content-end'
           = t('defaults.policy')
+      li.nav-item.my-1
+        = link_to contact_path, class: 'nav-link d-flex justify-content-end'
+          = t('defaults.contact')

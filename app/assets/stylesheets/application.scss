@@ -6,13 +6,11 @@
 
 body {
   background-color: #EBECED;
-  font-family: "Lucida Grande", Verdana, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "MS Pゴシック", "MS P Gothic", "Osaka", sans-serif;
+  // font-family: "Lucida Grande", Verdana, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "MS Pゴシック", "MS P Gothic", "Osaka", sans-serif;
+  font-family: "Tsukushi A Round Gothic","筑紫A丸ゴシック", sans-serif;
   color: #000
 }
 
-.wrapper {
-  margin-bottom: 85px
-}
 
 .navbar-dark .navbar-nav .nav-link {
   font-size: large;
@@ -42,4 +40,8 @@ body {
 
 .after-events-field {
   display: none;
+}
+
+.title-font{
+  color: #d02d02;
 }

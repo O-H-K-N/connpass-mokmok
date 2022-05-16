@@ -1,8 +1,9 @@
 doctype html
 html
   head
+    = favicon_link_tag 'app_logo_3.ico'
     title
-      = t('defaults.app_name')
+      = page_title(yield(:title))
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     script[charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"]
     = csrf_meta_tags

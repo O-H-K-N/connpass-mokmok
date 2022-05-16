@@ -1,11 +1,4 @@
-nav, footer{
-  background-color: #3683ff;
-
-  .nav-title, .navbar-toggler-icon{
-    color: white;
-    font-size: 1.5rem;
-  }
-
+footer{
   a{
     color: gray;
     font-weight: bold;
@@ -14,6 +7,29 @@ nav, footer{
   a:hover{
     color: black;
     background-color: #f8f9fa
+  }
+}
+
+.set-top{
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.set-bottom{
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+nav, footer{
+  background-color: #bcbcbc;
+
+  .nav-title, .navbar-toggler-icon{
+    color: white;
+    font-size: 1.3rem;
   }
 }
 
