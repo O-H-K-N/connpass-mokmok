@@ -4,8 +4,10 @@ ja:
     app_title: もくもく会
     how_to_use: 使い方
     contact: お問い合わせ
-    term: 利用規約
+    terms: 利用規約
     policy: プライバシーポリシー
+    events: イベント一覧
+    setting: ユーザー設定
     line_add: 友達追加
   homes:
     top:
