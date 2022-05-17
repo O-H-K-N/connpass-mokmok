@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: %i[login create]
+  skip_before_action :login_required, only: %i[login create edit]
   before_action :set_liff_top_id, only: %i[login show]
 
   require 'net/http'
@@ -116,7 +116,16 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:line_id, :account, :prefecture, :count, :checked)
+    params.require(:user).permit(
+      :line_id,
+      :account,
+      :prefecture,
+      :word_first,
+      :word_second,
+      :word_third,
+      :count,
+      :checked
+    )
   end
 
 end

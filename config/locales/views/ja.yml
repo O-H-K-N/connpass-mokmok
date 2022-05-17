@@ -7,6 +7,7 @@ ja:
     terms: 利用規約
     policy: プライバシーポリシー
     events: イベント一覧
+    mokumoku_events: 今週のもくもく会
     setting: ユーザー設定
     line_add: 友達追加
   homes:
@@ -39,6 +40,9 @@ ja:
       account_label: connpassのユーザー名（※1）
       prefecture_label: 住んでいる都道府県
       count_label: 予約イベントの表示数（※2）
+      word_first_label: 興味のあるキーワード
+      word_second_label: 興味のあるキーワード（２つ目）
+      word_third_label: 興味のあるキーワード（３つ目）
       checked_label: オンラインもくもく会の通知ON/OFF（※3）
       submit: '確定'
       account_attention: ※1：正しいユーザー名を登録しない場合、異なる予約イベントが表示されます。

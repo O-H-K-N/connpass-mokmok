@@ -13,7 +13,7 @@ module ApplicationHelper
       title: ' connpassのもくもく会に参加しよう！',
       reverse: true,
       charset: 'utf-8',
-      description: 'connpassに登録されている簡単にもくもく会を検索・確認できるアプリ',
+      description: 'connpassに登録されているもくもく会を、簡単に検索・確認できるアプリ',
       keywords: 'connpass, もくもく会,',
       canonical: request.original_url,
       separator: '|',

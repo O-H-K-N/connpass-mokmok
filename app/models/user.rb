@@ -2,6 +2,10 @@ class User < ApplicationRecord
   validates :line_id, presence: true, uniqueness: true
   validates :account, presence: true, on: :update
   validates :prefecture, presence: true, on: :update
+  validates :word_first, presence: true, on: :update
+  validates :word_first, length: { in: 2..10 }, allow_blank: true
+  validates :word_second, length: { in: 2..10 }, allow_blank: true, on: :update
+  validates :word_third, length: { in: 2..10 }, allow_blank: true, on: :update
   validates :count, presence: true, on: :update
   validates :checked, inclusion: [true, false]
 
