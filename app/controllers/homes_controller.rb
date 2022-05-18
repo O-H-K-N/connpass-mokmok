@@ -1,13 +1,18 @@
 class HomesController < ApplicationController
-  skip_before_action :login_required, only: %i[top privacy terms contact]
+  skip_before_action :login_required, only: %i[set top use privasy terms contact]
+  before_action :set_liff_keyword_id, only: %i[set]
 
-  def top;end
+  def set; end
 
-  def privasy;end
+  def top; end
 
-  def terms;end
+  def use; end
 
-  def contact;end
+  def privasy; end
+
+  def terms; end
+
+  def contact; end
 
   def events
     # ユーザが登録したキーワードに関するもくもく会を取得

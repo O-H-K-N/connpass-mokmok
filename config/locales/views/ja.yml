@@ -42,8 +42,8 @@ ja:
       prefecture_label: 住んでいる都道府県
       count_label: 予約イベントの表示数（※2）
       word_first_label: 興味のあるキーワード（※3）
-      word_second_label: 興味のあるキーワード（２つ目）
-      word_third_label: 興味のあるキーワード（３つ目）
+      word_second_label: 【任意】興味のあるキーワード（２つ目）
+      word_third_label: 【任意】興味のあるキーワード（３つ目）
       checked_label: オンラインもくもく会の通知ON/OFF（※4）
       submit: '確定'
       account_attention: ※1：正しいユーザー名を登録しない場合、異なる予約イベントが表示されます。

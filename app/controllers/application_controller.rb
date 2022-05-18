@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def set_liff_top_id
     gon.liff_id = ENV['LIFF_TOP_ID']
   end
+
+  def set_liff_keyword_id
+    gon.liff_id = ENV['LIFF_KEYWORD_ID']
+  end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'homes#top'
+  get 'set', to: 'homes#set'
   get 'top', to: 'homes#top'
   get 'use', to: 'homes#use'
   get 'privasy', to: 'homes#privasy'
