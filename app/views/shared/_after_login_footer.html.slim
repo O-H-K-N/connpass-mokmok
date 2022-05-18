@@ -1,6 +1,8 @@
 footer.fixed-bottom
   .d-flex.flex-nowrap.bg-white.mb-0.text
     = link_to user_path(current_user), class: "w-100 text-center py-4 #{footer_menu('show')}"
-      p.d-inline-block.small.mb-0= t('shared.footer.events')
+      i.fa.fa-folder-open.fa-lg.mb-0
+    = link_to events_path(current_user), class: "w-100 text-center py-4 #{footer_menu('events')}"
+      i.fa.fa-key.fa-lg.mb-0
     = link_to edit_user_path(current_user), class: "w-100 text-center py-4 #{footer_menu('edit')}"
-      p.d-inline-block.small.mb-0= t('shared.footer.setting')
+      i.fa.fa-cog.fa-lg.mb-0

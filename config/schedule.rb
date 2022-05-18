@@ -9,6 +9,6 @@ set :output, "#{Rails.root}/log/cron.log"
 
 
 # 毎朝9時に届け日に該当する手紙を送る
-every 1.day, :at => '9:00 am' do
-  rake 'connpass_summary:send_connpass'
-end
+# every 1.day, :at => '9:00 am' do
+#   rake 'connpass_summary:send_connpass'
+# end

@@ -40,6 +40,6 @@ module ApplicationHelper
   def footer_menu(target_action)
     return unless params[:action] == target_action
 
-    'text-dark bg-light border border-3 rounded-2'
+    'text-danger bg-light border border-3 rounded-2'
   end
 end

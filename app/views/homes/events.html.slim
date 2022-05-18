@@ -1,0 +1,11 @@
+= content_for(:title, t('defaults.mokumoku_events'))
+= javascript_pack_tag 'homes/events'
+
+.container.mx-auto.mt-3{ style='margin-bottom: 85px;' }
+  .d-flex.justify-content-end.mb-2
+    p.small.mb-0.text-muted= "全#{@events.length}件"
+  .events-field
+    - if !@events.nil?
+      = render partial: "users/event", collection: @events, as: :event
+
+= render 'shared/after_login_footer'
