@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one :connpass
   validates :line_id, presence: true, uniqueness: true
   validates :account, presence: true, on: :update
   validates :prefecture, presence: true, on: :update
