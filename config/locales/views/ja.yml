@@ -7,6 +7,8 @@ ja:
     terms: 利用規約
     policy: プライバシーポリシー
     events: イベント一覧
+    mokumoku_events: キーワードに関するもくもく会
+    keyword: キーワード
     setting: ユーザー設定
     line_add: 友達追加
   homes:
@@ -27,7 +29,7 @@ ja:
         second_title: 2. 予約イベントを確認
         second_content: 過去に参加したイベントを含め、予約したイベントを確認できます。
         third_title: 3. もくもく会をお知らせ
-        third_content: 毎週月曜日に、その週に開催されるオンラインもくもく会の情報をお知らせします。
+        third_content: あらかじめ設定したキーワードに関するもくもく会が登録されたらお知らせします。
   users:
     show:
       user_name: ユーザー名
@@ -39,15 +41,20 @@ ja:
       account_label: connpassのユーザー名（※1）
       prefecture_label: 住んでいる都道府県
       count_label: 予約イベントの表示数（※2）
-      checked_label: オンラインもくもく会の通知ON/OFF（※3）
-      submit: '確定'
+      word_first_label: 興味のあるキーワード（※3）
+      word_second_label: 【任意】興味のあるキーワード（２つ目）
+      word_third_label: 【任意】興味のあるキーワード（３つ目）
+      checked_label: もくもく会の新着情報の通知（※4）
+      submit: 確定
       account_attention: ※1：正しいユーザー名を登録しない場合、異なる予約イベントが表示されます。
-      count_attention: ※2：最小で10件、最大で100件のイベントを表示できます。
-      checked_attention: ※3：通知ONにすると、毎週月曜日の朝9時に、その週に開催されるオンラインもくもく会が通知されます。
+      count_attention: ※2：予約イベントの表示数を、10〜100件の間で選択できます。
+      keyword_attention: ※3：設定したキーワードで関連性のあるもくもく会を確認できます。
+      checked_attention: ※4：通知をONにすると、設定したキーワードに関するもくもく会が登録されたらお知らせします。
     update:
       success: ユーザー設定を編集しました
   shared:
     footer:
       footer_app_name: © 2022. connpassもくもく会
-      events: イベント一覧
+      events: 予約イベント一覧
+      keyword: キーワードもくもく会一覧
       setting: 設定

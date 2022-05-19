@@ -8,7 +8,7 @@ set :environment, rails_env
 set :output, "#{Rails.root}/log/cron.log"
 
 
-# 毎朝9時に届け日に該当する手紙を送る
-every 1.day, :at => '9:00 am' do
-  rake 'connpass_summary:send_connpass'
-end
+# 1時間ごとに新着イベントがあるかを確認し通知する
+# every 1.hours do
+#   rake 'connpass_summary:set_connpass_event'
+# end

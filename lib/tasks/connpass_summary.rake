@@ -1,39 +1,39 @@
 namespace :connpass_summary do
-  desc '毎週月曜am9:00に、その週に開催されるオンラインもくもく会の情報を通知する'
-	task send_connpass: :environment do
-    today = Date.today.strftime("%Y%m%d")
-    one = Date.tomorrow.strftime("%Y%m%d")
-    two = (Date.tomorrow + 1).strftime("%Y%m%d")
-    three = (Date.tomorrow + 2).strftime("%Y%m%d")
-    four = (Date.tomorrow + 3).strftime("%Y%m%d")
-    five = (Date.tomorrow + 4).strftime("%Y%m%d")
-    six = (Date.tomorrow + 5).strftime("%Y%m%d")
-    url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=オンライン&count=100&order=2&ymd=#{today}&ymd=#{one}&ymd=#{two}&ymd=#{three}&ymd=#{four}&ymd=#{five}&ymd=#{six}"
-		events = User.get_online_events(url)
-    events = events.reverse.compact
-    # ラインクライアントに接続
+  desc 'キーワードに関するもくもく会の情報をLINEチャットで通知する'
+  task set_connpass_event: :environment do
+    # LINEクライアントに接続
     client = User.line_client
-    # 通知ONのユーザのLINE IDを集約
-    user_ids = []
-    User.checked_user.each { |user| user_ids << user.line_id }
-    manual = { type: 'text', text: '今週開催されるオンラインもくもく会の情報です。' }
-    response = client.multicast(user_ids, manual)
-    p response
-    if events.length != 0
-      # イベントが存在する場合のみ発火
-		  events.each do |event|
+    # 通知ONのユーザ全てに適用
+    User.checked_user.each do |user|
+      # ユーザが設定しているキーワードでイベント情報を新着順で取得
+      url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword_or=#{user.word_first}&keyword_or=#{user.word_second}&keyword_or=#{user.word_third}&count=100&order=3"
+      events = User.get_events(url)
+      events = events.compact
+      # 一つ目のイベント情報を取得
+      event = events[0]
+      # ユーザに紐付いているイベントの有無を確認
+      if  !user.connpass.nil?
+        # ユーザに紐付いているイベントのIDと取得したイベントIDが同じかを確認
+        unless user.connpass.event_id == event["event_id"]
+          # 異なる場合にユーザに紐付いたイベントを更新し、詳細をLINEチャットで送信
+          user.connpass.update(event_id: event["event_id"])
+          manual = { type: 'text', text: "【お知らせ】\nキーワードに関するもくもく会の開催情報です✨" }
+          response = client.multicast(user.line_id, manual)
+          p response
+          message = User.set_events(event)
+          response = client.push_message(user.line_id, message)
+          p response
+        end
+      else
+        # 無しの場合にユーザに紐付いたイベントを作成し、詳細をLINEチャットで送信
+        Connpass.create(user_id: user.id, event_id: event["event_id"])
+        manual = { type: 'text', text: "【お知らせ】\nキーワードに関するもくもく会の開催情報です✨" }
+        response = client.multicast(user.line_id, manual)
+        p response
         message = User.set_events(event)
-        response = client.multicast(user_ids, message)
-		  	p response
-		  end
-      count = { type: 'text', text: "以上、#{events.length}件です。" }
-      response = client.multicast(user_ids, count)
-      p response
-    else
-      # イベントが存在しない場合に発火
-      not_events = { type: 'text', text: "予定されているオンラインもくもく会はありません。" }
-      response = client.multicast(user_ids, not_events)
-      p response
-		end
-	end
+        response = client.push_message(user.line_id, message)
+        p response
+      end
+    end
+  end
 end

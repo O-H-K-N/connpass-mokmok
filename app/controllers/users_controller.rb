@@ -1,11 +1,23 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: %i[login create]
-  before_action :set_liff_top_id, only: %i[login show]
+  skip_before_action :login_required, only: %i[login set create]
+  before_action :set_liff_top_id, only: %i[login]
+  before_action :set_liff_keyword_id, only: %i[set]
 
   require 'net/http'
   require 'uri'
 
+  # 「予約イベントを確認」からのログイン
   def login; end
+
+  # 「キーワードに関するもくもく会一覧」からのログイン
+  def set; end
+
+  def index
+    # ユーザが登録したキーワードに関するもくもく会を取得
+    url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword_or=#{current_user.word_first}&keyword_or=#{current_user.word_second}&keyword_or=#{current_user.word_third}&count=100&order=2"
+    events = User.get_events(url)
+    @events = events.reverse.compact
+  end
 
   def show
     # 初期設定で登録したconnpassのアカウント名から予約済みのイベントを取得
@@ -116,7 +128,16 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:line_id, :account, :prefecture, :count, :checked)
+    params.require(:user).permit(
+      :line_id,
+      :account,
+      :prefecture,
+      :word_first,
+      :word_second,
+      :word_third,
+      :count,
+      :checked
+    )
   end
 
 end

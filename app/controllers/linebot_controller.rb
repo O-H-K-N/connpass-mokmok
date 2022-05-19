@@ -46,7 +46,7 @@ class LinebotController < ApplicationController
             # オンラインともくもく会でイベントを取得(日付は本日、順序は開催が近い順)
             url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=オンライン&count=100&order=2"
             events = User.get_online_events(url)
-          when data.include?("居住地周辺でのもくもく会")
+          when data.include?("居住地周辺のもくもく会")
             # 居住地ともくもく会でイベントを取得(日付は本日、順序は開催が遠い順)
             url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=#{prefecture}&count=100&order=2"
             events = User.get_events(url)
@@ -66,7 +66,7 @@ class LinebotController < ApplicationController
             # オンラインともくもく会でイベントを取得
             url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=オンライン&count=100"
             events = User.get_online_events(url)
-          when data.include?("居住地周辺でのもくもく会")
+          when data.include?("居住地周辺のもくもく会")
             # 居住地ともくもく会でイベントを取得
             url = URI.encode"https://connpass.com/api/v1/event/?keyword=もくもく会&keyword=#{prefecture}&count=100"
             events = User.get_events(url)

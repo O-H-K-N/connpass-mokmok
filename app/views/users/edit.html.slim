@@ -16,6 +16,15 @@
       = f.label :count, t('users.edit.count_label'), class: "form-label mb-1 text-muted small"
       = f.number_field :count, class: "form-control", autofocus: true, min: 10, max: 100
     .form-group.m-2
+      = f.label :word_first, t('users.edit.word_first_label') ,class: "form-label mb-1 text-muted small"
+      = f.text_field :word_first, class: "form-control mb-3", autofocus: true
+    .form-group.m-2
+      = f.label :word_second, t('users.edit.word_second_label') ,class: "form-label mb-1 text-muted small"
+      = f.text_field :word_second, class: "form-control mb-3", autofocus: true
+    .form-group.m-2
+      = f.label :word_third, t('users.edit.word_third_label') ,class: "form-label mb-1 text-muted small"
+      = f.text_field :word_third, class: "form-control mb-3", autofocus: true
+    .form-group.m-2
       = f.label :count, t('users.edit.checked_label'), class: "form-label mb-1 text-muted small"
       br
       .mt-ios.mt-2{ style="font-size:10px;"}
@@ -28,6 +37,7 @@
   .m-2.small.text-muted
     p= t('users.edit.account_attention')
     p= t('users.edit.count_attention')
+    p= t('users.edit.keyword_attention')
     p= t('users.edit.checked_attention')
 
 = render 'shared/after_login_footer'

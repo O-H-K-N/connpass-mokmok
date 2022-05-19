@@ -33,17 +33,34 @@ nav, footer{
   }
 }
 
-.record_header{
-  top: 0;
-
-  p{
-    color: gray;
-    font-weight: bold;
-  }
-
-  .checked{
-    color: black;
-    background-color: #f8f9fa
-  }
+#after-text{
+  color: gray;
 }
 
+.after-events-field {
+  display: none;
+}
+
+#first-text{
+  color: gray;
+}
+
+.first-events-field {
+  display: none;
+}
+
+#second-text{
+  color: gray;
+}
+
+.second-events-field {
+  display: none;
+}
+
+#third-text{
+  color: gray;
+}
+
+.third-events-field {
+  display: none;
+}
