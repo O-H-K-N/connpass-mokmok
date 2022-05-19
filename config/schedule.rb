@@ -9,6 +9,6 @@ set :output, "#{Rails.root}/log/cron.log"
 
 
 # 1時間ごとに新着イベントがあるかを確認し通知する
-every 1.hours do
-  rake 'connpass_summary:set_connpass_event'
-end
+# every 1.hours do
+#   rake 'connpass_summary:set_connpass_event'
+# end
