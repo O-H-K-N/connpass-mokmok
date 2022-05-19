@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         body: body
       });
       fetch(request)
-      window.location = `/events`
+      window.location = `/users`
     })
     .catch((err) => {
       console.log(err.code, err.message);
