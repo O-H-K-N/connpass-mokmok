@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get 'login', to: 'users#login'
   get 'set', to: 'users#set'
   post '/callback' => 'linebot#callback'
-  resources :users, only: %i[index show edit create update]
+  resources :users, only: %i[show edit create update] do
+    member do
+      get 'events'
+    end
+  end
   resources :connpass, only: %i[new update]
 end

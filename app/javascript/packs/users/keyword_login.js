@@ -22,7 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
         body: body
       });
       fetch(request)
-      window.location = `/users`
+      .then(response => {
+        return response.json().then(response_user => {
+          const user = response_user;
+          // キーワードに関するもくもく会一覧ページに遷移
+          window.location = `/users/${user.id}/events`
+        })
+      })
     })
     .catch((err) => {
       console.log(err.code, err.message);
