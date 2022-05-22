@@ -32,8 +32,10 @@ namespace :connpass_summary do
         p response
         message = User.set_events(event)
         response = client.push_message(user.line_id, message)
-        p response
+        p respons
       end
+    # 5秒間システムを停止
+    sleep 5
     end
   end
 end
