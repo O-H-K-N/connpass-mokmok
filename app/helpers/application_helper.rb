@@ -3,7 +3,7 @@ module ApplicationHelper
   def page_title(page_title = '')
     base_title = t('defaults.app_name')
 
-		page_title.empty? ? base_title : page_title + " | " + base_title
+		page_title.empty? ? base_title : page_title + " - " + base_title
   end
 
   # OGP設定
@@ -14,9 +14,9 @@ module ApplicationHelper
       reverse: true,
       charset: 'utf-8',
       description: 'connpassに登録されているもくもく会を、簡単に検索・確認できるアプリ',
-      keywords: 'connpass, もくもく会,',
+      keywords: 'connpass, もくもく会',
       canonical: request.original_url,
-      separator: '|',
+      separator: '-',
       icon: [
         { href: image_url('app_logo_3.ico')},
         { href: image_url('app_logo_3.ico'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
