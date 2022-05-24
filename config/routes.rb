@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   get 'privasy', to: 'homes#privasy'
   get 'terms', to: 'homes#terms'
   get 'contact', to: 'homes#contact'
+  get 'close', to: 'homes#close'
   get 'login', to: 'users#login'
   get 'set', to: 'users#set'
   post '/callback' => 'linebot#callback'
-  resources :users, only: %i[show edit create update] do
+  resources :users, only: %i[show edit create update destroy] do
     member do
       get 'events'
     end

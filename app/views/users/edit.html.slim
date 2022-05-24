@@ -27,7 +27,7 @@
     .form-group.m-2
       = f.label :count, t('users.edit.checked_label'), class: "form-label mb-1 text-muted small"
       br
-      .mt-ios.mt-2{ style="font-size:10px;"}
+      .mt-ios.mt-2{ style="font-size:10px;" }
         = f.check_box :checked, id: 1
         label{for="1"}
     .d-flex.justify-content-end
@@ -39,5 +39,8 @@
     p= t('users.edit.count_attention')
     p= t('users.edit.keyword_attention')
     p= t('users.edit.checked_attention')
+
+  .text-center
+    = link_to t('users.destroy.delete'), user_path(@user), method: :delete, { confirm: t('users.destroy.delete_confirm') }, class: 'btn btn-danger p-3 my-3'
 
 = render 'shared/after_login_footer'
