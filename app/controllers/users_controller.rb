@@ -90,10 +90,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
     client = User.line_client
-    client.unlink_user_rich_menu(user.line_id)
-    user.destroy!
+    client.unlink_user_rich_menu(@user.line_id)
+    @user.destroy!
     redirect_to close_path
   end
 
