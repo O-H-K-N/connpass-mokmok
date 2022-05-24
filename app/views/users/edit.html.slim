@@ -41,6 +41,6 @@
     p= t('users.edit.checked_attention')
 
   .text-center
-    = link_to t('users.destroy.delete'), user_path(@user), method: :delete, { confirm: t('users.destroy.delete_confirm') }, class: 'btn btn-danger p-3 my-3'
+    = link_to t('users.destroy.delete'), user_path(@user), method: :delete, data: { confirm: t('users.destroy.delete_confirm') }, class: 'btn btn-danger p-3 my-3'
 
 = render 'shared/after_login_footer'
