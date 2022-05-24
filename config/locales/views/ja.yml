@@ -6,6 +6,7 @@ ja:
     contact: お問い合わせ
     terms: 利用規約
     policy: プライバシーポリシー
+    close: アカウント削除完了
     events: イベント一覧
     mokumoku_events: キーワードに関するもくもく会
     keyword: キーワード
@@ -52,6 +53,9 @@ ja:
       checked_attention: ※4：通知をONにすると、設定したキーワードに関するもくもく会が登録されたらお知らせします。
     update:
       success: ユーザー設定を編集しました
+    destroy:
+      delete: アカウントを削除
+      delete_confirm: アカウントの削除を実行しますか？
   shared:
     footer:
       footer_app_name: © 2022. connpassもくもく会

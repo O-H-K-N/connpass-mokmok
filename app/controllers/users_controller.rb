@@ -89,6 +89,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+    client = User.line_client
+    # リッチメニューとの接続を解消
+    client.unlink_user_rich_menu(user.line_id)
+    user.destroy
+    redirect_to close_path
+  end
+
   private
 
   # アクセスしたLINEアカウント情報の取得
@@ -115,16 +124,8 @@ class UsersController < ApplicationController
 
   # リッチメニュー切り替え処理
   def set_richmenu(user)
-    # 新規ログイン完了後は、通常盤のリッチメニューを切り替える
-    uri = URI.parse("https://api.line.me/v2/bot/user/#{@user.line_id}/richmenu/#{ENV['RICH_MENU_ID_LOGGED_IN']}")
-    http = Net::HTTP.new(uri.host, uri.port)
-    # リッチメニューがなければエラー発生
-    http.use_ssl = true
-    req = Net::HTTP::Post.new(uri.request_uri)
-    # チャネルアクセストークン設定
-    req['Authorization'] = "Bearer {#{ENV['LINE_CHANNEL_TOKEN']}}"
-    res = http.request(req)
-    res.value
+    client = User.line_client
+    client.link_user_rich_menu(user.line_id, ENV['RICH_MENU_ID_LOGGED_IN'])
   end
 
   def user_params
