@@ -93,7 +93,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     client = User.line_client
     client.unlink_user_rich_menu(@user.line_id)
-    @user.destroy!
+    @user.destroy
     redirect_to close_path
   end
 
