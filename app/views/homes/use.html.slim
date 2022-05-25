@@ -71,6 +71,13 @@
       p.small.ms-2.text-decoration-underline= t('users.edit.count_attention')
       p.small.ms-2.text-decoration-underline= "#{t('users.edit.keyword_attention')} 3つのうち1つ目は必須です。"
       p.small.ms-2.text-decoration-underline= t('users.edit.checked_attention')
-
+    .col-12.col-sm-6.align-items-center.mx-auto.text-muted.mb-5
+      h5.mb-3.py-3.px-2.text-white.rounded{style="background-color: #bcbcbc;"} 退会（アカウントの削除）
+      .row.mb-4
+        .col-6.col-sm-6.align-items-center
+          p.pt-2.small ユーザー設定ページ下部の「アカウント削除」ボタンから退会を実行できます。
+          p.small.text-danger 退会手続きが完了しますと、これまでに設定いただいた内容やもくもく会の一覧情報は確認いただけません。
+        .col-6.col-sm-6.align-items-center
+          = image_tag 'use/account_delete.png', class: "rounded", width: '100%'
 
   = render 'shared/footer'
