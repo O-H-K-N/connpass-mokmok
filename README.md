@@ -33,6 +33,15 @@ connpassスマホ版アプリには無いソート機能を取り入れること
     - ユーザー設定機能
     - 退会機能
 
+## 使用技術
+* Ruby 2.6.6
+* Rails 6.1.6
+* LINEmessagingAPI
+* LIFF
+* connpass API
+* jQuery
+* Whenever
+
 ## スケジュール
 README〜ER図作成：4/13〆切
 
